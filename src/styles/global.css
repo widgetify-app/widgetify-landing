@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    direction: rtl;
+    font-family: Vazirmatn, sans-serif;
+  }
+}
