@@ -2,7 +2,6 @@ import { Download, Globe, Laptop, Puzzle } from 'lucide-react'
 import ContainerWrapper from '../components/ContainerWrapper'
 import ContributorsSection from '../components/ContributorsSection'
 import FeaturesSection from '../components/FeaturesSection'
-import FixedBackground from '../components/FixedBackground'
 import FooterSection from '../components/FooterSection'
 import WidgetsSection from '../components/WidgetsSection'
 

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import FixedBackground from '../components/FixedBackground'
 import FooterSection from '../components/FooterSection'
 
 // Donation platforms data
