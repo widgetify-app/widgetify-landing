@@ -60,7 +60,7 @@ export default function ContributorsSection() {
 		<section className="py-8">
 			<div className="flex flex-col items-center pb-6 mb-8 border-b border-gray-200">
 				<h2 className="mb-2 text-3xl font-bold text-center">مشارکت‌کنندگان</h2>
-				<p className="text-gray-500">شما هم میتونید به بهبود ویجتیفای کمک کنید</p>
+				<p className="text-gray-500">شما هم میتونید به بهبود ویجتی‌فای کمک کنید</p>
 			</div>
 
 			{isLoading ? (
