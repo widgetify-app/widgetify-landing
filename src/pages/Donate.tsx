@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import FixedBackground from '../components/FixedBackground'
 import FooterSection from '../components/FooterSection'
 import PageWrapper from '../components/PageWrapper'
 
@@ -46,7 +45,6 @@ export default function Donate() {
 
 	return (
 		<>
-			<FixedBackground />
 			<PageWrapper className="py-12">
 				<Link to="/" className="flex items-center mb-8 text-blue-600 hover:underline">
 					← بازگشت به صفحه اصلی

@@ -3,7 +3,7 @@ import { DESKTOP_LINK, PWA_LINK } from "../constants";
 export default function HeroSection() {
   return (
     <header className="mx-auto px-4 max-w-4xl pt-40 pb-16 text-center space-y-6 md:space-y-10 mb-16">
-      <h1 className="text-2xl md:text-5xl text-neutral-900 leading-tight font-bold">
+      <h1 className="text-2xl md:text-5xl text-white leading-tight font-bold drop-shadow-[0_0_2px_rgba(255,255,255,0.4)]">
         ویجت‌های هوشمند و کاربردی برای وب و دسکتاپ شما با قدرت هوش مصنوعی
       </h1>
       <p className="text-sm md:text-lg text-neutral-700">
