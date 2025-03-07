@@ -1,6 +1,6 @@
 import type React from 'react'
 import { useState } from 'react'
-import { FaDollarSign } from 'react-icons/fa'
+
 import type { FeatureTab } from '../../../data/extension/featuresTabs'
 
 interface FeaturesTabProps {

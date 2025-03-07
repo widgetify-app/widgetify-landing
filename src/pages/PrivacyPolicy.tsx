@@ -1,5 +1,4 @@
 import { AlertTriangle, ArrowLeft, Github, Shield } from 'lucide-react'
-import React from 'react'
 import { Link } from 'react-router-dom'
 import ContainerWrapper from '../components/ContainerWrapper'
 

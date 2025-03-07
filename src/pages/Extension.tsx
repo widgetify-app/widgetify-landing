@@ -33,20 +33,6 @@ const staggerContainer = {
 	},
 }
 
-const heroAnimation = {
-	hidden: { opacity: 0, scale: 0.9 },
-	visible: {
-		opacity: 1,
-		scale: 1,
-		transition: {
-			type: 'spring',
-			stiffness: 100,
-			damping: 15,
-			duration: 0.8,
-		},
-	},
-}
-
 const featureItem = {
 	hidden: { opacity: 0, x: -20 },
 	visible: {
@@ -359,6 +345,7 @@ export function Extension() {
 								<motion.div
 									className="absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-full shadow-lg -top-4 -right-4"
 									whileHover={{ scale: 1.2, rotate: 90 }}
+									// @ts-ignore
 									transition={{ type: 'spring', stiffness: 200 }}
 									animate={{
 										boxShadow: [
@@ -367,6 +354,7 @@ export function Extension() {
 											'0px 4px 12px rgba(79, 70, 229, 0.3)',
 										],
 									}}
+									//@ts-ignore
 									transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
 								>
 									<FaPuzzlePiece size={22} />

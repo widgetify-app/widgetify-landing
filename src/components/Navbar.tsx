@@ -5,7 +5,6 @@ import {
 	ExternalLink,
 	Github,
 	Grid,
-	Heart,
 	HelpCircle,
 	Home,
 	Menu,
