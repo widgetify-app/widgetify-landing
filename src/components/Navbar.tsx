@@ -97,7 +97,6 @@ export default function Navbar() {
 					description: 'نظرات و پیشنهادات شما',
 					isExternal: true,
 					icon: <MessageSquare size={18} />,
-					badge: 'جدید',
 				},
 				{
 					label: 'حریم خصوصی',
