@@ -35,6 +35,7 @@ const cryptoOptions = [
 		address: 'bc1qfctjt6a56z8ah9vt3sfhsm9fexncnl80kna0lp',
 		network: null,
 		isAvailable: true,
+		qr: '/btc-qr.jpg',
 		color: 'from-amber-500 to-orange-600',
 	},
 	{
@@ -42,6 +43,7 @@ const cryptoOptions = [
 		network: 'TRC20',
 		address: '0x4BE63320940fe4190ea34d5D855E6261395ac836',
 		isAvailable: true,
+		qr: '/usdt-qr.jpg',
 		color: 'from-green-500 to-teal-600',
 	},
 ]
@@ -305,14 +307,11 @@ export default function Donate() {
 														<div className="text-xs text-gray-400">اسکن کنید</div>
 														<div className="w-24 h-24 m-auto mt-1 bg-gray-200 border border-gray-300">
 															{/* QR code would render here */}
-															<div className="grid grid-cols-4 grid-rows-4 gap-1 p-2">
-																{[...Array(16)].map((_, i) => (
-																	<div
-																		key={i}
-																		className={`bg-gray-800 ${Math.random() > 0.5 ? 'opacity-100' : 'opacity-0'}`}
-																	></div>
-																))}
-															</div>
+															<img
+																src={crypto.qr}
+																alt={`${crypto.name} QR Code`}
+																className="object-contain w-full h-full"
+															/>
 														</div>
 													</div>
 												</div>

@@ -1,4 +1,5 @@
 import { Download, Globe, Laptop, Puzzle } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import ContainerWrapper from '../components/ContainerWrapper'
 import ContributorsSection from '../components/ContributorsSection'
 import FeaturesSection from '../components/FeaturesSection'
@@ -7,8 +8,6 @@ export default function Home() {
 	return (
 		<>
 			<div className="relative py-20 text-white bg-gradient-to-br from-blue-600 to-purple-700">
-				<div className="absolute inset-0 bg-[url('/images/dots-pattern.svg')] bg-repeat opacity-10"></div>
-
 				<div className="flex flex-col items-center text-center">
 					<h1 className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
 						<span className="block">ویجتی‌فای</span>
@@ -43,24 +42,24 @@ export default function Home() {
 							نسخه وب (PWA)
 						</a>
 
-						<a
-							href="#extension"
+						<Link
+							to="/extension"
 							className="flex items-center justify-center px-6 py-3 font-medium transition border rounded-lg border-white/30 hover:bg-white/10"
 						>
 							<Puzzle className="ml-2" size={20} />
-							اکستنشن مرورگر (به زودی)
-						</a>
+							اکستنشن مرورگر
+						</Link>
 					</div>
 
 					{/* Preview Image */}
 					<div className="relative w-full max-w-4xl mx-auto mt-8">
-						<div className="overflow-hidden bg-white rounded-lg shadow-2xl aspect-video">
+						<div className="overflow-hidden shadow-2xl rounded-2xl aspect-video">
 							<img
-								src="/images/widgetify-preview.png"
+								src="/banner.png"
 								alt="ویجتی‌فای"
 								className="object-cover w-full h-full"
 								onError={(e) => {
-									e.currentTarget.src = 'https://placehold.co/1200x675?text=ویجتی‌فای'
+									e.currentTarget.src = 'https://placehold.co/1200x675?text=widgetify.ir'
 								}}
 							/>
 						</div>
