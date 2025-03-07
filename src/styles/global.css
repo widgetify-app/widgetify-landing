@@ -4,5 +4,10 @@
   body {
     direction: rtl;
     font-family: Vazirmatn, sans-serif;
+    /* background: radial-gradient(114.13% 114.13% at 110.34% -14.13%, #6b3ae8 0%, rgba(255, 255, 255, 0) 100%)
+      , radial-gradient(81.04% 81.04% at 25.97% -14.13%, #FF4067 0%, rgba(255, 255, 255, 0) 100%)
+      , radial-gradient(80.5% 80.5% at -30.5% 32.82%, #ffae3c 0%, rgba(255, 255, 255, 0) 100%)
+      #FFFFFF;
+    background-blend-mode: multiply, multiply, multiply, normal; */
   }
 }
