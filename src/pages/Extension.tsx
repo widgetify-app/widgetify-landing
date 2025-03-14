@@ -6,11 +6,9 @@ import ContainerWrapper from '../components/ContainerWrapper'
 
 import { customizationOptions } from '../data/extension/customizationOptions'
 import { featuresTabs } from '../data/extension/featuresTabs'
-import { installationSteps } from '../data/extension/installationSteps'
 import { otherFeatures } from '../data/extension/otherFeatures'
 import { CustomizationFeature } from '../layouts/Extension/components/CustomizationFeature'
 import { FeaturesTab } from '../layouts/Extension/components/FeaturesTab'
-import { InstallationTimeline } from '../layouts/Extension/components/InstallationTimeline'
 import { OtherFeatures } from '../layouts/Extension/components/OtherFeatures'
 
 // Animation variants
@@ -89,11 +87,11 @@ const mockupAnimation = {
 // Mock data for browser extensions availability
 const browserExtensions = [
 	{
-		name: 'Chrome',
+		name: 'گوگل کروم',
 		icon: FaChrome,
-		url: 'https://chrome.google.com/webstore/detail/widgetify/coming-soon',
-		isAvailable: false,
-		comingSoon: true,
+		url: 'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh',
+		isAvailable: true,
+		comingSoon: false,
 	},
 	{
 		name: 'فایرفاکس',
@@ -105,11 +103,11 @@ const browserExtensions = [
 	{
 		name: 'ادج',
 		icon: FaEdge,
-		url: 'https://microsoftedge.microsoft.com/addons/detail/widgetify/coming-soon',
-		isAvailable: false,
-		comingSoon: true,
+		url: 'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh',
+		isAvailable: true,
+		comingSoon: false,
 	},
-]
+].sort((a, b) => (a.isAvailable === b.isAvailable ? 0 : a.isAvailable ? -1 : 1))
 
 // Features for the extension
 const extensionFeatures = [
@@ -165,11 +163,14 @@ export function Extension() {
 							<motion.div
 								key={browser.name}
 								className={`px-5 py-3 rounded-lg border border-white/20 hover:bg-white/10 transition ${
-									!browser.isAvailable ? 'cursor-not-allowed opacity-75' : ''
+									!browser.isAvailable
+										? 'cursor-not-allowed opacity-75'
+										: 'cursor-pointer'
 								}`}
 								variants={browserButtonAnimation}
 								whileHover={browser.isAvailable ? 'hover' : 'disabled'}
 								animate={browser.comingSoon ? 'disabled' : 'visible'}
+								onClick={() => browser.isAvailable && window.open(browser.url, '_blank')}
 							>
 								<div className="flex items-center justify-center gap-1">
 									<browser.icon size={20} />
@@ -401,28 +402,6 @@ export function Extension() {
 							title="کاملاً قابل سفارشی‌سازی"
 							description="تمام ویجت‌ها را مطابق سلیقه و نیاز خود سفارشی کنید. چیدمان، رنگ‌ها، اندازه‌ها و اطلاعات نمایش داده شده را به دلخواه تغییر دهید."
 							options={customizationOptions}
-						/>
-					</motion.div>
-
-					{/* Extension Installation - New Timeline Design */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true, amount: 0.2 }}
-						transition={{ duration: 0.7 }}
-					>
-						<InstallationTimeline
-							title="نصب و راه‌اندازی اکستنشن ویجتی‌فای"
-							description="در چهار مرحله ساده، اکستنشن ویجتی‌فای را نصب کنید و از داشبورد هوشمند در تب‌های جدید خود لذت ببرید"
-							steps={installationSteps}
-							infoMessage={{
-								text: 'اکستنشن ویجتی‌فای به زودی برای مرورگرهای محبوب در دسترس قرار خواهد گرفت.',
-								link: {
-									url: '/',
-									text: 'با ما همراه باشید',
-								},
-								afterLinkText: 'تا از انتشار آن مطلع شوید!',
-							}}
 						/>
 					</motion.div>
 

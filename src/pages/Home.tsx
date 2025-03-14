@@ -102,11 +102,22 @@ export default function Home() {
 						className="flex flex-col gap-4 mb-12 sm:flex-row"
 						variants={staggerContainer}
 					>
+						{/* Extension button - Now first and with more prominence */}
+						<motion.div variants={fadeIn} whileHover="hover" whileTap={{ scale: 0.95 }}>
+							<Link
+								to="/extension"
+								className="flex items-center justify-center px-6 py-3 font-medium text-blue-600 transition bg-white rounded-lg hover:bg-blue-50"
+							>
+								<Puzzle className="ml-2" size={20} />
+								اکستنشن مرورگر
+							</Link>
+						</motion.div>
+
 						<motion.a
 							href="https://github.com/widgetify-app/widgetify-desktop/releases"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center justify-center px-6 py-3 font-medium text-blue-600 transition bg-white rounded-lg hover:bg-blue-50"
+							className="flex items-center justify-center px-6 py-3 font-medium transition border rounded-lg border-white/30 hover:bg-white/10"
 							variants={fadeIn}
 							whileHover="hover"
 							whileTap={{ scale: 0.95 }}
@@ -127,16 +138,6 @@ export default function Home() {
 							<Globe className="ml-2" size={20} />
 							نسخه وب (PWA)
 						</motion.a>
-
-						<motion.div variants={fadeIn} whileHover="hover" whileTap={{ scale: 0.95 }}>
-							<Link
-								to="/extension"
-								className="flex items-center justify-center px-6 py-3 font-medium transition border rounded-lg border-white/30 hover:bg-white/10"
-							>
-								<Puzzle className="ml-2" size={20} />
-								اکستنشن مرورگر
-							</Link>
-						</motion.div>
 					</motion.div>
 
 					{/* Preview Image */}
@@ -264,23 +265,14 @@ export default function Home() {
 							<p className="mb-4 text-center text-gray-600">
 								دسترسی سریع به ویجت‌ها در مرورگرهای محبوب
 							</p>
-							<div className="text-center text-gray-500">
-								<motion.span
-									className="inline-flex items-center"
-									animate={{ opacity: [0.7, 1, 0.7] }}
-									transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
+							<div className="text-center">
+								<Link
+									to="/extension"
+									className="inline-flex items-center text-blue-600 hover:underline"
+									style={{ display: 'inline-flex' }}
 								>
-									به زودی{' '}
-									<motion.span
-										className="inline-block w-4 h-4 mx-1 bg-gray-300 rounded-full"
-										animate={{ scale: [1, 1.1, 1] }}
-										transition={{
-											repeat: Number.POSITIVE_INFINITY,
-											duration: 2,
-											ease: 'easeInOut',
-										}}
-									></motion.span>
-								</motion.span>
+									نصب <Download size={16} className="mr-1" />
+								</Link>
 							</div>
 						</motion.div>
 					</motion.div>
@@ -322,9 +314,19 @@ export default function Home() {
 						viewport={{ once: true }}
 						variants={staggerContainer}
 					>
+						{/* Extension button prioritized and highlighted */}
+						<Link
+							to="/extension"
+							className="flex items-center px-6 py-3 text-indigo-600 transition duration-200 bg-white rounded-lg hover:bg-indigo-50"
+							style={{ display: 'flex' }}
+						>
+							<Puzzle className="ml-2" size={20} />
+							نصب اکستنشن مرورگر
+						</Link>
+
 						<motion.a
 							href="https://github.com/widgetify-app/widgetify-desktop/releases"
-							className="flex items-center px-6 py-3 text-indigo-600 transition duration-200 bg-white rounded-lg hover:bg-indigo-50"
+							className="flex items-center px-6 py-3 text-white transition duration-200 bg-transparent border rounded-lg border-white/30 hover:bg-white/10"
 							target="_blank"
 							rel="noopener noreferrer"
 							variants={fadeIn}
