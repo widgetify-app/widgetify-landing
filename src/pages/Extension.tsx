@@ -97,8 +97,8 @@ const browserExtensions = [
 		name: 'فایرفاکس',
 		icon: FaFirefox,
 		url: 'https://addons.mozilla.org/en-US/firefox/addon/widgetify/',
-		isAvailable: false,
-		comingSoon: true,
+		isAvailable: true,
+		comingSoon: false,
 	},
 	{
 		name: 'ادج',
