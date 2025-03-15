@@ -13,18 +13,18 @@ const donationPlatforms = [
 		color: 'from-blue-500 to-indigo-600',
 	},
 	{
+		name: 'کافیته',
+		url: 'https://www.coffeete.ir/widgetify',
+		isAvailable: true,
+		icon: CreditCard,
+		color: 'from-gray-400 to-gray-500',
+	},
+	{
 		name: 'زرین پال',
 		url: 'https://zarinp.al/sajjadmrx',
 		isAvailable: true,
 		icon: CreditCard,
 		color: 'from-amber-500 to-orange-600',
-	},
-	{
-		name: 'به زودی',
-		url: null,
-		isAvailable: false,
-		icon: CreditCard,
-		color: 'from-gray-400 to-gray-500',
 	},
 ]
 
