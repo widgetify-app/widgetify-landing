@@ -1,171 +1,323 @@
-import { AlertTriangle, ArrowLeft, Github, Shield } from 'lucide-react'
+import { ArrowLeft, Globe, Shield } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ContainerWrapper from '../components/ContainerWrapper'
 
 export default function PrivacyPolicy() {
+	const [language, setLanguage] = useState<'fa' | 'en'>('fa')
+
+	const toggleLanguage = () => {
+		setLanguage(language === 'fa' ? 'en' : 'fa')
+	}
+
 	return (
 		<>
-			{/* Hero section */}
-			<div className="relative py-16 text-white md:py-20 bg-gradient-to-br from-blue-600 to-purple-700">
-				<div className="absolute inset-0 bg-[url('/images/dots-pattern.svg')] bg-repeat opacity-10"></div>
-				<div className="flex flex-col items-center text-center">
-					<Shield size={48} className="mb-4 text-blue-100" />
-					<h1 className="mb-4 text-4xl font-bold md:text-5xl">حریم خصوصی</h1>
-					<p className="max-w-2xl mx-auto text-lg text-blue-100">
-						ویجتی‌فای هیچ‌گونه اطلاعاتی از کاربران خود ذخیره نمی‌کند و به حریم خصوصی شما
-						احترام می‌گذارد.
+			{/* Simple header */}
+			<div
+				className="py-8 border-b bg-gray-50"
+				{...(language === 'en' ? { dir: 'ltr' } : { dir: 'rtl' })}
+			>
+				<div className="container max-w-4xl px-4 mx-auto">
+					<div className="flex items-center justify-between">
+						<div className="flex items-center">
+							<Shield size={24} className="ml-3 text-blue-600" />
+							<h1 className="text-2xl font-bold">
+								{language === 'fa'
+									? 'سیاست حفظ حریم خصوصی ویجتی‌فای'
+									: 'Widgetify Privacy Policy'}
+							</h1>
+						</div>
+						<button
+							onClick={toggleLanguage}
+							className="flex items-center px-3 py-1 text-sm text-gray-700 bg-white border rounded-md cursor-pointer hover:bg-gray-50"
+						>
+							<Globe size={16} className="ml-1" />
+							{language === 'fa' ? 'English' : 'فارسی'}
+						</button>
+					</div>
+					<p className="mt-2 text-gray-600">
+						{language === 'fa'
+							? 'آخرین به‌روزرسانی: ۱۰ فروردین ۱۴۰۴'
+							: 'Last updated: March 30, 2025'}
 					</p>
 				</div>
 			</div>
 
 			<ContainerWrapper>
-				<div className="py-12 md:py-16">
-					{/* Alert about policy changes */}
-					<div className="p-4 mb-8 border rounded-lg border-amber-100 bg-amber-50">
-						<div className="flex">
-							<div className="flex-shrink-0">
-								<AlertTriangle className="w-5 h-5 text-amber-600" />
-							</div>
-							<div className="mr-3">
-								<p className="text-sm text-amber-700">
-									<span className="font-bold">توجه:</span> این سیاست‌ها ممکن است با توسعه و
-									پیشرفت پروژه ویجتی‌فای تغییر کند. همیشه آخرین نسخه را در این صفحه مطالعه
-									کنید.
-								</p>
-							</div>
-						</div>
-					</div>
-
-					{/* Last updated and open-source info */}
-					<div className="flex flex-col items-center justify-between mb-10 md:flex-row">
-						<p className="mb-4 text-sm text-gray-500 md:mb-0">
-							آخرین بروزرسانی: ۱۷ اسفند ۱۴۰۳
-						</p>
-						<a
-							href="https://github.com/widgetify-app/widgetify-landing"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center px-4 py-2 text-sm bg-gray-100 rounded-full hover:bg-gray-200"
-						>
-							<Github size={16} className="ml-2" />
-							مشاهده کد منبع در گیت‌هاب
-						</a>
-					</div>
-
-					{/* Content with cards */}
-					<div className="max-w-3xl mx-auto space-y-8">
-						{/* Open source info card */}
-						<div className="p-6 border border-blue-100 bg-blue-50 rounded-xl">
-							<h2 className="flex items-center mb-3 text-xl font-bold text-blue-800">
-								<Github size={24} className="ml-2" />
-								پروژه متن‌باز
-							</h2>
-							<p className="text-blue-700">
-								ویجتی‌فای یک پروژه متن‌باز است که کد آن به صورت عمومی در گیت‌هاب قابل دسترسی
-								است. این به این معنی است که هر فردی می‌تواند کد را بررسی کند و از شفافیت و
-								امنیت آن اطمینان حاصل کند. ما باور داریم که نرم‌افزارهای متن‌باز، زمینه‌ی
-								بهتری برای اعتماد کاربران فراهم می‌کنند.
-							</p>
+				<div className="py-8" {...(language === 'en' ? { dir: 'ltr' } : { dir: 'rtl' })}>
+					<div className="max-w-4xl mx-auto">
+						{/* Introduction */}
+						<div className="mb-8">
+							{language === 'fa' ? (
+								<>
+									<p className="mb-4 text-gray-700">
+										ویجتی‌فای یک افزونه مرورگر با هدف مشخص نمایش ویجت‌های کاربردی در تب جدید
+										است. این سیاست حریم خصوصی توضیح می‌دهد که چگونه ما با داده‌های شما در
+										این افزونه برخورد می‌کنیم.
+									</p>
+									<p className="mb-4 text-gray-700">
+										با استفاده از افزونه ویجتی‌فای، شما با این سیاست‌های حریم خصوصی موافقت
+										می‌کنید.
+									</p>
+								</>
+							) : (
+								<>
+									<p className="mb-4 text-gray-700">
+										Widgetify is a browser extension with the specific purpose of
+										displaying useful widgets in the new tab. This privacy policy explains
+										how we handle your data in this extension.
+									</p>
+									<p className="mb-4 text-gray-700">
+										By using the Widgetify extension, you agree to these privacy policies.
+									</p>
+								</>
+							)}
 						</div>
 
-						{/* Privacy sections as cards */}
-						<div className="overflow-hidden bg-white border rounded-xl">
-							<div className="p-6 border-b">
-								<h2 className="mb-3 text-xl font-bold">عدم جمع‌آوری داده‌های شخصی</h2>
-								<p className="text-gray-700">
-									ویجتی‌فای هیچ‌گونه اطلاعات شخصی از کاربران خود جمع‌آوری، ذخیره یا پردازش
-									نمی‌کند. ما نیازی به ورود (Login) یا ایجاد حساب کاربری نداریم، بنابراین
-									هیچ داده‌ای از شما نگهداری نمی‌شود.
-								</p>
-							</div>
+						{/* Main content in simple sections */}
+						<div className="space-y-8">
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa'
+										? '۱. اطلاعات جمع‌آوری شده'
+										: '1. Collected Information'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<>
+											<p className="mb-3 text-gray-700">
+												<strong>
+													ویجتی‌فای هیچ داده شخصی را به طور پیش‌فرض جمع‌آوری نمی‌کند.
+												</strong>{' '}
+												تمام اطلاعات نمایش داده شده (مانند آب و هوا، قیمت ارزها و غیره)
+												مستقیماً از منابع عمومی دریافت شده و در دستگاه شما پردازش می‌شوند.
+											</p>
+											<p className="mb-3 text-gray-700">
+												افزونه ویجتی‌فای تنها از ذخیره‌سازی محلی (Local Storage) برای حفظ
+												تنظیمات شما استفاده می‌کند. این داده‌ها فقط در دستگاه خودتان ذخیره
+												می‌شوند و ما به آن‌ها دسترسی نداریم.
+											</p>
+											<p className="mb-3 text-gray-700">
+												<strong>اطلاعات اختیاری:</strong> در صورت تمایل به همگام‌سازی
+												تنظیمات بین دستگاه‌های مختلف، ما ممکن است نام و آدرس ایمیل شما را
+												ذخیره کنیم. ارائه این اطلاعات کاملاً اختیاری است و تأثیری در عملکرد
+												اصلی افزونه ندارد.
+											</p>
+										</>
+									) : (
+										<>
+											<p className="mb-3 text-gray-700">
+												<strong>
+													Widgetify does not collect any personal data by default.
+												</strong>{' '}
+												All displayed information (such as weather, cryptocurrency prices,
+												etc.) is received directly from public sources and processed on
+												your device.
+											</p>
+											<p className="mb-3 text-gray-700">
+												The Widgetify extension only uses local storage to maintain your
+												settings. This data is stored only on your own device, and we do
+												not have access to it.
+											</p>
+											<p className="mb-3 text-gray-700">
+												<strong>Optional information:</strong> If you wish to synchronize
+												settings across different devices, we may store your name and
+												email address. Providing this information is completely optional
+												and does not affect the main functionality of the extension.
+											</p>
+										</>
+									)}
+								</div>
+							</section>
 
-							<div className="p-6 border-b">
-								<h2 className="mb-3 text-xl font-bold">عدم استفاده از کوکی‌ها</h2>
-								<p className="text-gray-700">
-									ویجتی‌فای از کوکی‌ها یا هر نوع فناوری مشابه برای ردیابی کاربران استفاده
-									نمی‌کند. تمام اطلاعاتی که نمایش داده می‌شوند، به‌صورت مستقیم از منابع عمومی
-									دریافت شده و در دستگاه شما پردازش می‌شوند.
-								</p>
-							</div>
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۲. دسترسی‌های افزونه' : '2. Extension Permissions'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<>
+											<p className="mb-3 text-gray-700">
+												افزونه ویجتی‌فای فقط به دسترسی‌های ضروری برای عملکرد اصلی خود نیاز
+												دارد:
+											</p>
+											<ul className="mr-6 space-y-2 text-gray-700 list-disc">
+												<li>دسترسی به تب جدید برای نمایش ویجت‌ها</li>
+												<li>
+													دسترسی به اینترنت برای دریافت داده‌های عمومی مانند آب و هوا، قیمت
+													ارزها و غیره
+												</li>
+											</ul>
+										</>
+									) : (
+										<>
+											<p className="mb-3 text-gray-700">
+												The Widgetify extension only requires essential permissions for
+												its main functionality:
+											</p>
+											<ul className="ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+												<li>Access to new tab for displaying widgets</li>
+												<li>
+													Internet access to retrieve public data such as weather,
+													cryptocurrency prices, etc.
+												</li>
+											</ul>
+										</>
+									)}
+								</div>
+							</section>
 
-							<div className="p-6 border-b">
-								<h2 className="mb-3 text-xl font-bold">عدم اشتراک‌گذاری اطلاعات</h2>
-								<p className="text-gray-700">
-									از آنجایی که ویجتی‌فای هیچ اطلاعاتی از کاربران خود ذخیره نمی‌کند، هیچ
-									اطلاعاتی برای اشتراک‌گذاری با اشخاص ثالث وجود ندارد.
-								</p>
-							</div>
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۳. استفاده از داده‌ها' : '3. Data Usage'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											در صورتی که شما به صورت اختیاری نام و ایمیل خود را ارائه کنید، ما از
+											این اطلاعات تنها برای همگام‌سازی تنظیمات شما بین دستگاه‌های مختلف
+											استفاده می‌کنیم.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											If you optionally provide your name and email, we will only use this
+											information to synchronize your settings across different devices.
+										</p>
+									)}
+								</div>
+							</section>
 
-							<div className="p-6 border-b">
-								<h2 className="mb-3 text-xl font-bold">امنیت و حریم خصوصی</h2>
-								<p className="text-gray-700">
-									ما متعهد هستیم که تجربه‌ای ایمن و خصوصی برای کاربران فراهم کنیم. هیچ
-									داده‌ای از طرف ویجتی‌فای به سرورهای خارجی ارسال نمی‌شود و تمام پردازش‌ها
-									به‌صورت محلی در دستگاه شما انجام می‌شوند.
-								</p>
-							</div>
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۴. اشتراک‌گذاری داده‌ها' : '4. Data Sharing'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											ویجتی‌فای هیچ داده کاربری را با اشخاص ثالث به اشتراک نمی‌گذارد.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											Widgetify does not share any user data with third parties.
+										</p>
+									)}
+								</div>
+							</section>
 
-							<div className="p-6 border-b">
-								<h2 className="mb-3 text-xl font-bold">تغییرات در سیاست حریم خصوصی</h2>
-								<p className="text-gray-700">
-									در صورت تغییر در عملکرد ویجتی‌فای، ممکن است این سیاست حریم خصوصی
-									به‌روزرسانی شود. نسخه جدید همیشه در این صفحه در دسترس خواهد بود.
-								</p>
-							</div>
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۵. امنیت' : '5. Security'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											ویجتی‌فای یک پروژه متن‌باز است و کد آن برای بررسی عمومی در دسترس است.
+											این شفافیت به کاربران امکان می‌دهد از امنیت افزونه اطمینان حاصل کنند.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											Widgetify is an open-source project, and its code is available for
+											public review. This transparency allows users to verify the
+											extension's security.
+										</p>
+									)}
+								</div>
+							</section>
 
-							<div className="p-6">
-								<h2 className="mb-3 text-xl font-bold">تماس با ما</h2>
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa'
+										? '۶. تغییرات در سیاست حریم خصوصی'
+										: '6. Changes to Privacy Policy'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											ممکن است این سیاست را به‌روزرسانی کنیم. در صورت ایجاد تغییرات اساسی،
+											به کاربران اطلاع‌رسانی خواهیم کرد.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											We may update this policy. In case of significant changes, we will
+											notify users.
+										</p>
+									)}
+								</div>
+							</section>
+
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۷. تماس با ما' : '7. Contact Us'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<>
+											<p className="mb-3 text-gray-700">
+												اگر سؤالی درباره این سیاست حریم خصوصی دارید، لطفاً از طریق ایمیل
+												زیر با ما تماس بگیرید:
+											</p>
+											<p className="text-blue-600">
+												<a href="mailto:privacy@widgetify.ir">privacy@widgetify.ir</a>
+											</p>
+										</>
+									) : (
+										<>
+											<p className="mb-3 text-gray-700">
+												If you have any questions about this privacy policy, please
+												contact us via the email below:
+											</p>
+											<p className="text-blue-600">
+												<a href="mailto:privacy@widgetify.ir">privacy@widgetify.ir</a>
+											</p>
+										</>
+									)}
+								</div>
+							</section>
+						</div>
+
+						{/* Open source note */}
+						<div className="p-4 mt-8 border rounded-lg bg-gray-50">
+							{language === 'fa' ? (
 								<p className="text-gray-700">
-									اگر سؤالی درباره حریم خصوصی ویجتی‌فای دارید، می‌توانید از طریق ایمیل
+									<strong>توجه:</strong> ویجتی‌فای یک پروژه متن‌باز است و کد آن به صورت
+									عمومی در
 									<a
-										href="mailto:info@widgetify.ir"
+										href="https://github.com/widgetify-app"
 										className="mx-1 text-blue-600 hover:underline"
+										target="_blank"
+										rel="noopener noreferrer"
 									>
-										info@widgetify.ir
+										گیت‌هاب
 									</a>
-									با ما در تماس باشید.
+									قابل دسترسی است.
 								</p>
-							</div>
+							) : (
+								<p className="text-gray-700">
+									<strong>Note:</strong> Widgetify is an open-source project and its code
+									is publicly available on
+									<a
+										href="https://github.com/widgetify-app"
+										className="mx-1 text-blue-600 hover:underline"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										GitHub
+									</a>
+									.
+								</p>
+							)}
 						</div>
 
-						{/* Community review card */}
-						<div className="p-6 border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
-							<h2 className="mb-3 text-xl font-bold">بررسی توسط جامعه کاربران</h2>
-							<p className="mb-4 text-gray-700">
-								علاوه بر متن‌باز بودن، ما از بررسی کد ویجتی‌فای توسط جامعه توسعه‌دهندگان
-								استقبال می‌کنیم. اگر شما یک توسعه‌دهنده هستید و علاقه‌مند به بررسی امنیت و
-								حریم خصوصی این پروژه هستید، می‌توانید به ما بپیوندید یا کد را بررسی کنید.
-							</p>
-							<div className="flex flex-wrap gap-3">
-								<a
-									href="https://github.com/widgetify-app"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-								>
-									مخزن گیت‌هاب
-								</a>
-								<a
-									href="https://github.com/widgetify-app"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-								>
-									گزارش مشکلات
-								</a>
-							</div>
+						{/* Back button */}
+						<div className="pt-4 mt-8 border-t">
+							<Link
+								to="/"
+								className="inline-flex items-center text-blue-600 hover:underline"
+							>
+								<ArrowLeft size={16} className={language === 'fa' ? 'ml-1' : 'mr-1'} />
+								{language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Return to Home Page'}
+							</Link>
 						</div>
-					</div>
-
-					{/* Back button */}
-					<div className="mt-12 text-center">
-						<Link
-							to="/"
-							className="inline-flex items-center justify-center px-6 py-3 font-medium text-blue-600 transition-colors bg-blue-100 rounded-lg hover:bg-blue-200"
-						>
-							<ArrowLeft size={18} className="ml-2" />
-							بازگشت به صفحه اصلی
-						</Link>
 					</div>
 				</div>
 			</ContainerWrapper>
