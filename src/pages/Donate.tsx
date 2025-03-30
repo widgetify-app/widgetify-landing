@@ -349,7 +349,7 @@ export default function Donate() {
 							{/* Additional Info Card */}
 							<div className="p-5 mt-8 border border-blue-100 rounded-xl bg-blue-50">
 								<div className="flex">
-									<div className="flex items-center justify-center w-10 h-10 ml-3 bg-blue-100 rounded-full">
+									<div className="flex items-center justify-center w-10 h-10 ml-3 bg-blue-100 rounded-full shrink-0">
 										<svg
 											className="w-5 h-5 text-blue-600"
 											fill="currentColor"

@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BiDonateBlood } from 'react-icons/bi'
 import { Link, useLocation } from 'react-router-dom'
 import ContainerWrapper from './ContainerWrapper'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface NavItem {
 	label: string
@@ -145,6 +146,31 @@ export default function Navbar() {
 	// Toggle dropdown menu
 	const toggleDropdown = (label: string) => {
 		setActiveDropdown(activeDropdown === label ? null : label)
+	}
+
+	// Animation variants for dropdown
+	const dropdownVariants = {
+		hidden: { 
+			opacity: 0,
+			height: 0,
+			overflow: 'hidden'
+		},
+		visible: { 
+			opacity: 1,
+			height: 'auto',
+			transition: { 
+				duration: 0.3,
+				ease: "easeInOut"
+			}
+		},
+		exit: {
+			opacity: 0,
+			height: 0,
+			transition: {
+				duration: 0.2,
+				ease: "easeInOut"
+			}
+		}
 	}
 
 	return (
@@ -323,40 +349,48 @@ export default function Navbar() {
 													/>
 												</button>
 
-												{/* Mobile dropdown menu */}
-												{activeDropdown === item.label && (
-													<div className="mt-1 rounded-lg bg-gray-50/50">
-														{item.children.map((child) => (
-															<Link
-																key={child.label}
-																to={child.path}
-																target={child.isExternal ? '_blank' : undefined}
-																rel={child.isExternal ? 'noopener noreferrer' : undefined}
-																onClick={() => setIsMenuOpen(false)}
-																className="flex items-center px-4 py-3 pr-12 text-gray-700 transition rounded-md hover:bg-gray-100"
-															>
-																{child.icon && (
-																	<span className="ml-3 text-gray-500">{child.icon}</span>
-																)}
-																<div>
-																	<div className="flex items-center">
-																		{child.label}
-																		{child.badge && (
-																			<span className="px-1.5 py-0.5 mr-1.5 text-xs font-medium text-white bg-green-500 rounded-full">
-																				{child.badge}
-																			</span>
+												
+												<AnimatePresence>
+													{activeDropdown === item.label && (
+														<motion.div 
+															className="mt-1 rounded-lg bg-gray-50/50 overflow-hidden"
+															variants={dropdownVariants}
+															initial="hidden"
+															animate="visible"
+															exit="exit"
+														>
+															{item.children.map((child) => (
+																<Link
+																	key={child.label}
+																	to={child.path}
+																	target={child.isExternal ? '_blank' : undefined}
+																	rel={child.isExternal ? 'noopener noreferrer' : undefined}
+																	onClick={() => setIsMenuOpen(false)}
+																	className="flex items-center px-4 py-3 pr-12 text-gray-700 transition rounded-md hover:bg-gray-100"
+																>
+																	{child.icon && (
+																		<span className="ml-3 text-gray-500">{child.icon}</span>
+																	)}
+																	<div>
+																		<div className="flex items-center">
+																			{child.label}
+																			{child.badge && (
+																				<span className="px-1.5 py-0.5 mr-1.5 text-xs font-medium text-white bg-green-500 rounded-full">
+																					{child.badge}
+																				</span>
+																			)}
+																		</div>
+																		{child.description && (
+																			<p className="text-xs text-gray-500">
+																				{child.description}
+																			</p>
 																		)}
 																	</div>
-																	{child.description && (
-																		<p className="text-xs text-gray-500">
-																			{child.description}
-																		</p>
-																	)}
-																</div>
-															</Link>
-														))}
-													</div>
-												)}
+																</Link>
+															))}
+														</motion.div>
+													)}
+												</AnimatePresence>
 											</>
 										) : (
 											<Link
