@@ -7,9 +7,8 @@ export default function NotFound() {
 		<>
 			{/* Gradient background */}
 			<div className="relative py-16 text-white md:py-20 bg-gradient-to-br from-blue-600 to-purple-700">
-				<div className="absolute inset-0 bg-[url('/images/dots-pattern.svg')] bg-repeat opacity-10"></div>
 				<div className="flex flex-col items-center text-center">
-					<div className="flex items-center justify-center w-20 h-20 mb-6 bg-white bg-opacity-20 rounded-full">
+					<div className="flex items-center justify-center w-20 h-20 mb-6 bg-white rounded-full bg-opacity-20">
 						<Search size={40} className="text-white" />
 					</div>
 					<h1 className="mb-2 text-5xl font-bold md:text-7xl">404</h1>

@@ -179,7 +179,7 @@ export default function Navbar() {
 									{item.children ? (
 										<button
 											onClick={() => toggleDropdown(item.label)}
-											className={`flex items-center px-3 py-2 rounded-md transition-colors ${
+											className={`flex cursor-pointer items-center px-3 py-2 rounded-md transition-colors ${
 												activeDropdown === item.label
 													? 'text-blue-600 bg-blue-50'
 													: 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'

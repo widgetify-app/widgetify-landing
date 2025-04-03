@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { CheckCircle, Coins, Copy, CreditCard, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 import { RiBtcFill } from 'react-icons/ri'
@@ -50,6 +51,36 @@ const cryptoOptions = [
 
 export default function Donate() {
 	const [copiedAddress, setCopiedAddress] = useState<string | null>(null)
+	const [donationMethod, setDonationMethod] = useState<'traditional' | 'crypto'>(
+		'traditional',
+	)
+	const [selectedPlatform, setSelectedPlatform] = useState<number | null>(null)
+	const [selectedCrypto, setSelectedCrypto] = useState<number | null>(null)
+
+	const cardVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				type: 'spring',
+				stiffness: 100,
+				duration: 0.5,
+			},
+		},
+		hover: {
+			y: -5,
+			boxShadow:
+				'0 10px 25px -5px rgba(59, 130, 246, 0.15), 0 8px 10px -6px rgba(59, 130, 246, 0.15)',
+			transition: { duration: 0.2 },
+		},
+		selected: {
+			y: -5,
+			boxShadow:
+				'0 10px 25px -5px rgba(59, 130, 246, 0.25), 0 8px 10px -6px rgba(59, 130, 246, 0.25)',
+			border: '2px solid #3b82f6',
+		},
+	}
 
 	const handleCopyAddress = (address: string) => {
 		navigator.clipboard.writeText(address)
@@ -61,180 +92,153 @@ export default function Donate() {
 	}
 
 	return (
-		<>
-			<div className="relative py-16 text-white md:py-24 bg-gradient-to-br from-blue-600 to-purple-700">
-				<div className="flex flex-col items-center text-center">
-					<h1 className="mb-6 text-4xl font-bold md:text-5xl">
-						<span className="block">حمایت از ویجتی‌فای</span>
-					</h1>
-					<p className="max-w-2xl mx-auto mb-6 text-lg text-blue-100 md:text-xl">
+		<div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+			{/* Hero Section */}
+			<div className="relative py-16 md:py-24">
+				<motion.div
+					className="flex flex-col items-center max-w-4xl px-4 mx-auto text-center"
+					initial="hidden"
+					animate="visible"
+				>
+					<motion.h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
+						<motion.span
+							className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.7 }}
+						>
+							حمایت از ویجتی‌فای
+						</motion.span>
+					</motion.h1>
+
+					<motion.p className="max-w-2xl mx-auto mb-6 text-lg font-light text-gray-600 md:text-xl">
 						با حمایت مالی از ویجتی‌فای، به ما کمک کنید تا خدمات بهتری ارائه دهیم. تمامی
 						مبالغ دریافتی صرف توسعه و نگهداری پروژه خواهد شد.
-					</p>
-				</div>
+					</motion.p>
+
+					<motion.div
+						className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-3 mb-6"
+						initial={{ opacity: 0, scale: 0 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.6, delay: 0.3 }}
+					/>
+				</motion.div>
 			</div>
 
 			<ContainerWrapper>
-				<div className="py-12">
-					<div className="space-y-12">
-						{/* Donation Platforms - Redesigned */}
-						<section className="mb-16">
-							<h2 className="mb-8 text-2xl font-bold text-center">
+				<div className="space-y-10">
+					<section>
+						<motion.div
+							className="mb-12 text-center"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.2 }}
+							transition={{ duration: 0.6 }}
+						>
+							<h2 className="mb-2 text-2xl font-bold text-gray-900">
 								راه‌های حمایت از پروژه
 							</h2>
+							<p className="max-w-2xl mx-auto font-light text-gray-600">
+								شما می‌توانید با روش‌های مختلف از ویجتی‌فای حمایت کنید و به بهبود عملکرد آن
+								کمک نمایید
+							</p>
+						</motion.div>
 
-							{/* Featured Platform */}
-							<div className="p-8 mb-10 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
-								<div className="flex flex-col items-center md:flex-row">
-									<div className="w-full mb-6 text-center md:w-1/2 md:mb-0 md:text-right">
-										<div className="inline-flex items-center justify-center p-4 mb-4 text-white bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl">
-											<CreditCard size={32} />
-										</div>
-										<h3 className="mb-3 text-2xl font-bold text-blue-900">
-											پلتفرم پیشنهادی: دارمت
-										</h3>
-										<p className="mb-6 text-gray-700">
-											روشی سریع و امن برای حمایت مالی از پروژه. با استفاده از درگاه دارمت،
-											می‌توانید در کمترین زمان از ویجتی‌فای پشتیبانی کنید.
-										</p>
-										<a
-											href="https://daramet.com/sajjadmrx"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="inline-flex items-center px-6 py-3 text-white transition rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+						{/* Method Selection Tabs */}
+						<div className="flex justify-center mb-8">
+							<motion.div className="p-1.5 bg-gray-100 rounded-xl flex">
+								<button
+									onClick={() => setDonationMethod('traditional')}
+									className={`flex items-center cursor-pointer px-6 py-3 rounded-lg ${
+										donationMethod === 'traditional'
+											? 'bg-white text-blue-600 shadow-sm font-bold'
+											: 'text-gray-600 hover:text-gray-800'
+									}`}
+								>
+									<CreditCard className="ml-2" size={20} />
+									حمایت ریالی
+								</button>
+								<button
+									onClick={() => setDonationMethod('crypto')}
+									className={`flex items-center px-6 py-3 cursor-pointer rounded-lg ${
+										donationMethod === 'crypto'
+											? 'bg-white text-blue-600 shadow-sm font-bold'
+											: 'text-gray-600 hover:text-gray-800'
+									}`}
+								>
+									<Coins className="ml-2" size={20} />
+									ارز دیجیتال
+								</button>
+							</motion.div>
+						</div>
+
+						{/* Traditional Payment Section */}
+						{donationMethod === 'traditional' && (
+							<motion.div
+								className="grid grid-cols-1 gap-6 md:grid-cols-3"
+								initial="hidden"
+								animate="visible"
+							>
+								{donationPlatforms
+									.filter((p) => p.isAvailable)
+									.map((platform, index) => (
+										<motion.div
+											key={index}
+											className={`overflow-hidden bg-white border-2 rounded-2xl shadow-sm cursor-pointer ${
+												selectedPlatform === index
+													? 'border-blue-500'
+													: 'border-gray-100 hover:border-blue-200'
+											}`}
+											variants={cardVariants}
+											whileHover="hover"
+											animate={selectedPlatform === index ? 'selected' : 'visible'}
+											onClick={() => setSelectedPlatform(index)}
 										>
-											<CreditCard className="ml-2" size={18} />
-											حمایت از طریق دارمت
-										</a>
-									</div>
-
-									<div className="flex justify-center w-full md:w-1/2">
-										<div className="relative w-60 h-60">
-											<div className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-br from-blue-200/30 to-indigo-200/30 animate-pulse"></div>
-											<div className="absolute flex items-center justify-center rounded-full top-4 left-4 right-4 bottom-4 bg-gradient-to-br from-blue-100 to-indigo-100">
-												<div className="p-8 bg-white rounded-full shadow-sm">
-													<CreditCard size={80} className="text-indigo-600" />
+											<div className={`px-4 py-3 bg-gradient-to-r ${platform.color}`}>
+												<div className="flex items-center text-white">
+													<h3 className="text-xl font-bold">{platform.name}</h3>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							{/* Alternative Donation Methods */}
-							<div className="mb-6">
-								<h3 className="mb-4 text-xl font-medium text-center">
-									سایر روش‌های حمایت
-								</h3>
-
-								<div className="flex flex-wrap justify-center gap-4">
-									{donationPlatforms
-										.filter((p) => p.name !== 'دارمت' && p.isAvailable)
-										.map((platform, index) => (
-											<a
-												key={index}
-												href={platform.url || '#'}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex items-center gap-2 px-6 py-4 transition bg-white border border-gray-200 rounded-xl hover:shadow-md hover:border-blue-200"
-											>
-												<div
-													className={`flex items-center justify-center w-10 h-10  text-white rounded-lg bg-gradient-to-br ${platform.color}`}
+											<div className="p-6 text-center">
+												<p className="mb-5 font-light text-gray-600">
+													پرداخت آنلاین سریع و آسان از طریق {platform.name}
+												</p>
+												<motion.a
+													href={platform.url}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center justify-center w-full px-4 py-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+													whileHover={{ scale: 1.02 }}
+													whileTap={{ scale: 0.98 }}
 												>
-													<platform.icon size={18} />
-												</div>
-												<div>
-													<span className="font-medium">{platform.name}</span>
-												</div>
-												<ExternalLink size={16} className="mr-2 opacity-50" />
-											</a>
-										))}
-
-									{donationPlatforms
-										.filter((p) => !p.isAvailable)
-										.map((platform, index) => (
-											<div
-												key={index}
-												className="flex items-center gap-2 px-6 py-4 border border-gray-200 bg-gray-50 rounded-xl opacity-60"
-											>
-												<div
-													className={`flex items-center justify-center w-10 h-10  text-white rounded-lg bg-gradient-to-br ${platform.color}`}
-												>
-													<platform.icon size={18} />
-												</div>
-												<div>
-													<span className="font-medium">{platform.name}</span>
-													<span className="mr-2 text-xs text-gray-500">(به زودی)</span>
-												</div>
+													<ExternalLink size={18} className="ml-2" />
+													پرداخت با {platform.name}
+												</motion.a>
 											</div>
-										))}
-								</div>
-							</div>
+										</motion.div>
+									))}
+							</motion.div>
+						)}
 
-							{/* Why Support Section */}
-							<div className="p-6 mt-10 bg-white border border-gray-100 rounded-xl">
-								<h3 className="mb-4 text-lg font-semibold text-center">
-									چرا از ویجتی‌فای حمایت کنیم؟
-								</h3>
-
-								<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-									<div className="flex p-4 rounded-lg bg-blue-50">
-										<div className="flex items-center justify-center w-10 h-10 ml-3 bg-blue-100 rounded-full">
-											<CheckCircle size={18} className="text-blue-600" />
-										</div>
-										<div>
-											<h4 className="font-medium">توسعه قابلیت‌های جدید</h4>
-											<p className="text-sm text-gray-600">
-												کمک به اضافه کردن ویژگی‌های جدید
-											</p>
-										</div>
-									</div>
-
-									<div className="flex p-4 rounded-lg bg-green-50">
-										<div className="flex items-center justify-center w-10 h-10 ml-3 bg-green-100 rounded-full">
-											<CheckCircle size={18} className="text-green-600" />
-										</div>
-										<div>
-											<h4 className="font-medium">بهبود عملکرد</h4>
-											<p className="text-sm text-gray-600">
-												ارتقای سرعت و کارایی نرم‌افزار
-											</p>
-										</div>
-									</div>
-
-									<div className="flex p-4 rounded-lg bg-amber-50">
-										<div className="flex items-center justify-center w-10 h-10 ml-3 rounded-full bg-amber-100">
-											<CheckCircle size={18} className="text-amber-600" />
-										</div>
-										<div>
-											<h4 className="font-medium">حمایت از پروژه متن‌باز</h4>
-											<p className="text-sm text-gray-600">
-												کمک به تداوم یک پروژه ایرانی
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-
-						{/* Crypto Donations - Completely Redesigned */}
-						<section className="mb-16">
-							<div className="flex flex-col items-center mb-10 text-center">
-								<div className="inline-flex items-center justify-center w-16 h-16 mb-4 text-white rounded-full bg-gradient-to-br from-blue-600 to-purple-700">
-									<Coins size={32} />
-								</div>
-								<h2 className="mb-2 text-2xl font-bold">حمایت با ارز دیجیتال</h2>
-								<p className="max-w-2xl text-gray-600">
-									برای کسانی که ترجیح می‌دهند از طریق ارزهای دیجیتال از ویجتی‌فای حمایت
-									کنند، آدرس‌های زیر را در اختیار شما قرار می‌دهیم
-								</p>
-							</div>
-
-							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+						{/* Crypto Donation Section */}
+						{donationMethod === 'crypto' && (
+							<motion.div
+								className="grid grid-cols-1 gap-8 md:grid-cols-2"
+								initial="hidden"
+								animate="visible"
+							>
 								{cryptoOptions.map((crypto, index) => (
-									<div
+									<motion.div
 										key={index}
-										className="relative overflow-hidden transition-all bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200 rounded-2xl"
+										className={`relative overflow-hidden transition-all bg-white border-2 cursor-pointer rounded-2xl ${
+											selectedCrypto === index
+												? 'border-blue-500 shadow-md'
+												: 'border-gray-200 hover:border-blue-200'
+										}`}
+										variants={cardVariants}
+										whileHover="hover"
+										animate={selectedCrypto === index ? 'selected' : 'visible'}
+										onClick={() => setSelectedCrypto(index)}
 									>
 										{/* Currency Header */}
 										<div className={`px-6 py-4 bg-gradient-to-r ${crypto.color}`}>
@@ -242,7 +246,7 @@ export default function Donate() {
 												<div className="flex items-center gap-2">
 													<div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
 														{crypto.name === 'BTC' ? (
-															<RiBtcFill size={50} className="text-amber-400" />
+															<RiBtcFill size={24} className="text-amber-500" />
 														) : (
 															<svg
 																className="w-6 h-6 text-green-500"
@@ -281,9 +285,10 @@ export default function Donate() {
 														</div>
 													</div>
 													<button
-														onClick={() =>
+														onClick={(e) => {
+															e.stopPropagation()
 															crypto.address && handleCopyAddress(crypto.address)
-														}
+														}}
 														className={`absolute top-2 left-2 p-2 transition-colors rounded-md ${
 															copiedAddress === crypto.address
 																? 'bg-green-100 text-green-600'
@@ -299,14 +304,12 @@ export default function Donate() {
 												</div>
 											</div>
 
-											{/* QR Code placeholder */}
+											{/* QR Code */}
 											<div className="flex items-center justify-center p-4">
 												<div className="flex items-center justify-center w-32 h-32 bg-gray-100 rounded-lg">
-													{/* This would be replaced with an actual QR code component */}
 													<div className="text-center">
 														<div className="text-xs text-gray-400">اسکن کنید</div>
-														<div className="w-24 h-24 m-auto mt-1 bg-gray-200 border border-gray-300">
-															{/* QR code would render here */}
+														<div className="w-24 h-24 m-auto mt-1 overflow-hidden border border-gray-300">
 															<img
 																src={crypto.qr}
 																alt={`${crypto.name} QR Code`}
@@ -318,15 +321,18 @@ export default function Donate() {
 											</div>
 
 											<div className="pt-4 mt-4 border-t border-gray-100">
-												<button
-													onClick={() =>
+												<motion.button
+													onClick={(e) => {
+														e.stopPropagation()
 														crypto.address && handleCopyAddress(crypto.address)
-													}
-													className={`w-full flex items-center justify-center px-4 py-3 transition rounded-lg ${
+													}}
+													className={`w-full cursor-pointer flex items-center justify-center px-4 py-3 transition rounded-lg ${
 														copiedAddress === crypto.address
 															? 'bg-green-500 text-white'
-															: 'bg-gradient-to-r text-white from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800'
+															: 'bg-gradient-to-r text-white from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
 													}`}
+													whileHover={{ scale: 1.02 }}
+													whileTap={{ scale: 0.98 }}
 												>
 													{copiedAddress === crypto.address ? (
 														<>
@@ -339,51 +345,40 @@ export default function Donate() {
 															کپی آدرس {crypto.name}
 														</>
 													)}
-												</button>
+												</motion.button>
 											</div>
 										</div>
-									</div>
+									</motion.div>
 								))}
-							</div>
+							</motion.div>
+						)}
+					</section>
 
-							{/* Additional Info Card */}
-							<div className="p-5 mt-8 border border-blue-100 rounded-xl bg-blue-50">
-								<div className="flex">
-									<div className="flex items-center justify-center w-10 h-10 ml-3 bg-blue-100 rounded-full">
-										<svg
-											className="w-5 h-5 text-blue-600"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-										>
-											<path
-												fillRule="evenodd"
-												d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z"
-												clipRule="evenodd"
-											/>
-										</svg>
-									</div>
-									<div>
-										<h4 className="font-medium text-blue-800">نکته مهم</h4>
-										<p className="text-sm text-blue-700">
-											لطفاً دقت داشته باشید که آدرس‌های فوق را فقط با شبکه مشخص شده ارسال
-											کنید. ارسال رمزارز در شبکه اشتباه ممکن است به از دست رفتن دارایی
-											منجر شود.
-										</p>
-									</div>
-								</div>
-							</div>
-						</section>
-
-						{/* Thank You Message */}
-						<div className="p-8 text-center text-white bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl">
-							<h2 className="mb-4 text-2xl font-bold">از حمایت شما سپاسگزاریم</h2>
-							<p className="mb-5 text-blue-100">
-								حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز بهتر کنیم
-							</p>
+					<motion.div
+						className="p-8 text-center bg-white border border-blue-100 shadow-md rounded-xl"
+						transition={{ duration: 0.6 }}
+					>
+						<div className="inline-flex items-center justify-center w-20 h-20 mb-6 text-4xl text-white rounded-full shadow-lg bg-gradient-to-br from-blue-600 to-purple-600">
+							🙏
 						</div>
-					</div>
+						<h2 className="mb-4 text-2xl font-bold text-gray-900">
+							از حمایت شما سپاسگزاریم
+						</h2>
+						<p className="max-w-2xl mx-auto mb-5 font-light text-gray-600">
+							حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز بهتر کنیم. با تشکر
+							از اعتماد شما.
+						</p>
+
+						<motion.div
+							className="w-24 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600"
+							initial={{ opacity: 0, scale: 0 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6 }}
+						/>
+					</motion.div>
 				</div>
 			</ContainerWrapper>
-		</>
+		</div>
 	)
 }

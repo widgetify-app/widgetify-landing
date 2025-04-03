@@ -58,7 +58,7 @@ export default function FeaturesSection() {
 		<section className="py-16">
 			<div className="mb-12 text-center">
 				<h2 className="mb-3 text-3xl font-bold">چرا ویجتی‌فای را انتخاب کنیم؟</h2>
-				<p className="max-w-2xl mx-auto text-gray-600">
+				<p className="max-w-2xl mx-auto font-light text-gray-600">
 					ویجتی‌فای با ترکیبی از ویژگی‌های منحصر به فرد، تجربه‌ای متفاوت در استفاده از ویجت‌ها
 					ارائه می‌دهد
 				</p>
@@ -66,7 +66,7 @@ export default function FeaturesSection() {
 
 			<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{features.map((feature, index) => (
-					<div key={index} className="flex gap-2">
+					<div key={index} className="flex gap-4">
 						<div
 							className={`flex items-center justify-center flex-shrink-0 w-12 h-12 mt-1 mr-4 rounded-lg ${feature.iconBg}`}
 						>
@@ -74,7 +74,7 @@ export default function FeaturesSection() {
 						</div>
 						<div>
 							<h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-							<p className="text-gray-600">{feature.description}</p>
+							<p className="font-light text-gray-600">{feature.description}</p>
 						</div>
 					</div>
 				))}
