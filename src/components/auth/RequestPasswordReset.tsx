@@ -20,7 +20,7 @@ export default function RequestPasswordReset({
 		setErrorMessage('')
 
 		try {
-			const response = await fetch('http://localhost:4001/auth/forgot-password', {
+			const response = await fetch('https://api.widgetify.ir/auth/forgot-password', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email }),
@@ -51,7 +51,7 @@ export default function RequestPasswordReset({
 	return (
 		<div className="p-8 transition bg-white border border-gray-200 shadow-lg rounded-xl animate-fade-in">
 			<div className="mb-6 text-center">
-				<div className="flex items-center justify-center w-16 h-16 mx-auto mb-5 text-white bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl hover:rotate-3 hover:scale-105 transition-transform">
+				<div className="flex items-center justify-center w-16 h-16 mx-auto mb-5 text-white transition-transform bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl hover:rotate-3 hover:scale-105">
 					<Mail size={32} />
 				</div>
 				<p className="text-gray-600">
