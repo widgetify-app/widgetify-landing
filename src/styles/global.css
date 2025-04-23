@@ -27,6 +27,15 @@
   font-style: light;
 }
 
+/* Regular */
+@font-face {
+  font-family: "Vazir";
+  src:
+    url("../fonts/vazir/Vazirmatn-FD-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Medium */
 @font-face {
   font-family: "Vazir";
@@ -69,4 +78,8 @@
     direction: rtl;
     font-family: "Vazir", sans-serif;
   }
+}
+
+button {
+  cursor: pointer;
 }

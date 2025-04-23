@@ -91,11 +91,11 @@ export default function Home() {
 					</motion.h1>
 
 					<motion.p
-						className="max-w-2xl mb-10 text-lg text-gray-600 md:text-xl"
+						className="max-w-2xl mb-10 text-lg font-light text-gray-600 md:text-xl"
 						variants={fadeIn}
 					>
-						با ویجتی‌فای، اطلاعات مورد نیاز خود را در قالب ویجت‌های زیبا و کاربردی در
-						دسکتاپ، وب و مرورگر خود داشته باشید
+						با ویجتی‌فای، اطلاعات مهم خود را در قالب ویجت‌های زیبا و کاربردی، همیشه در دسترس
+						داشته باشید — بر روی دسکتاپ، وب و مرورگر، بدون نیاز به جستجوی مکرر.
 					</motion.p>
 
 					{/* Download Buttons */}

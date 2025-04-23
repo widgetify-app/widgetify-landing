@@ -28,8 +28,9 @@ export default function FooterSection() {
 							<span className="mr-2 text-xl font-bold text-blue-600">ویجتی‌فای</span>
 						</div>
 
-						<p className="mb-6 text-gray-600">
-							راهکار هوشمند مدیریت ویجت‌ها برای تمام پلتفرم‌ها با طراحی ساده و کارآمد
+						<p className="mb-6 font-light text-gray-600">
+							محیط خسته کننده خودتون رو با ویجتی‌فای به یک محیط جذاب و کاربرپسند تبدیل
+							کنید.
 						</p>
 
 						<div className="flex items-center gap-3">

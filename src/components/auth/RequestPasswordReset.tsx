@@ -1,0 +1,140 @@
+import { motion } from 'framer-motion'
+import { Mail, Send } from 'lucide-react'
+import { useState } from 'react'
+
+interface RequestPasswordResetProps {
+	onSubmitSuccess: (email: string) => void
+	emailProp?: string
+}
+
+export default function RequestPasswordReset({
+	onSubmitSuccess,
+	emailProp = '',
+}: RequestPasswordResetProps) {
+	const [email, setEmail] = useState(emailProp)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [errorMessage, setErrorMessage] = useState('')
+
+	// Animation variants
+	const cardVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				type: 'spring',
+				stiffness: 100,
+				duration: 0.5,
+			},
+		},
+		hover: {
+			y: -5,
+			boxShadow:
+				'0 10px 25px -5px rgba(59, 130, 246, 0.15), 0 8px 10px -6px rgba(59, 130, 246, 0.15)',
+			transition: { duration: 0.2 },
+		},
+	}
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault()
+		setIsSubmitting(true)
+		setErrorMessage('')
+
+		try {
+			const response = await fetch('https://api.widgetify.ir/auth/forgot-password', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email }),
+			})
+
+			const data = await response.json()
+
+			if (!response.ok) {
+				if (data.message === 'FORGOT_PASSWORD_REQUEST_LIMIT') {
+					throw new Error(
+						'تعداد درخواست‌های بازیابی رمز عبور به حد مجاز رسیده است. لطفاً بعداً تلاش کنید.',
+					)
+				}
+
+				throw new Error(data.message || 'خطا در ارسال درخواست بازیابی رمز عبور')
+			}
+
+			onSubmitSuccess(email)
+		} catch (error) {
+			setErrorMessage(
+				error instanceof Error ? error.message : 'خطا در ارسال ایمیل بازیابی رمز عبور',
+			)
+		} finally {
+			setIsSubmitting(false)
+		}
+	}
+
+	return (
+		<motion.div
+			className="p-8 transition bg-white border border-gray-200 shadow-lg rounded-xl"
+			variants={cardVariants}
+		>
+			<div className="mb-6 text-center">
+				<motion.div
+					className="flex items-center justify-center w-16 h-16 mx-auto mb-5 text-white bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl"
+					whileHover={{ rotate: 10, scale: 1.05 }}
+					transition={{ type: 'spring', stiffness: 400 }}
+				>
+					<Mail size={32} />
+				</motion.div>
+				<p className="text-gray-600">
+					ایمیل خود را وارد کنید. ما لینک بازیابی رمز عبور را برای شما ارسال خواهیم کرد.
+				</p>
+			</div>
+
+			<form onSubmit={handleSubmit} className="space-y-6">
+				<div>
+					<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+						آدرس ایمیل
+					</label>
+					<div className="relative">
+						<input
+							type="email"
+							id="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							className="w-full p-3 pr-10 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+							placeholder="example@email.com"
+							required
+						/>
+						<div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+							<Mail size={18} className="text-gray-400" />
+						</div>
+					</div>
+				</div>
+
+				{errorMessage && (
+					<div className="p-3 text-sm text-red-700 bg-red-100 rounded-lg">
+						{errorMessage}
+					</div>
+				)}
+
+				<div className="flex flex-col gap-4">
+					<motion.button
+						type="submit"
+						disabled={isSubmitting}
+						className={`w-full p-3 font-medium text-white transition rounded-lg flex items-center justify-center ${
+							isSubmitting
+								? 'bg-gray-400 cursor-not-allowed'
+								: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700'
+						}`}
+						whileHover={!isSubmitting ? { scale: 1.03 } : {}}
+						whileTap={!isSubmitting ? { scale: 0.97 } : {}}
+					>
+						{isSubmitting ? (
+							<div className="w-5 h-5 ml-2 border-2 border-t-2 border-white rounded-full border-t-transparent animate-spin" />
+						) : (
+							<Send className="ml-2" size={18} />
+						)}
+						ارسال لینک بازیابی
+					</motion.button>
+				</div>
+			</form>
+		</motion.div>
+	)
+}
