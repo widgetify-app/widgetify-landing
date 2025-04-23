@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { AlertCircle, Check, Lock, Mail } from 'lucide-react'
 import { useState } from 'react'
 
@@ -21,19 +20,6 @@ export default function ResetPassword({
 		password?: string
 		confirmPassword?: string
 	}>({})
-
-	const cardVariants = {
-		hidden: { opacity: 0, y: 20 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				type: 'spring',
-				stiffness: 100,
-				duration: 0.5,
-			},
-		},
-	}
 
 	const validatePassword = (password: string): string | undefined => {
 		if (!password) {
@@ -117,18 +103,11 @@ export default function ResetPassword({
 	}
 
 	return (
-		<motion.div
-			className="p-8 transition bg-white border border-gray-200 shadow-lg rounded-xl"
-			variants={cardVariants}
-		>
+		<div className="p-8 transition bg-white border border-gray-200 shadow-lg rounded-xl animate-fade-in">
 			<div className="mb-6 text-center">
-				<motion.div
-					className="flex items-center justify-center w-16 h-16 mx-auto mb-5 text-white bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl"
-					whileHover={{ rotate: 10, scale: 1.05 }}
-					transition={{ type: 'spring', stiffness: 400 }}
-				>
+				<div className="flex items-center justify-center w-16 h-16 mx-auto mb-5 text-white transition-transform bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl hover:rotate-3 hover:scale-105">
 					<Lock size={32} />
-				</motion.div>
+				</div>
 				<p className="text-gray-600">لطفاً رمز عبور جدید خود را وارد کنید.</p>
 			</div>
 
@@ -235,16 +214,14 @@ export default function ResetPassword({
 				)}
 
 				<div className="flex flex-col gap-4">
-					<motion.button
+					<button
 						type="submit"
 						disabled={isSubmitting}
-						className={`w-full p-3 font-medium text-white transition rounded-lg flex items-center justify-center ${
+						className={`w-full p-3 font-medium text-white transition rounded-lg flex items-center justify-center hover:scale-[1.03] active:scale-[0.97] ${
 							isSubmitting
 								? 'bg-gray-400 cursor-not-allowed'
 								: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700'
 						}`}
-						whileHover={!isSubmitting ? { scale: 1.03 } : {}}
-						whileTap={!isSubmitting ? { scale: 0.97 } : {}}
 					>
 						{isSubmitting ? (
 							<div className="w-5 h-5 ml-2 border-2 border-t-2 border-white rounded-full border-t-transparent animate-spin" />
@@ -252,9 +229,9 @@ export default function ResetPassword({
 							<Check className="ml-2" size={18} />
 						)}
 						ذخیره رمز عبور جدید
-					</motion.button>
+					</button>
 				</div>
 			</form>
-		</motion.div>
+		</div>
 	)
 }
