@@ -37,8 +37,8 @@ export default function PrivacyPolicy() {
 					</div>
 					<p className="mt-2 text-gray-600">
 						{language === 'fa'
-							? 'آخرین به‌روزرسانی: ۱۰ فروردین ۱۴۰۴'
-							: 'Last updated: March 30, 2025'}
+							? 'آخرین به‌روزرسانی: 05 اردیبهشت ۱۴۰۴'
+							: 'Last updated: April 25, 2025'}
 					</p>
 				</div>
 			</div>
@@ -259,8 +259,7 @@ export default function PrivacyPolicy() {
 											<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
 												privacy@widgetify.ir
 											</a>{' '}
-											ثبت کنند. همچنین با حذف افزونه از مرورگر، تمام داده‌های ذخیره‌شده در
-											دستگاه کاربر نیز پاک می‌شود.
+											ثبت کنند.
 										</p>
 									) : (
 										<p className="mb-3 text-gray-700">
@@ -269,8 +268,7 @@ export default function PrivacyPolicy() {
 											<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
 												privacy@widgetify.ir
 											</a>
-											. Additionally, when the extension is removed from the browser, all
-											data stored on the user's device is also deleted.
+											.
 										</p>
 									)}
 								</div>
