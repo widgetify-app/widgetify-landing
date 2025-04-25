@@ -60,7 +60,7 @@ export default function Navbar() {
 				{
 					label: 'اکستنشن مرورگر',
 					path: '/extension',
-					description: 'افزونه‌ای برای تب‌های جدید هوشمند',
+					description: 'افزونه برای نیو تب مرورگر',
 					icon: <ExternalLink size={18} />,
 				},
 				{

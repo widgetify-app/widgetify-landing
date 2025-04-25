@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
 							{language === 'fa' ? (
 								<>
 									<p className="mb-4 text-gray-700">
-										ویجتی‌فای یک افزونه مرورگر با هدف مشخص نمایش ویجت‌های کاربردی در تب جدید
+										ویجتی‌فای یک افزونه مرورگر با هدف مشخص نمایش ویجت‌های کاربردی در نیـو‌تب
 										است. این سیاست حریم خصوصی توضیح می‌دهد که چگونه ما با داده‌های شما در
 										این افزونه برخورد می‌کنیم.
 									</p>
@@ -142,7 +142,7 @@ export default function PrivacyPolicy() {
 												دارد:
 											</p>
 											<ul className="mr-6 space-y-2 text-gray-700 list-disc">
-												<li>دسترسی به تب جدید برای نمایش ویجت‌ها</li>
+												<li>دسترسی به نیـو‌تب برای نمایش ویجت‌ها</li>
 												<li>
 													دسترسی به اینترنت برای دریافت داده‌های عمومی مانند آب و هوا، قیمت
 													ارزها و غیره
@@ -226,9 +226,61 @@ export default function PrivacyPolicy() {
 
 							<section>
 								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۶. نگه‌داری داده‌ها' : '6. Data Retention'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											داده‌های مرتبط با تنظیمات کاربر و اطلاعات ورود (در صورت فعال‌سازی
+											همگام‌سازی) تنها تا زمانی که کاربر از سرویس استفاده می‌کند نگهداری
+											می‌شوند. در صورت غیرفعال شدن حساب یا عدم استفاده طولانی‌مدت، این
+											داده‌ها ممکن است به صورت خودکار حذف شوند.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											User settings data and login information (if synchronization is
+											enabled) are only retained as long as the user uses the service. In
+											case of account deactivation or extended inactivity, this data may
+											be automatically deleted.
+										</p>
+									)}
+								</div>
+							</section>
+
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+									{language === 'fa' ? '۷. حذف داده‌ها' : '7. Data Deletion'}
+								</h2>
+								<div className="ml-4">
+									{language === 'fa' ? (
+										<p className="mb-3 text-gray-700">
+											کاربران می‌توانند در هر زمان درخواست حذف کامل داده‌های خود را با ارسال
+											ایمیل به{' '}
+											<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
+												privacy@widgetify.ir
+											</a>{' '}
+											ثبت کنند. همچنین با حذف افزونه از مرورگر، تمام داده‌های ذخیره‌شده در
+											دستگاه کاربر نیز پاک می‌شود.
+										</p>
+									) : (
+										<p className="mb-3 text-gray-700">
+											Users can request complete deletion of their data at any time by
+											sending an email to{' '}
+											<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
+												privacy@widgetify.ir
+											</a>
+											. Additionally, when the extension is removed from the browser, all
+											data stored on the user's device is also deleted.
+										</p>
+									)}
+								</div>
+							</section>
+
+							<section>
+								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
 									{language === 'fa'
-										? '۶. تغییرات در سیاست حریم خصوصی'
-										: '6. Changes to Privacy Policy'}
+										? '۸. تغییرات در سیاست حریم خصوصی'
+										: '8. Changes to Privacy Policy'}
 								</h2>
 								<div className="ml-4">
 									{language === 'fa' ? (
@@ -247,7 +299,7 @@ export default function PrivacyPolicy() {
 
 							<section>
 								<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-									{language === 'fa' ? '۷. تماس با ما' : '7. Contact Us'}
+									{language === 'fa' ? '۹. تماس با ما' : '9. Contact Us'}
 								</h2>
 								<div className="ml-4">
 									{language === 'fa' ? (

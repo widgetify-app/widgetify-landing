@@ -38,7 +38,7 @@ export const CustomizationFeature: React.FC<CustomizationFeatureProps> = ({
 								</div>
 								<div className="flex items-center px-2 py-1 text-xs bg-gray-100 rounded">
 									<FaPlus size={8} className="mr-1" />
-									تب جدید
+									نیـو‌تب
 								</div>
 							</div>
 							<div className="grid grid-cols-3 gap-3">

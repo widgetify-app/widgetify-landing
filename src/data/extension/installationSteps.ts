@@ -36,8 +36,8 @@ export const installationSteps: InstallationStep[] = [
 	},
 	{
 		id: 3,
-		title: 'باز کردن تب جدید',
-		description: 'یک تب جدید باز کنید تا داشبورد ویجتی‌فای ظاهر شود',
+		title: 'باز کردن نیـو‌تب',
+		description: 'یک نیـو‌تب باز کنید تا داشبورد ویجتی‌فای ظاهر شود',
 		icon: FaPlus,
 		iconSize: 32,
 		mobileIconSize: 24,

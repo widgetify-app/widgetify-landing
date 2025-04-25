@@ -1,11 +1,14 @@
 import { FaChrome, FaEdge, FaFirefox } from 'react-icons/fa'
+import { FaBrave } from 'react-icons/fa6'
 
+const CHROME_EXTENSION_URL =
+	'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh'
 // Mock data for browser extensions availability
 const browserExtensions = [
 	{
 		name: 'گوگل کروم',
 		icon: FaChrome,
-		url: 'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh',
+		url: CHROME_EXTENSION_URL,
 		isAvailable: true,
 		comingSoon: false,
 	},
@@ -19,7 +22,14 @@ const browserExtensions = [
 	{
 		name: 'ادج',
 		icon: FaEdge,
-		url: 'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh',
+		url: CHROME_EXTENSION_URL,
+		isAvailable: true,
+		comingSoon: false,
+	},
+	{
+		name: 'Brave',
+		icon: FaBrave,
+		url: CHROME_EXTENSION_URL,
 		isAvailable: true,
 		comingSoon: false,
 	},
@@ -28,11 +38,12 @@ const browserExtensions = [
 export function Extension() {
 	return (
 		<div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+			{/* Hero Section */}
 			<div className="relative px-4 py-20">
 				<div className="flex flex-col items-center max-w-6xl mx-auto text-center animate-fade-in">
-					<h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl animate-slide-down">
-						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-							تب‌های جدید هوشمند با ویجتی‌فای
+					<h1 className="mb-3 text-2xl font-bold text-gray-900 md:text-5xl lg:text-6xl animate-slide-down">
+						<span className="block p-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+							تب جدید مرورگرتو جذاب کن!
 						</span>
 					</h1>
 
@@ -57,6 +68,23 @@ export function Extension() {
 								{browser.name} {browser.comingSoon ? '(به زودی)' : ''}
 							</div>
 						))}
+					</div>
+
+					{/* Preview Image */}
+					<div className="relative w-full max-w-4xl mx-auto animate-fade-in-delayed">
+						<div className="overflow-hidden shadow-xl rounded-2xl aspect-video animate-slide-up-delayed">
+							<img
+								src="/extension-land.png"
+								alt="ویجتی‌فای"
+								className="object-cover w-full h-full"
+								onError={(e) => {
+									e.currentTarget.src = 'https://placehold.co/1200x675?text=ویجتی‌فای'
+								}}
+							/>
+						</div>
+						<div className="absolute px-4 py-2 text-sm font-medium text-white transform -translate-x-1/2 rounded-full bottom-4 left-1/2 bg-black/60 backdrop-blur-sm animate-fade-in-long-delayed">
+							تمام اطلاعات مورد نیاز در یک نیـو‌تب
+						</div>
 					</div>
 				</div>
 			</div>
