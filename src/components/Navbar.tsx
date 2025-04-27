@@ -8,12 +8,9 @@ import {
 	HelpCircle,
 	Home,
 	LogIn,
-	LogOut,
 	Menu,
 	MessageSquare,
 	Shield,
-	User,
-	UserPlus,
 	X,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -44,9 +41,7 @@ export default function Navbar() {
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 	const location = useLocation()
 	const menuRef = useRef<HTMLDivElement>(null)
-	const { user, isAuthenticated, logout } = useAuth()
 
-	// Handle scroll effect
 	useEffect(() => {
 		const handleScroll = () => {
 			setScrolled(window.scrollY > 10)
@@ -56,7 +51,6 @@ export default function Navbar() {
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
-	// Close dropdowns when clicking outside
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
 			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -68,14 +62,8 @@ export default function Navbar() {
 		return () => document.removeEventListener('mousedown', handleClickOutside)
 	}, [])
 
-	// Enhanced nav items configuration
 	const getNavItems = (): NavItem[] => {
 		const baseItems: NavItem[] = [
-			{
-				label: 'صفحه اصلی',
-				path: '/',
-				icon: <Home size={18} />,
-			},
 			{
 				label: 'حمایت',
 				path: '/donate',
@@ -142,34 +130,12 @@ export default function Navbar() {
 			},
 		]
 
-		// Add authentication-related items
-		if (isAuthenticated) {
-			baseItems.push({
-				label: 'پروفایل',
-				path: '/profile',
-				icon: <User size={18} />,
-			})
-		} else {
-			baseItems.push({
+		baseItems.push({
 				label: 'ورود / ثبت نام',
-				path: '#',
+				path: '/login',
 				icon: <LogIn size={18} />,
-				children: [
-					{
-						label: 'ورود',
-						path: '/login',
-						description: 'ورود به حساب کاربری',
-						icon: <LogIn size={18} />,
-					},
-					{
-						label: 'ثبت نام',
-						path: '/register',
-						description: 'ایجاد حساب کاربری جدید',
-						icon: <UserPlus size={18} />,
-					},
-				],
+			 
 			})
-		}
 
 		return baseItems
 	}
@@ -187,11 +153,7 @@ export default function Navbar() {
 	const toggleDropdown = (label: string) => {
 		setActiveDropdown(activeDropdown === label ? null : label)
 	}
-
-	const handleLogout = () => {
-		logout()
-	}
-
+ 
 	return (
 		<nav
 			className={`sticky top-0 z-50 bg-white transition-all duration-200 ${
@@ -313,16 +275,7 @@ export default function Navbar() {
 								</div>
 							))}
 
-							{/* Logout button for authenticated users */}
-							{isAuthenticated && (
-								<button
-									onClick={handleLogout}
-									className="flex items-center px-3 py-2 rounded-md transition-colors text-gray-600 hover:text-red-600 hover:bg-red-50"
-								>
-									<LogOut size={18} className="ml-1.5" />
-									خروج
-								</button>
-							)}
+					 
 						</div>
 					</div>
 
@@ -342,28 +295,6 @@ export default function Navbar() {
 				{isMenuOpen && (
 					<div className="fixed inset-x-0 bottom-0 z-50 overflow-y-auto bg-white border-t border-gray-100 top-16 md:hidden">
 						<div className="p-4 divide-y divide-gray-100">
-							{/* User info if authenticated */}
-							{isAuthenticated && user && (
-								<div className="pb-4">
-									<div className="flex items-center p-3 bg-blue-50 rounded-lg">
-										<div className="w-10 h-10 overflow-hidden bg-gray-200 rounded-full">
-											<img
-												src={
-													user.avatar ||
-													`https://ui-avatars.com/api/?name=${user.name || 'User'}&background=random&color=fff`
-												}
-												alt={user.name}
-												className="w-full h-full object-cover"
-											/>
-										</div>
-										<div className="mr-3">
-											<p className="font-medium">{user.name}</p>
-											<p className="text-xs text-gray-500">{user.email}</p>
-										</div>
-									</div>
-								</div>
-							)}
-
 							{/* Feedback Quick Action */}
 							<div className="pb-4">
 								<a
@@ -461,22 +392,6 @@ export default function Navbar() {
 										)}
 									</div>
 								))}
-
-								{/* Logout button in mobile menu */}
-								{isAuthenticated && (
-									<div className="mt-2">
-										<button
-											onClick={() => {
-												handleLogout()
-												setIsMenuOpen(false)
-											}}
-											className="flex items-center w-full px-4 py-3 text-right text-gray-700 transition rounded-lg bg-red-50 hover:bg-red-100 hover:text-red-700"
-										>
-											<LogOut size={18} className="ml-3 text-red-500" />
-											<span>خروج از حساب کاربری</span>
-										</button>
-									</div>
-								)}
 							</div>
 
 							{/* Bottom Feedback Section */}
