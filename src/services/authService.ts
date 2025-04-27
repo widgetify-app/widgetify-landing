@@ -1,4 +1,4 @@
-import type { AuthResponse, LoginRequest, RegisterRequest, User } from '../types/auth'
+import type {   LoginRequest, RegisterRequest, User } from '../types/auth'
 import { getMainClient } from './api'
 
 class AuthService {
@@ -35,6 +35,16 @@ class AuthService {
 	async getUserProfile(): Promise<User> {
 		const api = await getMainClient()
 		const response = await api.get<User>('/users/@me')
+		return response.data
+	}
+
+	async updateUserProfile(formData: FormData): Promise<User> {
+		const api = await getMainClient()
+		const response = await api.patch('/users/@me', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		})
 		return response.data
 	}
 

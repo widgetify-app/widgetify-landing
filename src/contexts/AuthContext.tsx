@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import type React from 'react'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { authService } from '../services/authService'
@@ -10,12 +10,15 @@ interface AuthContextType {
 	isLoading: boolean
 	login: (token: string) => void
 	logout: () => void
+	updateProfile: (formData: FormData) => Promise<User>
+	refetchUser: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [user, setUser] = useState<User | null>(null)
+	const queryClient = useQueryClient()
 
 	const {
 		data: profileData,
@@ -60,12 +63,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		setUser(null)
 	}
 
+	const updateProfile = async (formData: FormData) => {
+		const updatedUser = await authService.updateUserProfile(formData)
+		await queryClient.invalidateQueries({ queryKey: ['userProfile'] })
+		setUser(updatedUser)
+		return updatedUser
+	}
+
+	const refetchUser = async () => {
+		await refetch()
+	}
+
 	const value = {
 		user,
 		isAuthenticated: !!authService.getToken(),
 		isLoading,
 		login,
 		logout,
+		updateProfile,
+		refetchUser
 	}
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
