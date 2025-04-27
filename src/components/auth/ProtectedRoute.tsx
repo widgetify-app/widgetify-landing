@@ -7,9 +7,9 @@ export default function ProtectedRoute() {
 
 	if (isLoading) {
 		return (
-			<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+			<div className="flex items-center justify-center min-h-screen">
 				<div className="text-center">
-					<div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+					<div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
 					<p className="text-gray-600">در حال بررسی وضعیت ورود...</p>
 				</div>
 			</div>

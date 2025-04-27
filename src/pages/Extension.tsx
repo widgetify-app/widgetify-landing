@@ -37,7 +37,7 @@ const browserExtensions = [
 
 export function Extension() {
 	return (
-		<div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+		<div className="min-h-screen overflow-hidden">
 			{/* Hero Section */}
 			<div className="relative px-4 py-20">
 				<div className="flex flex-col items-center max-w-6xl mx-auto text-center animate-fade-in">

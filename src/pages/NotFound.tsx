@@ -1,6 +1,5 @@
 import { ArrowLeft, Home, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import ContainerWrapper from '../components/ContainerWrapper'
 
 export default function NotFound() {
 	return (
@@ -18,71 +17,69 @@ export default function NotFound() {
 				</div>
 			</div>
 
-			<ContainerWrapper>
-				<div className="py-16 text-center">
-					<div className="max-w-2xl mx-auto mb-12">
-						<h2 className="mb-6 text-2xl font-bold">
-							متاسفیم، صفحه‌ای که به دنبال آن بودید وجود ندارد
-						</h2>
-						<p className="mb-8 text-gray-600">
-							ممکن است آدرس اشتباه وارد کرده باشید یا این صفحه منتقل یا حذف شده باشد.
-							می‌توانید به صفحه اصلی بازگردید یا از لینک‌های زیر استفاده کنید.
-						</p>
+			<div className="py-16 text-center">
+				<div className="max-w-2xl mx-auto mb-12">
+					<h2 className="mb-6 text-2xl font-bold">
+						متاسفیم، صفحه‌ای که به دنبال آن بودید وجود ندارد
+					</h2>
+					<p className="mb-8 text-gray-600">
+						ممکن است آدرس اشتباه وارد کرده باشید یا این صفحه منتقل یا حذف شده باشد.
+						می‌توانید به صفحه اصلی بازگردید یا از لینک‌های زیر استفاده کنید.
+					</p>
 
-						<div className="flex flex-wrap justify-center gap-4">
-							<Link
-								to="/"
-								className="inline-flex items-center px-6 py-3 font-medium text-white transition rounded-lg bg-gradient-to-br from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
-							>
-								<Home className="ml-2" size={20} />
-								صفحه اصلی
-							</Link>
+					<div className="flex flex-wrap justify-center gap-4">
+						<Link
+							to="/"
+							className="inline-flex items-center px-6 py-3 font-medium text-white transition rounded-lg bg-gradient-to-br from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
+						>
+							<Home className="ml-2" size={20} />
+							صفحه اصلی
+						</Link>
 
-							<button
-								onClick={() => window.history.back()}
-								className="inline-flex items-center px-6 py-3 font-medium transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
-							>
-								<ArrowLeft className="ml-2" size={20} />
-								بازگشت به صفحه قبل
-							</button>
-						</div>
-					</div>
-
-					{/* Quick links */}
-					<div className="max-w-2xl mx-auto">
-						<h3 className="mb-4 text-lg font-medium text-gray-600">
-							یا شاید به دنبال یکی از این صفحات هستید:
-						</h3>
-						<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-							<Link
-								to="/extension"
-								className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
-							>
-								<h4 className="font-medium">اکستنشن مرورگر</h4>
-								<p className="text-sm text-gray-500">افزونه ویجتی‌فای برای مرورگرها</p>
-							</Link>
-
-							<Link
-								to="/donate"
-								className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
-							>
-								<h4 className="font-medium">حمایت مالی</h4>
-								<p className="text-sm text-gray-500">کمک به توسعه ویجتی‌فای</p>
-							</Link>
-
-							<a
-								href="https://github.com/widgetify-app"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
-							>
-								<h4 className="font-medium">مخزن گیت‌هاب</h4>
-								<p className="text-sm text-gray-500">مشارکت در کد پروژه</p>
-							</a>
-						</div>
+						<button
+							onClick={() => window.history.back()}
+							className="inline-flex items-center px-6 py-3 font-medium transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+						>
+							<ArrowLeft className="ml-2" size={20} />
+							بازگشت به صفحه قبل
+						</button>
 					</div>
 				</div>
-			</ContainerWrapper>
+
+				{/* Quick links */}
+				<div className="max-w-2xl mx-auto">
+					<h3 className="mb-4 text-lg font-medium text-gray-600">
+						یا شاید به دنبال یکی از این صفحات هستید:
+					</h3>
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+						<Link
+							to="/extension"
+							className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
+						>
+							<h4 className="font-medium">اکستنشن مرورگر</h4>
+							<p className="text-sm text-gray-500">افزونه ویجتی‌فای برای مرورگرها</p>
+						</Link>
+
+						<Link
+							to="/donate"
+							className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
+						>
+							<h4 className="font-medium">حمایت مالی</h4>
+							<p className="text-sm text-gray-500">کمک به توسعه ویجتی‌فای</p>
+						</Link>
+
+						<a
+							href="https://github.com/widgetify-app"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
+						>
+							<h4 className="font-medium">مخزن گیت‌هاب</h4>
+							<p className="text-sm text-gray-500">مشارکت در کد پروژه</p>
+						</a>
+					</div>
+				</div>
+			</div>
 		</>
 	)
 }

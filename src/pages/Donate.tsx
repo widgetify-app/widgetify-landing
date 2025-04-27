@@ -65,7 +65,7 @@ export default function Donate() {
 	}
 
 	return (
-		<div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+		<div className="min-h-screen overflow-hidden">
 			{/* Hero Section */}
 			<div className="relative py-16 md:py-24">
 				<div className="flex flex-col items-center max-w-4xl px-4 mx-auto text-center animate-fade-in">

@@ -9,7 +9,5 @@ export default function ContainerWrapper({
 	children,
 	className = '',
 }: ContainerWrapperProps) {
-	return (
-		<div className={`container max-w-6xl px-10 mx-auto ${className}`}>{children}</div>
-	)
+	return <div className={`container max-w-6xl px-5 mx-auto ${className}`}>{children}</div>
 }

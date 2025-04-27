@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import ContainerWrapper from '../components/ContainerWrapper'
 import RequestPasswordReset from '../components/auth/RequestPasswordReset'
 import ResetPassword from '../components/auth/ResetPassword'
 
@@ -36,7 +35,7 @@ export default function ForgotPassword() {
 	}
 
 	return (
-		<div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+		<div className="min-h-screen overflow-hidden">
 			<div className="relative px-4 py-20">
 				<div className="flex flex-col items-center max-w-6xl mx-auto text-center animate-fade-in">
 					<h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
@@ -53,63 +52,14 @@ export default function ForgotPassword() {
 				</div>
 			</div>
 
-			<ContainerWrapper>
-				<div className="py-16">
-					<div className="max-w-md mx-auto animate-fade-in-up">
-						{isResetMode ? (
-							!isSubmitted ? (
-								<ResetPassword
-									email={emailFromUrl || ''}
-									token={originalToken}
-									onResetSuccess={handleResetSuccess}
-								/>
-							) : (
-								<div className="p-8 text-center transition bg-white border border-gray-200 shadow-lg rounded-xl animate-slide-up">
-									<div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
-										<svg
-											className="w-8 h-8 text-white"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth={2}
-												d="M5 13l4 4L19 7"
-											/>
-										</svg>
-									</div>
-									<h2 className="mb-2 text-2xl font-bold">
-										رمز عبور با موفقیت تغییر کرد
-									</h2>
-									<p className="mb-6 text-gray-600">
-										اکنون می‌توانید با رمز عبور جدید خود وارد حساب کاربری شوید.
-									</p>
-									<div className="flex flex-col gap-3">
-										<a
-											href="https://app.widgetify.ir"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="flex items-center justify-center w-full p-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700 hover:scale-[1.03] active:scale-[0.97]"
-										>
-											رفتن به صفحه اصلی اپلیکیشن
-										</a>
-
-										<Link
-											to="/"
-											className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
-										>
-											بازگشت به صفحه اصلی
-										</Link>
-									</div>
-								</div>
-							)
-						) : !isSubmitted ? (
-							<RequestPasswordReset
-								onSubmitSuccess={handleRequestSuccess}
-								emailProp={email}
+			<div className="py-16">
+				<div className="max-w-md mx-auto animate-fade-in-up">
+					{isResetMode ? (
+						!isSubmitted ? (
+							<ResetPassword
+								email={emailFromUrl || ''}
+								token={originalToken}
+								onResetSuccess={handleResetSuccess}
 							/>
 						) : (
 							<div className="p-8 text-center transition bg-white border border-gray-200 shadow-lg rounded-xl animate-slide-up">
@@ -129,27 +79,72 @@ export default function ForgotPassword() {
 										/>
 									</svg>
 								</div>
-								<h2 className="mb-2 text-2xl font-bold">ایمیل ارسال شد</h2>
+								<h2 className="mb-2 text-2xl font-bold">رمز عبور با موفقیت تغییر کرد</h2>
 								<p className="mb-6 text-gray-600">
-									درخواست بازیابی رمز عبور با موفقیت ثبت شد. لطفاً ایمیل خود ({email}) را
-									بررسی کنید و دستورالعمل‌های بازیابی رمز عبور را دنبال کنید.
+									اکنون می‌توانید با رمز عبور جدید خود وارد حساب کاربری شوید.
 								</p>
 								<div className="flex flex-col gap-3">
-									<button
-										onClick={() => {
-											setEmail('')
-											setIsSubmitted(false)
-										}}
-										className="w-full p-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700 hover:scale-[1.03] active:scale-[0.97]"
+									<a
+										href="https://app.widgetify.ir"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center justify-center w-full p-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700 hover:scale-[1.03] active:scale-[0.97]"
 									>
-										تلاش مجدد با ایمیل دیگر
-									</button>
+										رفتن به صفحه اصلی اپلیکیشن
+									</a>
+
+									<Link
+										to="/"
+										className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
+									>
+										بازگشت به صفحه اصلی
+									</Link>
 								</div>
 							</div>
-						)}
-					</div>
+						)
+					) : !isSubmitted ? (
+						<RequestPasswordReset
+							onSubmitSuccess={handleRequestSuccess}
+							emailProp={email}
+						/>
+					) : (
+						<div className="p-8 text-center transition bg-white border border-gray-200 shadow-lg rounded-xl animate-slide-up">
+							<div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
+								<svg
+									className="w-8 h-8 text-white"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M5 13l4 4L19 7"
+									/>
+								</svg>
+							</div>
+							<h2 className="mb-2 text-2xl font-bold">ایمیل ارسال شد</h2>
+							<p className="mb-6 text-gray-600">
+								درخواست بازیابی رمز عبور با موفقیت ثبت شد. لطفاً ایمیل خود ({email}) را
+								بررسی کنید و دستورالعمل‌های بازیابی رمز عبور را دنبال کنید.
+							</p>
+							<div className="flex flex-col gap-3">
+								<button
+									onClick={() => {
+										setEmail('')
+										setIsSubmitted(false)
+									}}
+									className="w-full p-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700 hover:scale-[1.03] active:scale-[0.97]"
+								>
+									تلاش مجدد با ایمیل دیگر
+								</button>
+							</div>
+						</div>
+					)}
 				</div>
-			</ContainerWrapper>
+			</div>
 		</div>
 	)
 }

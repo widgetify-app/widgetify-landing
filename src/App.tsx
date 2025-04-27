@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import FooterSection from './components/FooterSection'
 import Navbar from './components/Navbar'
+import PageWrapper from './components/PageWrapper'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import { AuthProvider } from './contexts/AuthContext'
 import Donate from './pages/Donate'
@@ -30,22 +31,84 @@ export default function App() {
 			<AuthProvider>
 				<Navbar />
 				<Routes>
-					{/* Public Routes */}
-					<Route path="/" element={<QueryParamHandler />} />
-					<Route path="/donate" element={<Donate />} />
-					<Route path="/extension" element={<Extension />} />
-					<Route path="/privacy" element={<PrivacyPolicy />} />
-					<Route path="/forgot-password" element={<ForgotPassword />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
+					<Route
+						path="/"
+						element={
+							<PageWrapper>
+								<QueryParamHandler />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/donate"
+						element={
+							<PageWrapper>
+								<Donate />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/extension"
+						element={
+							<PageWrapper fullWidth={true}>
+								<Extension />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/privacy"
+						element={
+							<PageWrapper>
+								<PrivacyPolicy />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/forgot-password"
+						element={
+							<PageWrapper>
+								<ForgotPassword />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/login"
+						element={
+							<PageWrapper>
+								<Login />
+							</PageWrapper>
+						}
+					/>
+					<Route
+						path="/register"
+						element={
+							<PageWrapper>
+								<Register />
+							</PageWrapper>
+						}
+					/>
 
 					{/* Protected Routes */}
 					<Route element={<ProtectedRoute />}>
-						<Route path="/profile" element={<Profile />} />
+						<Route
+							path="/profile"
+							element={
+								<PageWrapper>
+									<Profile />
+								</PageWrapper>
+							}
+						/>
 					</Route>
 
 					{/* Catch-all route for 404 */}
-					<Route path="*" element={<NotFound />} />
+					<Route
+						path="*"
+						element={
+							<PageWrapper>
+								<NotFound />
+							</PageWrapper>
+						}
+					/>
 				</Routes>
 				<FooterSection />
 			</AuthProvider>
