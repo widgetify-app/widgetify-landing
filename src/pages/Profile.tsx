@@ -61,8 +61,8 @@ export default function Profile() {
 			<div className="max-w-4xl mx-auto overflow-hidden bg-white border border-gray-200 shadow-lg rounded-xl">
 				{/* Profile Header */}
 				<div className="p-6 text-white bg-gradient-to-r from-blue-600 to-purple-600">
-					<div className="flex flex-col items-center md:flex-row">
-						<div className="mb-4 md:mb-0 md:mr-6">
+					<div className="flex flex-col items-center md:flex-row md:gap-2">
+						<div className="mb-4 md:mb-0">
 							<div className="w-24 h-24 overflow-hidden border-4 border-white rounded-full">
 								<img
 									src={
@@ -90,42 +90,9 @@ export default function Profile() {
 					</div>
 				</div>
 
-				{/* Tabs */}
-				<div className="border-b border-gray-200">
-					<div className="flex">
-						<button
-							className={`px-6 py-3 font-medium transition-colors ${
-								activeTab === 'profile'
-									? 'text-blue-600 border-b-2 border-blue-600'
-									: 'text-gray-600 hover:text-blue-600'
-							}`}
-							onClick={() => setActiveTab('profile')}
-						>
-							<span className="flex items-center">
-								<User size={18} className="ml-2" />
-								پروفایل
-							</span>
-						</button>
-						<button
-							className={`px-6 py-3 font-medium transition-colors ${
-								activeTab === 'settings'
-									? 'text-blue-600 border-b-2 border-blue-600'
-									: 'text-gray-600 hover:text-blue-600'
-							}`}
-							onClick={() => setActiveTab('settings')}
-						>
-							<span className="flex items-center">
-								<Settings size={18} className="ml-2" />
-								تنظیمات
-							</span>
-						</button>
-					</div>
-				</div>
-
+	 
 				{/* Content */}
-				<div className="p-6">
-					{activeTab === 'profile' ? (
-						<div className="space-y-6">
+				<div className="p-6 space-y-6">
 							{/* Basic Info */}
 							<section>
 								<h2 className="mb-4 text-xl font-bold">اطلاعات شخصی</h2>
@@ -167,9 +134,9 @@ export default function Profile() {
 											{user.connections.map((connection, index) => (
 												<div
 													key={index}
-													className="flex items-center px-3 py-2 bg-white border border-gray-200 rounded-lg"
+													className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg"
 												>
-													<span className="mr-2">{getConnectionIcon(connection)}</span>
+													<span>{getConnectionIcon(connection)}</span>
 													{connection}
 												</div>
 											))}
@@ -177,37 +144,7 @@ export default function Profile() {
 									</div>
 								</section>
 							)}
-
-							{/* Permissions */}
-							{user?.permissions && user.permissions.length > 0 && (
-								<section>
-									<h2 className="mb-4 text-xl font-bold">دسترسی‌ها</h2>
-									<div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
-										<div className="flex flex-wrap gap-2">
-											{user.permissions.map((permission, index) => (
-												<div
-													key={index}
-													className="flex items-center px-3 py-2 bg-white border border-gray-200 rounded-lg"
-												>
-													<Shield className="ml-2 text-blue-600" size={16} />
-													{permission}
-												</div>
-											))}
-										</div>
-									</div>
-								</section>
-							)}
-						</div>
-					) : (
-						<div className="py-8 text-center">
-							<Settings size={48} className="mx-auto mb-4 text-gray-400" />
-							<h3 className="mb-2 text-xl font-medium text-gray-700">تنظیمات پروفایل</h3>
-							<p className="max-w-md mx-auto text-gray-500">
-								بخش تنظیمات در حال توسعه است و به زودی امکان تغییر اطلاعات پروفایل فراهم
-								خواهد شد.
-							</p>
-						</div>
-					)}
+							 
 				</div>
 			</div>
 		</div>
