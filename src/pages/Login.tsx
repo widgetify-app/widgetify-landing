@@ -78,7 +78,7 @@ export default function Login() {
 		<div className="min-h-screen py-16">
 			<div className="max-w-md mx-auto">
 				<div className="p-8 bg-white border border-gray-200 shadow-lg rounded-xl">
-					<div className="mb-8 text-center">
+					<div className="mb-4 text-center">
 						<div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl">
 							<LogIn size={32} className="text-white" />
 						</div>
@@ -87,9 +87,9 @@ export default function Login() {
 					</div>
 
 					{errors.general && (
-						<div className="p-4 mb-6 border border-red-200 rounded-lg bg-red-50">
-							<div className="flex items-start">
-								<AlertCircle className="text-red-500 mr-2 mt-0.5" size={16} />
+						<div className="p-2 mb-2 border border-red-200 rounded-lg bg-red-50">
+							<div className="flex items-start gap-1">
+								<AlertCircle className="text-red-500 mt-0.5" size={16} />
 								<p className="text-red-700">{errors.general}</p>
 							</div>
 						</div>
@@ -124,17 +124,7 @@ export default function Login() {
 							autoComplete="current-password"
 						/>
 
-						<div className="flex items-center justify-between mb-6">
-							<div className="flex items-center">
-								<input
-									id="remember-me"
-									type="checkbox"
-									className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-								/>
-								<label htmlFor="remember-me" className="mr-2 text-sm text-gray-700">
-									مرا به خاطر بسپار
-								</label>
-							</div>
+						<div className="flex flex-row-reverse items-center mb-4">
 							<Link
 								to="/forgot-password"
 								className="text-sm text-blue-600 hover:underline"

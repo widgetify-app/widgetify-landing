@@ -98,7 +98,7 @@ export default function Register() {
 		<div className="min-h-screen py-16">
 			<div className="max-w-md mx-auto">
 				<div className="p-8 bg-white border border-gray-200 shadow-lg rounded-xl">
-					<div className="mb-8 text-center">
+					<div className="mb-4 text-center">
 						<div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl">
 							<UserPlus size={32} className="text-white" />
 						</div>
@@ -107,9 +107,9 @@ export default function Register() {
 					</div>
 
 					{errors.general && (
-						<div className="p-4 mb-6 border border-red-200 rounded-lg bg-red-50">
-							<div className="flex items-start">
-								<AlertCircle className="text-red-500 mr-2 mt-0.5" size={16} />
+						<div className="p-2 mb-2 border border-red-200 rounded-lg bg-red-50">
+							<div className="flex items-start gap-1">
+								<AlertCircle className="text-red-500 mt-0.5" size={16} />
 								<p className="text-red-700">{errors.general}</p>
 							</div>
 						</div>
@@ -144,33 +144,38 @@ export default function Register() {
 							autoComplete="email"
 						/>
 
-						<FormInput
-							id="password"
-							name="password"
-							label="رمز عبور"
-							type="password"
-							value={formData.password}
-							onChange={handleChange}
-							placeholder="حداقل 8 کاراکتر"
-							error={errors.password}
-							icon={Lock}
-							required
-							autoComplete="new-password"
-						/>
-
-						<FormInput
-							id="confirmPassword"
-							name="confirmPassword"
-							label="تکرار رمز عبور"
-							type="password"
-							value={formData.confirmPassword}
-							onChange={handleChange}
-							placeholder="رمز عبور را مجددا وارد کنید"
-							error={errors.confirmPassword}
-							icon={CheckCircle}
-							required
-							autoComplete="new-password"
-						/>
+						<div className="flex gap-4">
+							<div className="flex-1">
+								<FormInput
+									id="password"
+									name="password"
+									label="رمز عبور"
+									type="password"
+									value={formData.password}
+									onChange={handleChange}
+									placeholder="حداقل 8 کاراکتر"
+									error={errors.password}
+									icon={Lock}
+									required
+									autoComplete="new-password"
+								/>
+							</div>
+							<div className="flex-1">
+								<FormInput
+									id="confirmPassword"
+									name="confirmPassword"
+									label="تکرار رمز عبور"
+									type="password"
+									value={formData.confirmPassword}
+									onChange={handleChange}
+									placeholder="تکرار رمز"
+									error={errors.confirmPassword}
+									icon={CheckCircle}
+									required
+									autoComplete="new-password"
+								/>
+							</div>
+						</div>
 
 						<button
 							type="submit"
