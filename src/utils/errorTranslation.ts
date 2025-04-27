@@ -1,14 +1,5 @@
-interface ApiError {
-	statusCode?: number
-	success?: boolean
-	message?: string
-	formValidation?: FormValidationError[]
-}
+ 
 
-interface FormValidationError {
-	property: string
-	message: string
-}
 
 export function translateError(error: any): string | Record<string, string> {
 	const defaultMessage = 'خطایی رخ داده است. لطفا دوباره تلاش کنید'

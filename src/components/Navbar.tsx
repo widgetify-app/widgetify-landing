@@ -6,7 +6,6 @@ import {
 	Github,
 	Grid,
 	HelpCircle,
-	Home,
 	LogIn,
 	Menu,
 	MessageSquare,
@@ -16,7 +15,6 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { BiDonateBlood } from 'react-icons/bi'
 import { Link, useLocation } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
 import ContainerWrapper from './ContainerWrapper'
 
 interface NavItem {

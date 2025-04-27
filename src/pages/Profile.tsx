@@ -6,11 +6,6 @@ import { useAuth } from '../contexts/AuthContext'
 import type { Gender } from '../types/auth'
 import { translateError } from '../utils/errorTranslation'
 
-interface FormValidationError {
-  property: string;
-  message: string;
-}
- 
 
 export default function Profile() {
 	const { user, logout, isLoading, updateProfile } = useAuth()
