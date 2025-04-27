@@ -3,6 +3,7 @@ import FooterSection from './components/FooterSection'
 import Navbar from './components/Navbar'
 import PageWrapper from './components/PageWrapper'
 import ProtectedRoute from './components/auth/ProtectedRoute'
+import RedirectIfAuthenticated from './components/auth/RedirectIfAuthenticated'
 import { AuthProvider } from './contexts/AuthContext'
 import Donate from './pages/Donate'
 import { Extension } from './pages/Extension'
@@ -71,22 +72,25 @@ export default function App() {
 							</PageWrapper>
 						}
 					/>
-					<Route
-						path="/login"
-						element={
-							<PageWrapper>
-								<Login />
-							</PageWrapper>
-						}
-					/>
-					<Route
-						path="/register"
-						element={
-							<PageWrapper>
-								<Register />
-							</PageWrapper>
-						}
-					/>
+					
+					<Route element={<RedirectIfAuthenticated />}>
+						<Route
+							path="/login"
+							element={
+								<PageWrapper>
+									<Login />
+								</PageWrapper>
+							}
+						/>
+						<Route
+							path="/register"
+							element={
+								<PageWrapper>
+									<Register />
+								</PageWrapper>
+							}
+						/>
+					</Route>
 
 					{/* Protected Routes */}
 					<Route element={<ProtectedRoute />}>
