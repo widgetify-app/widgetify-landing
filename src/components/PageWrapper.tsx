@@ -13,10 +13,10 @@ export default function PageWrapper({
 	className = '',
 }: PageWrapperProps) {
 	return fullWidth ? (
-		<div className={className}>{children}</div>
+	<div className={className}>{children}</div>
 	) : (
 		<ContainerWrapper
-			className={`bg-gradient-to-br from-blue-50 via-white to-indigo-50 ${className}`}
+			className={className}
 		>
 			{children}
 		</ContainerWrapper>
