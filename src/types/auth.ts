@@ -7,6 +7,7 @@ export interface User {
 	name: string
 	connections: string[]
 	permissions: string[]
+	verified: boolean
 }
 
 export interface LoginRequest {

@@ -58,6 +58,12 @@ class AuthService {
 		return response.data
 	}
 
+	async sendVerificationEmail(): Promise<void> {
+		const api = await getMainClient()
+		const response = await api.post('/auth/email/resend-verify')
+		return response.data
+	}
+
 	setToken(token: string): void {
 		localStorage.setItem('token', token)
 	}

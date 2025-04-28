@@ -1,11 +1,11 @@
-import { AlertCircle, Check, Edit3, LogOut, Mail, User, X } from 'lucide-react'
+import { AlertCircle, Check, Edit3, LogOut, Mail, Shield, User, X } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { authService } from '../services/authService'
 import type { Gender } from '../types/auth'
 import { translateError } from '../utils/errorTranslation'
-
 
 export default function Profile() {
 	const { user, logout, isLoading, updateProfile } = useAuth()
@@ -21,6 +21,8 @@ export default function Profile() {
 	const [error, setError] = useState<string | null>(null)
 	const [avatarError, setAvatarError] = useState<string | null>(null)
 	const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
+	const [isVerifying, setIsVerifying] = useState(false)
+	const [verificationSuccess, setVerificationSuccess] = useState(false)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	// If user is not logged in, redirect to login page
@@ -62,14 +64,14 @@ export default function Profile() {
 			setAvatarError('فرمت تصویر باید JPG یا PNG باشد')
 			return false
 		}
-		
+
 		// Check file size (800KB = 800 * 1024 bytes)
 		const maxSize = 800 * 1024
 		if (file.size > maxSize) {
 			setAvatarError('حجم تصویر نباید بیشتر از 800 کیلوبایت باشد')
 			return false
 		}
-		
+
 		setAvatarError(null)
 		return true
 	}
@@ -93,63 +95,65 @@ export default function Profile() {
 		}
 	}
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+	const handleInputChange = (
+		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+	) => {
 		const { name, value } = event.target
-		setFormData(prev => ({
+		setFormData((prev) => ({
 			...prev,
-			[name]: value
+			[name]: value,
 		}))
-		
+
 		// Clear validation error when user starts typing
 		if (validationErrors[name]) {
-			setValidationErrors(prev => ({
+			setValidationErrors((prev) => ({
 				...prev,
-				[name]: ''
+				[name]: '',
 			}))
 		}
 	}
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
-		
+
 		// Check if there's still an avatar error
 		if (avatarError) {
 			return
 		}
-		
+
 		setIsSubmitting(true)
 		setError(null)
 		setValidationErrors({})
 
 		try {
 			const updateFormData = new FormData()
-			
+
 			// Only add fields that have values
 			if (formData.name) {
 				updateFormData.append('name', formData.name)
 			}
-			
+
 			if (formData.gender) {
 				updateFormData.append('gender', formData.gender)
 			}
-			
+
 			if (selectedAvatar) {
 				updateFormData.append('avatar', selectedAvatar)
 			}
-			
+
 			await updateProfile(updateFormData)
 			setIsEditing(false)
 		} catch (err: any) {
 			// Use the translateError utility
 			const translatedError = translateError(err)
-			
+
 			// Handle both string and object error responses
 			if (typeof translatedError === 'string') {
 				setError(translatedError)
 			} else {
 				// Handle field-specific validation errors
 				setValidationErrors(translatedError)
-				
+
 				// If there are validation errors but no general message, add one
 				if (Object.keys(translatedError).length > 0) {
 					setError('لطفا خطاهای فرم را برطرف کنید')
@@ -157,6 +161,28 @@ export default function Profile() {
 			}
 		} finally {
 			setIsSubmitting(false)
+		}
+	}
+
+	const handleVerificationRequest = async () => {
+		if (isVerifying) return
+
+		setIsVerifying(true)
+		setError(null)
+		setVerificationSuccess(false)
+
+		try {
+			await authService.sendVerificationEmail()
+			setVerificationSuccess(true)
+		} catch (err: any) {
+			const translatedError = translateError(err)
+			setError(
+				typeof translatedError === 'string'
+					? translatedError
+					: 'خطا در ارسال ایمیل تایید',
+			)
+		} finally {
+			setIsVerifying(false)
 		}
 	}
 
@@ -216,6 +242,17 @@ export default function Profile() {
 						<div className="flex-1 text-center md:text-right">
 							<h1 className="mb-1 text-2xl font-bold">{user?.name}</h1>
 							<p className="text-blue-100">{user?.email}</p>
+							{user?.verified ? (
+								<div className="flex items-center mt-2 text-sm text-green-100">
+									<Shield size={16} className="ml-1" />
+									حساب تایید شده
+								</div>
+							) : (
+								<div className="flex items-center mt-2 text-sm text-yellow-100">
+									<Shield size={16} className="ml-1" />
+									حساب تایید نشده
+								</div>
+							)}
 						</div>
 						<div className="mt-4 md:mt-0">
 							<button
@@ -245,7 +282,7 @@ export default function Profile() {
 								</button>
 							)}
 						</div>
-						
+
 						{isEditing ? (
 							<form onSubmit={handleSubmit} className="space-y-4">
 								{error && (
@@ -253,10 +290,10 @@ export default function Profile() {
 										{error}
 									</div>
 								)}
-								
+
 								<div className="flex flex-col items-center mb-6">
 									<div className="relative">
-										<div 
+										<div
 											className="w-24 h-24 overflow-hidden border-4 border-white rounded-full cursor-pointer"
 											onClick={() => fileInputRef.current?.click()}
 										>
@@ -290,10 +327,13 @@ export default function Profile() {
 										فرمت‌های مجاز: JPG، PNG - حداکثر حجم: 800 کیلوبایت
 									</p>
 								</div>
-								
+
 								<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 									<div className="space-y-2">
-										<label htmlFor="name" className="block text-sm font-medium text-gray-700">
+										<label
+											htmlFor="name"
+											className="block text-sm font-medium text-gray-700"
+										>
 											نام
 										</label>
 										<input
@@ -312,9 +352,12 @@ export default function Profile() {
 											</div>
 										)}
 									</div>
-									
+
 									<div className="space-y-2">
-										<label htmlFor="gender" className="block text-sm font-medium text-gray-700">
+										<label
+											htmlFor="gender"
+											className="block text-sm font-medium text-gray-700"
+										>
 											جنسیت
 										</label>
 										<select
@@ -337,7 +380,7 @@ export default function Profile() {
 										)}
 									</div>
 								</div>
-								
+
 								<div className="flex justify-end gap-3 pt-2">
 									<button
 										type="button"
@@ -351,8 +394,8 @@ export default function Profile() {
 									<button
 										type="submit"
 										className={`flex items-center px-4 py-2 text-white transition-colors rounded-lg ${
-											avatarError 
-												? 'bg-gray-400 cursor-not-allowed' 
+											avatarError
+												? 'bg-gray-400 cursor-not-allowed'
 												: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
 										}`}
 										disabled={isSubmitting || !!avatarError}
@@ -387,11 +430,37 @@ export default function Profile() {
 										<User className="ml-2 text-gray-500" size={20} />
 										<div>
 											<div className="text-sm text-gray-500">جنسیت</div>
-											<div className="font-medium">
-												{getGenderDisplay(user?.gender)}
-											</div>
+											<div className="font-medium">{getGenderDisplay(user?.gender)}</div>
 										</div>
 									</div>
+									{!user?.verified && (
+										<div className="flex items-center">
+											<Shield className="ml-2 text-gray-500" size={20} />
+											<div>
+												<div className="text-sm text-gray-500">وضعیت تایید</div>
+												<button
+													onClick={handleVerificationRequest}
+													className={`px-3 py-1 text-sm text-white rounded-lg ${
+														isVerifying
+															? 'bg-gray-400 cursor-not-allowed'
+															: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+													}`}
+													disabled={isVerifying}
+												>
+													{isVerifying ? (
+														<div className="w-4 h-4 mx-auto border-2 border-white rounded-full border-t-transparent animate-spin" />
+													) : (
+														'درخواست ایمیل تأیید'
+													)}
+												</button>
+												{verificationSuccess && (
+													<div className="mt-2 text-sm text-green-600">
+														ایمیل تایید با موفقیت ارسال شد
+													</div>
+												)}
+											</div>
+										</div>
+									)}
 								</div>
 							</div>
 						)}
