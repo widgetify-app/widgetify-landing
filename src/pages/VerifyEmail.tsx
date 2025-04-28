@@ -1,5 +1,4 @@
-import type { AxiosError } from 'axios'
-import { AlertCircle, CheckCircle, Mail } from 'lucide-react'
+import { AlertCircle, CheckCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { authService } from '../services/authService'
