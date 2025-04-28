@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
+import VerifyEmail from './pages/VerifyEmail'
 
 function QueryParamHandler() {
 	const location = useLocation()
@@ -72,7 +73,15 @@ export default function App() {
 							</PageWrapper>
 						}
 					/>
-					
+					<Route
+						path="/verify-email"
+						element={
+							<PageWrapper>
+								<VerifyEmail />
+							</PageWrapper>
+						}
+					/>
+
 					<Route element={<RedirectIfAuthenticated />}>
 						<Route
 							path="/login"

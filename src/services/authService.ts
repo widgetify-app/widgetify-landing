@@ -1,4 +1,4 @@
-import type {   LoginRequest, RegisterRequest, User } from '../types/auth'
+import type { LoginRequest, RegisterRequest, User } from '../types/auth'
 import { getMainClient } from './api'
 
 class AuthService {
@@ -45,6 +45,16 @@ class AuthService {
 				'Content-Type': 'multipart/form-data',
 			},
 		})
+		return response.data
+	}
+
+	async verifyEmail(token: string, email: string): Promise<void> {
+		const api = await getMainClient()
+		const response = await api.post('/auth/email/verify', {
+			token,
+			email,
+		})
+
 		return response.data
 	}
 
