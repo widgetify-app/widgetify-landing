@@ -11,6 +11,7 @@ interface AuthContextType {
 	login: (token: string) => void
 	logout: () => void
 	updateProfile: (formData: FormData) => Promise<User>
+	updateUsername: (username: string) => Promise<User>
 	refetchUser: () => Promise<void>
 }
 
@@ -63,6 +64,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		setUser(null)
 	}
 
+	const updateUsername = async (username: string) => {
+		const updatedUser = await authService.updateUsername(username)
+		await queryClient.invalidateQueries({ queryKey: ['userProfile'] })
+		setUser((prev) => (prev ? { ...prev, username } : null))
+		return updatedUser
+	}
+
 	const updateProfile = async (formData: FormData) => {
 		const updatedUser = await authService.updateUserProfile(formData)
 		await queryClient.invalidateQueries({ queryKey: ['userProfile'] })
@@ -81,7 +89,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		login,
 		logout,
 		updateProfile,
-		refetchUser
+		updateUsername,
+		refetchUser,
 	}
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -4,6 +4,7 @@ export interface User {
 	email: string
 	avatar?: string
 	gender?: Gender
+	username: string | null
 	name: string
 	connections: string[]
 	permissions: string[]

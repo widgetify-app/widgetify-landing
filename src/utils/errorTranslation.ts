@@ -1,6 +1,3 @@
- 
-
-
 export function translateError(error: any): string | Record<string, string> {
 	const defaultMessage = 'خطایی رخ داده است. لطفا دوباره تلاش کنید'
 
@@ -62,6 +59,7 @@ export function translateError(error: any): string | Record<string, string> {
 		TOO_MANY_REQUESTS: 'تعداد درخواست‌ها بیش از حد مجاز است. لطفاً کمی صبر کنید',
 		BAD_REQUEST: 'درخواست نامعتبر است',
 		NOT_FOUND: 'منبع درخواستی یافت نشد',
+		USERNAME_ALREADY_EXISTS: 'این نام کاربری قبلا ثبت شده است',
 	}
 
 	return errorTranslations[errorMessage] || errorMessage || defaultMessage

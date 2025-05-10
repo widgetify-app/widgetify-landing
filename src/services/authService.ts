@@ -38,6 +38,14 @@ class AuthService {
 		return response.data
 	}
 
+	async updateUsername(username: string): Promise<User> {
+		const api = await getMainClient()
+		const response = await api.put('/users/@me/username', {
+			username,
+		})
+		return response.data
+	}
+
 	async updateUserProfile(formData: FormData): Promise<User> {
 		const api = await getMainClient()
 		const response = await api.patch('/users/@me', formData, {
