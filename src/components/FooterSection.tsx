@@ -1,11 +1,14 @@
 import { FaDiscord, FaGithub, FaInstagram, FaTelegram } from 'react-icons/fa'
+import { FaTwitter, FaX } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import {
 	DESKTOP_LINK,
 	DISCORD_LINK,
 	GITHUB_LINK,
+	INSTAGRAM_LINK,
 	PWA_LINK,
 	TELEGRAM_LINK,
+	X_LINK,
 } from '../constants'
 import ContainerWrapper from './ContainerWrapper'
 
@@ -69,13 +72,24 @@ export default function FooterSection() {
 
 							{/* Instagram */}
 							<a
-								href="#"
+								href={INSTAGRAM_LINK}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="flex items-center justify-center text-gray-700 transition-all bg-white rounded-full shadow-sm w-9 h-9 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 hover:text-white hover:shadow"
 								aria-label="Instagram"
 							>
 								<FaInstagram />
+							</a>
+
+							{/* X */}
+							<a
+								href={X_LINK}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center justify-center text-gray-700 transition-all bg-white rounded-full shadow-sm w-9 h-9 hover:bg-blue-400 hover:text-white hover:shadow"
+								aria-label="X"
+							>
+								<FaTwitter />
 							</a>
 						</div>
 					</div>
