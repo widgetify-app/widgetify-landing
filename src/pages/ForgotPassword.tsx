@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import RequestPasswordReset from '../components/auth/RequestPasswordReset'
 import ResetPassword from '../components/auth/ResetPassword'
+import { useDocumentTitle } from '../hooks'
 
 export default function ForgotPassword() {
+	useDocumentTitle('بازیابی رمز عبور')
+
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const token = searchParams.get('token')

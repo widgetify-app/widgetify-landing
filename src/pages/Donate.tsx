@@ -2,6 +2,7 @@ import { CheckCircle, Coins, Copy, CreditCard, ExternalLink } from 'lucide-react
 import { useState } from 'react'
 import { RiBtcFill } from 'react-icons/ri'
 import ContainerWrapper from '../components/ContainerWrapper'
+import { useDocumentTitle } from '../hooks'
 
 // Donation platforms data
 const donationPlatforms = [
@@ -48,6 +49,8 @@ const cryptoOptions = [
 ]
 
 export default function Donate() {
+	useDocumentTitle('حمایت مالی')
+
 	const [copiedAddress, setCopiedAddress] = useState<string | null>(null)
 	const [donationMethod, setDonationMethod] = useState<'traditional' | 'crypto'>(
 		'traditional',

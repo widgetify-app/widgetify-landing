@@ -4,11 +4,14 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import FormInput from '../components/auth/FormInput'
 import { useAuth } from '../contexts/AuthContext'
+import { useDocumentTitle } from '../hooks'
 import { authService } from '../services/authService'
 import type { RegisterRequest } from '../types/auth'
 import { translateError } from '../utils/errorTranslation'
 
 export default function Register() {
+	useDocumentTitle('ثبت نام')
+
 	const [formData, setFormData] = useState<RegisterRequest & { confirmPassword: string }>(
 		{
 			name: '',

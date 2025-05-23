@@ -5,10 +5,13 @@ import { FiAtSign } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import EditProfileForm from '../components/profile/EditProfileForm'
 import { useAuth } from '../contexts/AuthContext'
+import { useDocumentTitle } from '../hooks'
 import { authService } from '../services/authService'
 import type { Gender, User as UserType } from '../types/auth'
 
 export default function Profile() {
+	useDocumentTitle('پروفایل کاربری')
+
 	const { user, logout, isLoading } = useAuth()
 	const navigate = useNavigate()
 	const [isEditing, setIsEditing] = useState(false)

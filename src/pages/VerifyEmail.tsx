@@ -1,9 +1,12 @@
 import { AlertCircle, CheckCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { useDocumentTitle } from '../hooks'
 import { authService } from '../services/authService'
 
 export default function VerifyEmail() {
+	useDocumentTitle('تأیید ایمیل')
+
 	const [searchParams] = useSearchParams()
 	const [isVerifying, setIsVerifying] = useState(true)
 	const [isSuccess, setIsSuccess] = useState(false)

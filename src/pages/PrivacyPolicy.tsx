@@ -1,8 +1,11 @@
 import { ArrowLeft, Globe, Shield } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from '../hooks'
 
 export default function PrivacyPolicy() {
+	useDocumentTitle('حریم خصوصی')
+
 	const [language, setLanguage] = useState<'fa' | 'en'>('fa')
 
 	const toggleLanguage = () => {

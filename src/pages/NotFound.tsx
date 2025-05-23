@@ -1,7 +1,10 @@
 import { ArrowLeft, Home, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from '../hooks'
 
 export default function NotFound() {
+	useDocumentTitle('صفحه یافت نشد | 404')
+
 	return (
 		<>
 			{/* Gradient background */}

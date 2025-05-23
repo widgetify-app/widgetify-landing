@@ -4,11 +4,14 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import FormInput from '../components/auth/FormInput'
 import { useAuth } from '../contexts/AuthContext'
+import { useDocumentTitle } from '../hooks'
 import { authService } from '../services/authService'
 import type { LoginRequest } from '../types/auth'
 import { translateError } from '../utils/errorTranslation'
 
 export default function Login() {
+	useDocumentTitle('ورود')
+
 	const [formData, setFormData] = useState<LoginRequest>({
 		email: '',
 		password: '',

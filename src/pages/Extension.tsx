@@ -1,5 +1,6 @@
 import { FaChrome, FaEdge, FaFirefox } from 'react-icons/fa'
 import { FaBrave } from 'react-icons/fa6'
+import { useDocumentTitle } from '../hooks'
 
 const CHROME_EXTENSION_URL =
 	'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh'
@@ -36,6 +37,8 @@ const browserExtensions = [
 ].sort((a, b) => (a.isAvailable === b.isAvailable ? 0 : a.isAvailable ? -1 : 1))
 
 export function Extension() {
+	useDocumentTitle('اکستنشن مرورگر')
+
 	return (
 		<div className="min-h-screen overflow-hidden">
 			{/* Hero Section */}

@@ -2,8 +2,11 @@ import { ChevronDown, Download, Globe, Laptop, Puzzle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ContributorsSection from '../components/ContributorsSection'
 import FeaturesSection from '../components/FeaturesSection'
+import { useDocumentTitle } from '../hooks'
 
 export default function Home() {
+	useDocumentTitle('صفحه اصلی')
+
 	return (
 		<div className="min-h-screen overflow-hidden">
 			{/* Hero Section */}
