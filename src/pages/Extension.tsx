@@ -21,7 +21,7 @@ const browserExtensions = [
 		comingSoon: false,
 	},
 	{
-		name: 'ادج',
+		name: 'اج',
 		icon: FaEdge,
 		url: CHROME_EXTENSION_URL,
 		isAvailable: true,
