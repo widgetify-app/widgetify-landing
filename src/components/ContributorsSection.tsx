@@ -125,7 +125,7 @@ export default function ContributorsSection() {
 				</div>
 			)}
 
-			<style jsx global>{`
+			<style>{`
 				@keyframes pulse-glow {
 					0% {
 						box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
