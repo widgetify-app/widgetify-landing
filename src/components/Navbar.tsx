@@ -3,7 +3,7 @@ import {
 	ChevronDown,
 	Download,
 	ExternalLink,
-	Github,
+	FileText,
 	Grid,
 	HelpCircle,
 	LogIn,
@@ -121,19 +121,18 @@ export default function Navbar() {
 				],
 			},
 			{
-				label: 'همکاری',
-				path: 'https://github.com/widgetify-app',
+				label: 'وبلاگ',
+				path: 'https://blog.widgetify.ir',
 				isExternal: true,
-				icon: <Github size={18} />,
+				icon: <FileText size={18} />,
 			},
 		]
 
 		baseItems.push({
-				label: 'ورود / ثبت نام',
-				path: '/login',
-				icon: <LogIn size={18} />,
-			 
-			})
+			label: 'ورود / ثبت نام',
+			path: '/login',
+			icon: <LogIn size={18} />,
+		})
 
 		return baseItems
 	}
@@ -151,7 +150,7 @@ export default function Navbar() {
 	const toggleDropdown = (label: string) => {
 		setActiveDropdown(activeDropdown === label ? null : label)
 	}
- 
+
 	return (
 		<nav
 			className={`sticky top-0 z-50 bg-white transition-all duration-200 ${
@@ -272,8 +271,6 @@ export default function Navbar() {
 									)}
 								</div>
 							))}
-
-					 
 						</div>
 					</div>
 
