@@ -1,5 +1,5 @@
-import { Edit3, LogOut, Mail, Shield, User } from 'lucide-react'
-import { useState } from 'react'
+import { Calendar, Edit3, LogOut, Mail, Shield, User } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { FiAtSign } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
@@ -11,16 +11,20 @@ import type { Gender, User as UserType } from '../types/auth'
 
 export default function Profile() {
 	useDocumentTitle('پروفایل کاربری')
-
 	const { user, logout, isLoading } = useAuth()
+	const [userData, setUserData] = useState<UserType | null>(user)
 	const navigate = useNavigate()
 	const [isEditing, setIsEditing] = useState(false)
 	const [isVerifying, setIsVerifying] = useState(false)
 	const [verificationSuccess, setVerificationSuccess] = useState(false)
 
-	// If user is not logged in, redirect to login page
-	if (!isLoading && !user) {
-		navigate('/login')
+	useEffect(() => {
+		if (!isLoading && !userData) {
+			navigate('/login')
+		}
+	}, [isLoading, userData, navigate])
+
+	if (!isLoading && !userData) {
 		return null
 	}
 
@@ -32,9 +36,13 @@ export default function Profile() {
 	const handleEditClick = () => {
 		setIsEditing(true)
 	}
-
 	const handleCancelEdit = () => {
 		setIsEditing(false)
+	}
+
+	const handleProfileUpdateSuccess = (_updatedUser: UserType) => {
+		setIsEditing(false)
+		setUserData(_updatedUser)
 	}
 
 	const handleVerificationRequest = async () => {
@@ -51,7 +59,6 @@ export default function Profile() {
 		}
 	}
 
-	// Function to get gender display name
 	const getGenderDisplay = (gender?: Gender) => {
 		switch (gender) {
 			case 'MALE':
@@ -96,18 +103,18 @@ export default function Profile() {
 							<div className="w-24 h-24 overflow-hidden border-4 border-white rounded-full">
 								<img
 									src={
-										user?.avatar ||
-										`https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=random&color=fff`
+										userData?.avatar ||
+										`https://ui-avatars.com/api/?name=${userData?.name || 'userData'}&background=random&color=fff`
 									}
-									alt={user?.name}
+									alt={userData?.name}
 									className="object-cover w-full h-full"
 								/>
 							</div>
 						</div>
 						<div className="flex-1 text-center md:text-right">
-							<h1 className="mb-1 text-2xl font-bold">{user?.name}</h1>
-							<p className="text-blue-100">{user?.email}</p>
-							{user?.verified ? (
+							<h1 className="mb-1 text-2xl font-bold">{userData?.name}</h1>
+							<p className="text-blue-100">{userData?.email}</p>
+							{userData?.verified ? (
 								<div className="flex items-center mt-2 text-sm text-green-100">
 									<Shield size={16} className="ml-1" />
 									حساب تایید شده
@@ -146,46 +153,59 @@ export default function Profile() {
 									ویرایش
 								</button>
 							)}
-						</div>
-
+						</div>{' '}
 						{isEditing ? (
 							<EditProfileForm
-								user={user as UserType}
+								user={userData as UserType}
 								onCancel={handleCancelEdit}
-								onSuccess={() => setIsEditing(false)}
+								onSuccess={handleProfileUpdateSuccess}
 							/>
 						) : (
 							<div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
-								<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+								<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 									<div className="flex items-center">
 										<User className="ml-2 text-gray-500" size={20} />
 										<div>
 											<div className="text-sm text-gray-500">نام</div>
-											<div className="font-medium">{user?.name}</div>
+											<div className="font-medium">{userData?.name}</div>
 										</div>
 									</div>
 									<div className="flex items-center">
 										<FiAtSign className="ml-2 text-gray-500" size={20} />
 										<div>
 											<div className="text-sm text-gray-500">نام کاربری</div>
-											<div className="font-medium">{user?.username}</div>
+											<div className="font-medium">{userData?.username}</div>
 										</div>
 									</div>
 									<div className="flex items-center">
 										<Mail className="ml-2 text-gray-500" size={20} />
 										<div>
 											<div className="text-sm text-gray-500">ایمیل</div>
-											<div className="font-medium">{user?.email}</div>
+											<div className="font-medium">{userData?.email}</div>
 										</div>
 									</div>
 									<div className="flex items-center">
 										<User className="ml-2 text-gray-500" size={20} />
 										<div>
 											<div className="text-sm text-gray-500">جنسیت</div>
-											<div className="font-medium">{getGenderDisplay(user?.gender)}</div>
+											<div className="font-medium">
+												{getGenderDisplay(userData?.gender)}
+											</div>
+										</div>
+									</div>{' '}
+									<div className="flex items-center">
+										<Calendar className="ml-2 text-gray-500" size={20} />
+										<div>
+											<div className="text-sm text-gray-500">تاریخ تولد</div>
+											<div className="font-medium">{userData?.birthDate || 'نامشخص'}</div>
+											{!userData?.isBirthDateEditable && (
+												<div className="mt-1 text-xs text-amber-500">
+													تاریخ تولد اخیراً ویرایش شده و فعلاً قابل تغییر نیست
+												</div>
+											)}
 										</div>
 									</div>
-									{!user?.verified && (
+									{!userData?.verified && (
 										<div className="flex items-center">
 											<Shield className="ml-2 text-gray-500" size={20} />
 											<div>
@@ -219,12 +239,12 @@ export default function Profile() {
 					</section>
 
 					{/* Connected Accounts */}
-					{user?.connections && user.connections.length > 0 && (
+					{userData?.connections && userData.connections.length > 0 && (
 						<section>
 							<h2 className="mb-4 text-xl font-bold">حساب‌های متصل</h2>
 							<div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
 								<div className="flex flex-wrap gap-2">
-									{user.connections.map((connection, index) => (
+									{userData.connections.map((connection, index) => (
 										<div
 											key={index}
 											className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg"

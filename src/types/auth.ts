@@ -6,10 +6,11 @@ export interface User {
 	gender?: Gender
 	username: string | null
 	name: string
-	birthDate?: string
+	birthDate: string
 	connections: string[]
 	permissions: string[]
 	verified: boolean
+	isBirthDateEditable: boolean
 }
 
 export interface LoginRequest {
