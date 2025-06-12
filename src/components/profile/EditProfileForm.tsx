@@ -1,5 +1,10 @@
+import jalaali from 'jalaali-js'
 import { AlertCircle, Check, X } from 'lucide-react'
 import { useRef, useState } from 'react'
+import DateObject from 'react-date-object'
+import persian from 'react-date-object/calendars/persian'
+import persian_fa from 'react-date-object/locales/persian_fa'
+import DatePicker from 'react-multi-date-picker'
 import { useAuth } from '../../contexts/AuthContext'
 import { authService } from '../../services/authService'
 import type { User } from '../../types/auth'
@@ -20,7 +25,9 @@ export default function EditProfileForm({
 		name: user?.name || '',
 		gender: user?.gender || '',
 		username: user?.username || '',
+		birthdate: user?.birthDate || '',
 	})
+
 	const [selectedAvatar, setSelectedAvatar] = useState<File | null>(null)
 	const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.avatar || null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -29,6 +36,28 @@ export default function EditProfileForm({
 	const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
 	const fileInputRef = useRef<HTMLInputElement>(null)
 	const { updateUsername } = useAuth()
+
+	const convertPersianDigits = (str: string): string => {
+		const regex = /[۰-۹]/g
+		return str.replace(regex, (match) => String.fromCharCode(match.charCodeAt(0) - 1728))
+	}
+
+	const convertPersianDateToGregorian = (persianDate: string): string => {
+		if (!persianDate) return ''
+
+		try {
+			const westernDate = convertPersianDigits(persianDate)
+
+			const [jy, jm, jd] = westernDate.split('-').map(Number)
+
+			const gregorian = jalaali.toGregorian(jy, jm, jd)
+
+			return `${gregorian.gy}-${String(gregorian.gm).padStart(2, '0')}-${String(gregorian.gd).padStart(2, '0')}`
+		} catch (error) {
+			console.error('Error converting Persian date to Gregorian:', error)
+			return persianDate
+		}
+	}
 
 	const validateAvatar = (file: File): boolean => {
 		// Check file type
@@ -97,15 +126,18 @@ export default function EditProfileForm({
 
 		try {
 			const updateFormData = new FormData()
-			let updatedUser: User = { ...user }
-
-			// Only add fields that have values
+			let updatedUser: User = { ...user } // Only add fields that have values
 			if (formData.name) {
 				updateFormData.append('name', formData.name)
 			}
 
 			if (formData.gender) {
 				updateFormData.append('gender', formData.gender)
+			}
+
+			if (formData.birthdate) {
+				const gregorianBirthdate = convertPersianDateToGregorian(formData.birthdate)
+				updateFormData.append('birthdate', gregorianBirthdate)
 			}
 
 			if (selectedAvatar) {
@@ -147,6 +179,7 @@ export default function EditProfileForm({
 			if (
 				updateFormData.has('name') ||
 				updateFormData.has('gender') ||
+				updateFormData.has('birthdate') ||
 				updateFormData.has('avatar')
 			) {
 				const profileUpdateResult = await authService.updateUserProfile(updateFormData)
@@ -240,7 +273,6 @@ export default function EditProfileForm({
 						</div>
 					)}
 				</div>
-
 				<div className="space-y-2">
 					<label htmlFor="username" className="block text-sm font-medium text-gray-700">
 						نام کاربری
@@ -262,8 +294,7 @@ export default function EditProfileForm({
 							<span>{validationErrors.username}</span>
 						</div>
 					)}
-				</div>
-
+				</div>{' '}
 				<div className="space-y-2">
 					<label htmlFor="gender" className="block text-sm font-medium text-gray-700">
 						جنسیت
@@ -284,6 +315,41 @@ export default function EditProfileForm({
 						<div className="flex items-start mt-1 text-sm text-red-600">
 							<AlertCircle className="w-4 h-4 mt-0.5 ml-1 flex-shrink-0" />
 							<span>{validationErrors.gender}</span>
+						</div>
+					)}
+				</div>{' '}
+				<div className="space-y-2">
+					<label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">
+						تاریخ تولد
+					</label>
+					<DatePicker
+						value={formData.birthdate}
+						onChange={(date) => {
+							const dateStr = date ? date.format('YYYY-MM-DD') : ''
+							setFormData((prev) => ({
+								...prev,
+								birthdate: dateStr,
+							}))
+							if (validationErrors.birthdate) {
+								setValidationErrors((prev) => ({
+									...prev,
+									birthdate: '',
+								}))
+							}
+						}}
+						calendar={persian}
+						locale={persian_fa}
+						calendarPosition="bottom-right"
+						placeholder="تاریخ تولد خود را انتخاب کنید"
+						maxDate={new DateObject({ calendar: persian, locale: persian_fa })}
+						className={`w-full p-3 border ${validationErrors.birthdate ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'} rounded-lg focus:ring-2`}
+						inputClass="w-full p-3 border-0 outline-none bg-transparent"
+						containerClassName="w-full"
+					/>
+					{validationErrors.birthdate && (
+						<div className="flex items-start mt-1 text-sm text-red-600">
+							<AlertCircle className="w-4 h-4 mt-0.5 ml-1 flex-shrink-0" />
+							<span>{validationErrors.birthdate}</span>
 						</div>
 					)}
 				</div>
