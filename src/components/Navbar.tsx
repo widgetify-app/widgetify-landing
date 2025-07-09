@@ -1,11 +1,9 @@
 import {
-	BookOpen,
 	ChevronDown,
 	Download,
 	ExternalLink,
 	FileText,
 	Grid,
-	HelpCircle,
 	LogIn,
 	Menu,
 	MessageSquare,
@@ -95,30 +93,9 @@ export default function Navbar() {
 				],
 			},
 			{
-				label: 'راهنما و پشتیبانی',
-				path: '#',
-				icon: <HelpCircle size={18} />,
-				children: [
-					{
-						label: 'راهنمای استفاده',
-						path: '/help',
-						description: 'آموزش‌های کامل استفاده از ویجتی‌فای',
-						icon: <BookOpen size={18} />,
-					},
-					{
-						label: 'ارسال بازخورد',
-						path: 'https://feedback.onl/fa/b/widgetify',
-						description: 'نظرات و پیشنهادات شما',
-						isExternal: true,
-						icon: <MessageSquare size={18} />,
-					},
-					{
-						label: 'حریم خصوصی',
-						path: '/privacy',
-						description: 'سیاست‌های حفظ حریم خصوصی',
-						icon: <Shield size={18} />,
-					},
-				],
+				label: 'حریم خصوصی',
+				path: '/privacy',
+				icon: <Shield size={18} />,
 			},
 			{
 				label: 'وبلاگ',

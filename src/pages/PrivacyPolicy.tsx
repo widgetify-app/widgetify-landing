@@ -39,8 +39,8 @@ export default function PrivacyPolicy() {
 					</div>
 					<p className="mt-2 text-gray-600">
 						{language === 'fa'
-							? 'آخرین به‌روزرسانی: 05 اردیبهشت ۱۴۰۴'
-							: 'Last updated: April 25, 2025'}
+							? 'آخرین به‌روزرسانی: 18 تیر ۱۴۰۴'
+							: 'Last updated: July 9, 2025'}
 					</p>
 				</div>
 			</div>
@@ -170,7 +170,68 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۳. استفاده از داده‌ها' : '3. Data Usage'}
+								{language === 'fa'
+									? '۳. اتصال اختیاری حساب گوگل'
+									: '3. Optional Google Account Integration'}
+							</h2>
+							<div className="ml-4">
+								{language === 'fa' ? (
+									<>
+										<p className="mb-3 text-gray-700">
+											ویجتی‌فای امکان اتصال اختیاری به حساب گوگل شما را فراهم می‌کند تا
+											بتوانید از ویجت‌های مرتبط استفاده کنید. این اتصال کاملاً اختیاری است و
+											شامل دو گزینه زیر می‌باشد:
+										</p>
+										<ul className="mr-6 space-y-2 text-gray-700 list-disc">
+											<li>
+												<strong>دسترسی خواندنی گوگل کلندر:</strong> برای نمایش رویدادهای
+												آینده در ویجت تقویم
+											</li>
+											<li>
+												<strong>دسترسی خواندنی ایمیل:</strong> برای نمایش ایمیل‌های خوانده
+												نشده در ویجت ایمیل
+											</li>
+										</ul>
+										<div className="p-3 mt-4 border-r-4 border-blue-500 bg-blue-50">
+											<p className="text-sm text-blue-800">
+												<strong>مهم:</strong> هیچ‌یک از این داده‌ها توسط ما ذخیره نمی‌شوند.
+												ما صرفاً به عنوان واسط عمل کرده و داده‌ها را مستقیماً از گوگل دریافت
+												کرده و به افزونه ارسال می‌کنیم.
+											</p>
+										</div>
+									</>
+								) : (
+									<>
+										<p className="mb-3 text-gray-700">
+											Widgetify provides optional Google account integration to enable you
+											to use related widgets. This connection is completely optional and
+											includes the following two options:
+										</p>
+										<ul className="ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+											<li>
+												<strong>Google Calendar read access:</strong> To display upcoming
+												events in the calendar widget
+											</li>
+											<li>
+												<strong>Email read access:</strong> To display unread emails in
+												the email widget
+											</li>
+										</ul>
+										<div className="p-3 mt-4 border-l-4 border-blue-500 bg-blue-50">
+											<p className="text-sm text-blue-800">
+												<strong>Important:</strong> None of this data is stored by us. We
+												merely act as an intermediary, receiving data directly from Google
+												and sending it to the extension.
+											</p>
+										</div>
+									</>
+								)}
+							</div>
+						</section>
+
+						<section>
+							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+								{language === 'fa' ? '۴. استفاده از داده‌ها' : '4. Data Usage'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -190,7 +251,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۴. اشتراک‌گذاری داده‌ها' : '4. Data Sharing'}
+								{language === 'fa' ? '۵. اشتراک‌گذاری داده‌ها' : '5. Data Sharing'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -207,7 +268,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۵. امنیت' : '5. Security'}
+								{language === 'fa' ? '۶. امنیت' : '6. Security'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -227,7 +288,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۶. نگه‌داری داده‌ها' : '6. Data Retention'}
+								{language === 'fa' ? '۷. نگه‌داری داده‌ها' : '7. Data Retention'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -250,7 +311,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۷. حذف داده‌ها' : '7. Data Deletion'}
+								{language === 'fa' ? '۸. حذف داده‌ها' : '8. Data Deletion'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -278,8 +339,8 @@ export default function PrivacyPolicy() {
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
 								{language === 'fa'
-									? '۸. تغییرات در سیاست حریم خصوصی'
-									: '8. Changes to Privacy Policy'}
+									? '۹. تغییرات در سیاست حریم خصوصی'
+									: '9. Changes to Privacy Policy'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -298,7 +359,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۹. تماس با ما' : '9. Contact Us'}
+								{language === 'fa' ? '۱۰. تماس با ما' : '10. Contact Us'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (

@@ -16,7 +16,6 @@ export default function ProfileAvatarUpload({
 	user,
 	avatarPreview,
 	avatarError,
-	selectedAvatar,
 	setSelectedAvatar,
 	setAvatarPreview,
 	setAvatarError,
