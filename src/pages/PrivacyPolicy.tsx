@@ -39,8 +39,8 @@ export default function PrivacyPolicy() {
 					</div>
 					<p className="mt-2 text-gray-600">
 						{language === 'fa'
-							? 'آخرین به‌روزرسانی: 18 تیر ۱۴۰۴'
-							: 'Last updated: July 9, 2025'}
+							? 'آخرین به‌روزرسانی: 22 تیر ۱۴۰۴'
+							: 'Last updated: July 13, 2025'}
 					</p>
 				</div>
 			</div>
@@ -196,7 +196,8 @@ export default function PrivacyPolicy() {
 											<p className="text-sm text-blue-800">
 												<strong>مهم:</strong> هیچ‌یک از این داده‌ها توسط ما ذخیره نمی‌شوند.
 												ما صرفاً به عنوان واسط عمل کرده و داده‌ها را مستقیماً از گوگل دریافت
-												کرده و به افزونه ارسال می‌کنیم.
+												کرده و به افزونه ارسال می‌کنیم. تمام ارتباطات از طریق پروتکل‌های امن
+												HTTPS/TLS انجام شده و توکن‌های دسترسی دارای مدت زمان محدود هستند.
 											</p>
 										</div>
 									</>
@@ -221,7 +222,9 @@ export default function PrivacyPolicy() {
 											<p className="text-sm text-blue-800">
 												<strong>Important:</strong> None of this data is stored by us. We
 												merely act as an intermediary, receiving data directly from Google
-												and sending it to the extension.
+												and sending it to the extension. All communications are conducted
+												over secure HTTPS/TLS protocols, and access tokens have limited
+												lifetimes.
 											</p>
 										</div>
 									</>
@@ -251,7 +254,104 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۵. اشتراک‌گذاری داده‌ها' : '5. Data Sharing'}
+								{language === 'fa'
+									? '۵. حفاظت از داده‌های حساس'
+									: '5. Sensitive Data Protection'}
+							</h2>
+							<div className="ml-4">
+								{language === 'fa' ? (
+									<>
+										<p className="mb-3 text-gray-700">
+											ویجتی‌فای از مکانیزم‌های قوی برای حفاظت از داده‌های حساس کاربران
+											استفاده می‌کند:
+										</p>
+										<h3 className="mb-2 text-lg font-semibold">حفاظت از داده‌های گوگل:</h3>
+										<ul className="mb-4 mr-6 space-y-2 text-gray-700 list-disc">
+											<li>
+												<strong>OAuth 2.0:</strong> از پروتکل امن OAuth 2.0 برای احراز
+												هویت و دسترسی به داده‌های گوگل استفاده می‌کنیم
+											</li>
+											<li>
+												<strong>دسترسی محدود:</strong> فقط به حداقل دسترسی‌های مورد نیاز
+												(تقویم و ایمیل خواندنی) درخواست می‌کنیم
+											</li>
+											<li>
+												<strong>عدم ذخیره‌سازی:</strong> داده‌های دریافتی از گوگل در سرورهای
+												ما ذخیره نمی‌شوند
+											</li>
+											<li>
+												<strong>انقضای توکن:</strong> توکن‌های دسترسی دارای مدت زمان محدود
+												هستند و به طور منظم تجدید می‌شوند
+											</li>
+										</ul>
+										<h3 className="mb-2 text-lg font-semibold">
+											حفاظت از داده‌های کاربر:
+										</h3>
+										<ul className="mb-4 mr-6 space-y-2 text-gray-700 list-disc">
+											<li>
+												<strong>هشینگ رمز عبور:</strong> رمزهای عبور با استفاده از
+												الگوریتم‌های قوی هش می‌شوند
+											</li>
+											<li>
+												<strong>دسترسی محدود:</strong> فقط پرسنل مجاز به سیستم‌های پایگاه
+												داده دسترسی دارند
+											</li>
+											<li>
+												<strong>نظارت و لاگ:</strong> تمام دسترسی‌ها به داده‌ها ثبت و نظارت
+												می‌شوند
+											</li>
+										</ul>
+									</>
+								) : (
+									<>
+										<p className="mb-3 text-gray-700">
+											Widgetify employs robust mechanisms to protect users' sensitive
+											data:
+										</p>
+										<h3 className="mb-2 text-lg font-semibold">
+											Google Data Protection:
+										</h3>
+										<ul className="mb-4 ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+											<li>
+												<strong>OAuth 2.0:</strong> We use the secure OAuth 2.0 protocol
+												for authentication and access to Google data
+											</li>
+											<li>
+												<strong>Limited Access:</strong> We only request minimal necessary
+												permissions (read-only calendar and email)
+											</li>
+											<li>
+												<strong>No Storage:</strong> Data received from Google is not
+												stored on our servers
+											</li>
+											<li>
+												<strong>Token Expiration:</strong> Access tokens have limited
+												lifetimes and are regularly refreshed
+											</li>
+										</ul>
+										<h3 className="mb-2 text-lg font-semibold">User Data Protection:</h3>
+										<ul className="mb-4 ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+											<li>
+												<strong>Password Hashing:</strong> Passwords are hashed using
+												strong algorithms
+											</li>
+											<li>
+												<strong>Access Control:</strong> Only authorized personnel have
+												access to database systems
+											</li>
+											<li>
+												<strong>Monitoring and Logging:</strong> All data access is logged
+												and monitored
+											</li>
+										</ul>
+									</>
+								)}
+							</div>
+						</section>
+
+						<section>
+							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
+								{language === 'fa' ? '۶. اشتراک‌گذاری داده‌ها' : '6. Data Sharing'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -268,7 +368,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۶. امنیت' : '6. Security'}
+								{language === 'fa' ? '۷. امنیت' : '7. Security'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -288,7 +388,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۷. نگه‌داری داده‌ها' : '7. Data Retention'}
+								{language === 'fa' ? '۸. نگه‌داری داده‌ها' : '8. Data Retention'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -311,7 +411,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۸. حذف داده‌ها' : '8. Data Deletion'}
+								{language === 'fa' ? '۹. حذف داده‌ها' : '9. Data Deletion'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -339,8 +439,8 @@ export default function PrivacyPolicy() {
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
 								{language === 'fa'
-									? '۹. تغییرات در سیاست حریم خصوصی'
-									: '9. Changes to Privacy Policy'}
+									? '۱۰. تغییرات در سیاست حریم خصوصی'
+									: '10. Changes to Privacy Policy'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
@@ -359,7 +459,7 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۱۰. تماس با ما' : '10. Contact Us'}
+								{language === 'fa' ? '۱۱. تماس با ما' : '11. Contact Us'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
