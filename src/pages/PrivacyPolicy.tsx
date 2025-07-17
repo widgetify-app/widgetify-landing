@@ -39,8 +39,8 @@ export default function PrivacyPolicy() {
 					</div>
 					<p className="mt-2 text-gray-600">
 						{language === 'fa'
-							? 'آخرین به‌روزرسانی: 22 تیر ۱۴۰۴'
-							: 'Last updated: July 13, 2025'}
+							? 'آخرین به‌روزرسانی: 26 تیر ۱۴۰۴'
+							: 'Last updated: July 17, 2025'}
 					</p>
 				</div>
 			</div>
@@ -187,10 +187,6 @@ export default function PrivacyPolicy() {
 												<strong>دسترسی خواندنی گوگل کلندر:</strong> برای نمایش رویدادهای
 												آینده در ویجت تقویم
 											</li>
-											<li>
-												<strong>دسترسی خواندنی ایمیل:</strong> برای نمایش ایمیل‌های خوانده
-												نشده در ویجت ایمیل
-											</li>
 										</ul>
 										<div className="p-3 mt-4 border-r-4 border-blue-500 bg-blue-50">
 											<p className="text-sm text-blue-800">
@@ -212,10 +208,6 @@ export default function PrivacyPolicy() {
 											<li>
 												<strong>Google Calendar read access:</strong> To display upcoming
 												events in the calendar widget
-											</li>
-											<li>
-												<strong>Email read access:</strong> To display unread emails in
-												the email widget
 											</li>
 										</ul>
 										<div className="p-3 mt-4 border-l-4 border-blue-500 bg-blue-50">
@@ -273,7 +265,7 @@ export default function PrivacyPolicy() {
 											</li>
 											<li>
 												<strong>دسترسی محدود:</strong> فقط به حداقل دسترسی‌های مورد نیاز
-												(تقویم و ایمیل خواندنی) درخواست می‌کنیم
+												(تقویم) درخواست می‌کنیم
 											</li>
 											<li>
 												<strong>عدم ذخیره‌سازی:</strong> داده‌های دریافتی از گوگل در سرورهای
@@ -318,7 +310,7 @@ export default function PrivacyPolicy() {
 											</li>
 											<li>
 												<strong>Limited Access:</strong> We only request minimal necessary
-												permissions (read-only calendar and email)
+												permissions (read-only calendar)
 											</li>
 											<li>
 												<strong>No Storage:</strong> Data received from Google is not
