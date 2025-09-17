@@ -49,19 +49,19 @@ export function Extension() {
 
 	const previewImages = [
 		{
-			src: '/extension/preview-1.png',
+			src: '/preview-1.png',
 			alt: 'پیش‌نمایش اول - ویجت‌های مالی و اخبار',
 			title: 'ویجت‌های مالی و اخبار',
 			description: '🎨 هرطور دوست داری شخصی‌سازی کن!',
 		},
 		{
-			src: '/extension/preview-2.png',
+			src: '/preview-2.png',
 			alt: 'پیش‌نمایش دوم - ویجت‌های کاربردی',
 			title: 'ویجت‌های کاربردی',
 			description: '✨ چیدمان ویجت‌ها رو به سلیقه خودت تنظیم کن',
 		},
 		{
-			src: '/extension/widgets.png',
+			src: '/widgets.png',
 			alt: 'مجموعه کامل ویجت‌ها',
 			title: 'مجموعه کامل ویجت‌ها',
 			description: '🚀 همه ویجت‌ها رو یکجا ببین!',
@@ -88,32 +88,32 @@ export function Extension() {
 		{
 			title: '💰 مدیریت مالی هوشمند',
 			description: 'قیمت لحظه‌ای ارزها، رمزارزها و بازارها رو ببین',
-			image: '/extension/combo-widget_news_currencies.png',
+			image: '/combo-widget_news_currencies.png',
 		},
 		{
 			title: '✅ مدیریت وظایف',
 			description: 'کارها و یادداشت‌هات رو راحت سازماندهی کن',
-			image: '/extension/todo-widget.png',
+			image: '/todo-widget.png',
 		},
 		{
 			title: '🛠️ ابزارهای کاربردی',
 			description: 'ساعت، تقویم و آب و هوا همیشه در دسترس',
-			image: '/extension/clock-widget.png',
+			image: '/clock-widget.png',
 		},
 		{
 			title: '📝 یادداشت‌ها',
 			description: 'یادداشت‌های سریع بنویس و مدیریت کن',
-			image: '/extension/note-widget.png',
+			image: '/note-widget.png',
 		},
 		{
 			title: '🍅 پومودورو',
 			description: 'زمانت رو بهتر مدیریت کن و روی کارها متمرکز باش',
-			image: '/extension/pomodoro-widget.png',
+			image: '/pomodoro-widget.png',
 		},
 		{
 			title: '🌤️ آب و هوا',
 			description: 'هوا چطوره؟ قبل از بیرون رفتن چک کن!',
-			image: '/extension/weather-widget.png',
+			image: '/weather-widget.png',
 		},
 	]
 
