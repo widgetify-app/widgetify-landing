@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import RequestPasswordReset from '../components/auth/RequestPasswordReset'
-import ResetPassword from '../components/auth/ResetPassword'
-import { useDocumentTitle } from '../hooks'
+import { useDocumentTitle } from '@/hooks'
+import RequestPasswordReset from '../auth/RequestPasswordReset'
+import ResetPassword from '../auth/ResetPassword'
 
 export default function ForgotPassword() {
 	useDocumentTitle('بازیابی رمز عبور')

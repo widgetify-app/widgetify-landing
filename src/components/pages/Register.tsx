@@ -1,42 +1,51 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { AlertCircle, Lock, LogIn, Mail } from 'lucide-react'
+import { AlertCircle, CheckCircle, Lock, Mail, User, UserPlus } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import FormInput from '../components/auth/FormInput'
-import { useAuth } from '../contexts/AuthContext'
-import { useDocumentTitle } from '../hooks'
-import { authService } from '../services/authService'
-import type { LoginRequest } from '../types/auth'
-import { translateError } from '../utils/errorTranslation'
+import { useState } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
+import { useDocumentTitle } from '@/hooks'
+import { authService } from '@/services/authService'
+import type { RegisterRequest } from '@/types/auth'
+import { translateError } from '@/utils/errorTranslation'
+import FormInput from '../auth/FormInput'
 
-export default function Login() {
-	useDocumentTitle('ورود')
+export default function Register() {
+	useDocumentTitle('ثبت نام')
 
-	const [formData, setFormData] = useState<LoginRequest>({
+	const [formData, setFormData] = useState<
+		RegisterRequest & { confirmPassword: string }
+	>({
+		name: '',
 		email: '',
 		password: '',
+		confirmPassword: '',
 	})
 	const [errors, setErrors] = useState<Record<string, string>>({})
 	const router = useRouter()
-	const { login, isAuthenticated, user } = useAuth()
+	const { login } = useAuth()
 
-	const loginMutation = useMutation({
-		mutationFn: authService.login,
+	const registerMutation = useMutation({
+		mutationFn: authService.register,
 		onSuccess: (token) => {
 			login(token)
 			router.push('/profile')
 		},
 		onError: (error: any) => {
+			// Use enhanced error translation utility
 			const translatedError = translateError(error)
 
+			// Handle both string and object error responses
 			if (typeof translatedError === 'string') {
 				setErrors({ general: translatedError })
 			} else {
+				// Handle field-specific validation errors
 				setErrors(translatedError)
 
+				// If there are validation errors but no field-specific error for general display,
+				// add a general message
 				if (Object.keys(translatedError).length > 0 && !translatedError.general) {
 					setErrors({
 						...translatedError,
@@ -59,6 +68,10 @@ export default function Login() {
 	const validateForm = () => {
 		const newErrors: Record<string, string> = {}
 
+		if (!formData.name.trim()) {
+			newErrors.name = 'نام الزامی است'
+		}
+
 		if (!formData.email) {
 			newErrors.email = 'ایمیل الزامی است'
 		} else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -67,6 +80,12 @@ export default function Login() {
 
 		if (!formData.password) {
 			newErrors.password = 'رمز عبور الزامی است'
+		} else if (formData.password.length < 8) {
+			newErrors.password = 'رمز عبور باید حداقل 8 کاراکتر باشد'
+		}
+
+		if (formData.password !== formData.confirmPassword) {
+			newErrors.confirmPassword = 'تکرار رمز عبور با رمز عبور مطابقت ندارد'
 		}
 
 		setErrors(newErrors)
@@ -76,15 +95,10 @@ export default function Login() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 		if (validateForm()) {
-			loginMutation.mutate(formData)
+			const { ...registerData } = formData
+			registerMutation.mutate(registerData)
 		}
 	}
-
-	useEffect(() => {
-		if (isAuthenticated && user) {
-			router.push('/profile')
-		}
-	}, [])
 
 	return (
 		<div className="min-h-screen py-16">
@@ -92,10 +106,10 @@ export default function Login() {
 				<div className="p-8 bg-white border border-gray-200 shadow-lg rounded-xl">
 					<div className="mb-4 text-center">
 						<div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl">
-							<LogIn size={32} className="text-white" />
+							<UserPlus size={32} className="text-white" />
 						</div>
-						<h1 className="text-2xl font-bold">ورود به حساب کاربری</h1>
-						<p className="mt-2 text-gray-600">به ویجتی‌فای خوش آمدید</p>
+						<h1 className="text-2xl font-bold">ثبت نام در ویجتی‌فای</h1>
+						<p className="mt-2 text-gray-600">حساب کاربری جدید ایجاد کنید</p>
 					</div>
 
 					{errors.general && (
@@ -108,6 +122,20 @@ export default function Login() {
 					)}
 
 					<form onSubmit={handleSubmit}>
+						<FormInput
+							id="name"
+							name="name"
+							label="نام"
+							type="text"
+							value={formData.name}
+							onChange={handleChange}
+							placeholder="نام کامل خود را وارد کنید"
+							error={errors.name}
+							icon={User}
+							required
+							autoComplete="name"
+						/>
+
 						<FormInput
 							id="email"
 							name="email"
@@ -122,51 +150,61 @@ export default function Login() {
 							autoComplete="email"
 						/>
 
-						<FormInput
-							id="password"
-							name="password"
-							label="رمز عبور"
-							type="password"
-							value={formData.password}
-							onChange={handleChange}
-							placeholder="رمز عبور خود را وارد کنید"
-							error={errors.password}
-							icon={Lock}
-							required
-							autoComplete="current-password"
-						/>
-
-						<div className="flex flex-row-reverse items-center mb-4">
-							<Link
-								href="/forgot-password"
-								className="text-sm text-blue-600 hover:underline"
-							>
-								فراموشی رمز عبور؟
-							</Link>
+						<div className="flex gap-4">
+							<div className="flex-1">
+								<FormInput
+									id="password"
+									name="password"
+									label="رمز عبور"
+									type="password"
+									value={formData.password}
+									onChange={handleChange}
+									placeholder="حداقل 8 کاراکتر"
+									error={errors.password}
+									icon={Lock}
+									required
+									autoComplete="new-password"
+								/>
+							</div>
+							<div className="flex-1">
+								<FormInput
+									id="confirmPassword"
+									name="confirmPassword"
+									label="تکرار رمز عبور"
+									type="password"
+									value={formData.confirmPassword}
+									onChange={handleChange}
+									placeholder="تکرار رمز"
+									error={errors.confirmPassword}
+									icon={CheckCircle}
+									required
+									autoComplete="new-password"
+								/>
+							</div>
 						</div>
 
 						<button
 							type="submit"
 							className="w-full p-3 font-medium text-white transition rounded-lg flex items-center justify-center hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700"
-							disabled={loginMutation.isPending}
+							disabled={registerMutation.isPending}
 						>
-							{loginMutation.isPending ? (
+							{registerMutation.isPending ? (
 								<div className="w-5 h-5 ml-2 border-2 border-white rounded-full border-t-transparent animate-spin" />
 							) : (
-								<LogIn className="ml-2" size={18} />
+								<UserPlus className="ml-2" size={18} />
 							)}
-							ورود به حساب کاربری
+							ثبت نام
 						</button>
 					</form>
 
 					<div className="mt-6 text-center">
 						<p className="text-gray-600">
-							حساب کاربری ندارید؟{' '}
+							حساب کاربری دارید؟{' '}
 							<Link
-								href="/register"
+								href="/login"
 								className="font-medium text-blue-600 hover:underline"
 							>
-								ثبت نام
+								ورود
 							</Link>
 						</p>
 					</div>

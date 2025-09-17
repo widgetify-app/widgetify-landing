@@ -1,5 +1,5 @@
 import PageWrapper from '../../src/components/PageWrapper'
-import Login from '../../src/pages/Login'
+import Login from '../../src/components/pages/Login'
 
 export default function LoginPage() {
 	return (

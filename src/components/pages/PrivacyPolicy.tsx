@@ -3,7 +3,7 @@
 import { ArrowLeft, Globe, Shield } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { useDocumentTitle } from '../hooks'
+import { useDocumentTitle } from '@/hooks'
 
 export default function PrivacyPolicy() {
 	useDocumentTitle('حریم خصوصی')

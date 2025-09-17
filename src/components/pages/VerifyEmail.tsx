@@ -3,8 +3,8 @@ import { AlertCircle, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useDocumentTitle } from '../hooks'
-import { authService } from '../services/authService'
+import { useDocumentTitle } from '@/hooks'
+import { authService } from '@/services/authService'
 
 export default function VerifyEmail() {
 	useDocumentTitle('تأیید ایمیل')

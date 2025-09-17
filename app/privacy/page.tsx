@@ -1,5 +1,5 @@
 import PageWrapper from '../../src/components/PageWrapper'
-import PrivacyPolicy from '../../src/pages/PrivacyPolicy'
+import PrivacyPolicy from '../../src/components/pages/PrivacyPolicy'
 
 export default function PrivacyPage() {
 	return (

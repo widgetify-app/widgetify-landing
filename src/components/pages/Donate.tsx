@@ -4,8 +4,8 @@ import { CheckCircle, Coins, Copy, CreditCard, ExternalLink } from 'lucide-react
 import Image from 'next/image'
 import { useState } from 'react'
 import { RiBtcFill } from 'react-icons/ri'
-import ContainerWrapper from '../components/ContainerWrapper'
-import { useDocumentTitle } from '../hooks'
+import { useDocumentTitle } from '../../hooks'
+import ContainerWrapper from '../ContainerWrapper'
 
 const donationPlatforms = [
 	{

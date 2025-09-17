@@ -1,5 +1,5 @@
 import PageWrapper from '../../src/components/PageWrapper'
-import Profile from '../../src/pages/Profile'
+import Profile from '../../src/components/pages/Profile'
 
 export default function ProfilePage() {
 	return (

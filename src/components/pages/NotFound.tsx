@@ -2,7 +2,7 @@
 
 import { ArrowLeft, Home, Search } from 'lucide-react'
 import Link from 'next/link'
-import { useDocumentTitle } from '../hooks'
+import { useDocumentTitle } from '@/hooks'
 
 export default function NotFound() {
 	useDocumentTitle('صفحه یافت نشد | 404')

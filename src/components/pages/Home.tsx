@@ -12,8 +12,8 @@ import {
 } from 'react-icons/fa'
 import { FaBrave } from 'react-icons/fa6'
 import { TypeAnimation } from 'react-type-animation'
-import ContributorsSection from '../components/ContributorsSection'
-import { useDocumentTitle } from '../hooks'
+import { useDocumentTitle } from '@/hooks'
+import ContributorsSection from '../ContributorsSection'
 
 const CHROME_EXTENSION_URL =
 	'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh'
@@ -77,7 +77,7 @@ const previewImages = [
 ]
 
 export function Home() {
-	useDocumentTitle('اکستنشن مرورگر')
+	useDocumentTitle('افزونه مرورگر')
 	const [currentSlide, setCurrentSlide] = useState(0)
 
 	const nextSlide = () => {

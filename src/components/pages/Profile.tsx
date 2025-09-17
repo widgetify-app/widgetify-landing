@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { FiAtSign } from 'react-icons/fi'
-import EditProfileForm from '../components/profile/EditProfileForm'
-import { useAuth } from '../contexts/AuthContext'
-import { useDocumentTitle } from '../hooks'
-import { authService } from '../services/authService'
-import type { Gender, User as UserType } from '../types/auth'
+import { useAuth } from '@/contexts/AuthContext'
+import { useDocumentTitle } from '@/hooks'
+import { authService } from '@/services/authService'
+import type { Gender, User as UserType } from '@/types/auth'
+import { EditProfileForm } from '../profile'
 
 export default function Profile() {
 	useDocumentTitle('پروفایل کاربری')
