@@ -31,6 +31,8 @@ export default function FooterSection() {
 									e.currentTarget.src =
 										'https://placehold.co/96x96?text=W'
 								}}
+								width={36}
+								height={36}
 							/>
 							<span className="mr-2 text-xl font-bold text-blue-600">
 								ویجتی‌فای
@@ -125,16 +127,8 @@ export default function FooterSection() {
 
 					{/* Products */}
 					<div>
-						<h3 className="mb-4 text-lg font-bold">محصولات</h3>
+						<h3 className="mb-4 text-lg font-bold">محصولات دیگه ما</h3>
 						<ul className="space-y-2">
-							<li>
-								<Link
-									href="/extension"
-									className="text-gray-600 transition-colors hover:text-blue-600"
-								>
-									اکستنشن مرورگر
-								</Link>
-							</li>
 							<li>
 								<a
 									href={PWA_LINK}

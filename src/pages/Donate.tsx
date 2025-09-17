@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckCircle, Coins, Copy, CreditCard, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 import { RiBtcFill } from 'react-icons/ri'
 import ContainerWrapper from '../components/ContainerWrapper'
@@ -71,20 +72,23 @@ export default function Donate() {
 	return (
 		<div className="min-h-screen overflow-hidden">
 			{/* Hero Section */}
-			<div className="relative py-16 md:py-24">
-				<div className="flex flex-col items-center max-w-4xl px-4 mx-auto text-center animate-fade-in">
-					<h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
-						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 animate-slide-down">
-							حمایت از ویجتی‌فای
-						</span>
-					</h1>
+			<div className="relative px-4 py-20">
+				<div className="flex flex-col gap-6 mx-auto max-w-7xl">
+					{/* Header */}
+					<div className="flex flex-col items-center justify-center gap-4 animate-fade-in">
+						<h1 className="py-1 text-4xl font-bold text-gray-900 md:text-6xl lg:text-7xl animate-slide-down">
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700">
+								حمایت از ویجتی‌فای
+							</span>
+						</h1>
 
-					<p className="max-w-2xl mx-auto mb-6 text-lg font-light text-gray-600 md:text-xl animate-fade-in-up">
-						با حمایت مالی از ویجتی‌فای، به ما کمک کنید تا خدمات بهتری ارائه
-						دهیم. تمامی مبالغ دریافتی صرف توسعه و نگهداری پروژه خواهد شد.
-					</p>
+						<p className="max-w-3xl mx-auto text-sm font-light text-center text-gray-600 md:text-xl animate-fade-in-up">
+							با حمایت مالی از ویجتی‌فای، به ما کمک کنید تا خدمات بهتری ارائه
+							دهیم. تمامی مبالغ دریافتی صرف توسعه و نگهداری پروژه خواهد شد.
+						</p>
 
-					<div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-3 mb-6 animate-scale-in" />
+						<div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-3 mb-6 animate-scale-in" />
+					</div>
 				</div>
 			</div>
 
@@ -106,10 +110,10 @@ export default function Donate() {
 							<div className="p-1.5 bg-gray-100 rounded-xl flex">
 								<button
 									onClick={() => setDonationMethod('traditional')}
-									className={`flex items-center cursor-pointer px-6 py-3 rounded-lg ${
+									className={`flex items-center cursor-pointer px-6 py-3 rounded-lg transition-all duration-300 ${
 										donationMethod === 'traditional'
-											? 'bg-white text-blue-600 shadow-sm font-bold'
-											: 'text-gray-600 hover:text-gray-800'
+											? 'bg-white text-blue-600 shadow-lg font-bold scale-105'
+											: 'text-gray-600 hover:text-gray-800 hover:bg-white hover:shadow-md hover:scale-105'
 									}`}
 								>
 									<CreditCard className="ml-2" size={20} />
@@ -117,10 +121,10 @@ export default function Donate() {
 								</button>
 								<button
 									onClick={() => setDonationMethod('crypto')}
-									className={`flex items-center px-6 py-3 cursor-pointer rounded-lg ${
+									className={`flex items-center px-6 py-3 cursor-pointer rounded-lg transition-all duration-300 ${
 										donationMethod === 'crypto'
-											? 'bg-white text-blue-600 shadow-sm font-bold'
-											: 'text-gray-600 hover:text-gray-800'
+											? 'bg-white text-blue-600 shadow-lg font-bold scale-105'
+											: 'text-gray-600 hover:text-gray-800 hover:bg-white hover:shadow-md hover:scale-105'
 									}`}
 								>
 									<Coins className="ml-2" size={20} />
@@ -137,10 +141,10 @@ export default function Donate() {
 									.map((platform, index) => (
 										<div
 											key={index}
-											className={`overflow-hidden bg-white border-2 rounded-2xl shadow-sm cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg ${
+											className={`overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:scale-105 cursor-pointer ${
 												selectedPlatform === index
-													? 'border-blue-500'
-													: 'border-gray-100 hover:border-blue-200'
+													? 'border-blue-500 shadow-xl scale-105'
+													: ''
 											}`}
 											onClick={() => setSelectedPlatform(index)}
 										>
@@ -182,10 +186,10 @@ export default function Donate() {
 								{cryptoOptions.map((crypto, index) => (
 									<div
 										key={index}
-										className={`relative overflow-hidden transition-all bg-white border-2 cursor-pointer rounded-2xl hover:-translate-y-1 hover:shadow-lg ${
+										className={`relative overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:scale-105 cursor-pointer ${
 											selectedCrypto === index
-												? 'border-blue-500 shadow-md'
-												: 'border-gray-200 hover:border-blue-200'
+												? 'border-blue-500 shadow-xl scale-105'
+												: ''
 										}`}
 										onClick={() => setSelectedCrypto(index)}
 									>
@@ -266,19 +270,19 @@ export default function Donate() {
 											</div>
 
 											{/* QR Code */}
-											<div className="flex items-center justify-center p-4">
-												<div className="flex items-center justify-center w-32 h-32 bg-gray-100 rounded-lg">
-													<div className="text-center">
-														<div className="text-xs text-gray-400">
-															اسکن کنید
-														</div>
-														<div className="w-24 h-24 m-auto mt-1 overflow-hidden border border-gray-300">
-															<img
-																src={crypto.qr}
-																alt={`${crypto.name} QR Code`}
-																className="object-contain w-full h-full"
-															/>
-														</div>
+											<div className="flex items-center justify-center p-4 aspect-video bg-gradient-to-br from-blue-50 to-purple-50">
+												<div className="text-center">
+													<div className="mb-2 text-xs text-gray-400">
+														اسکن کنید
+													</div>
+													<div className="w-24 h-24 overflow-hidden border border-gray-300 rounded-lg shadow-md">
+														<Image
+															src={crypto.qr}
+															alt={`${crypto.name} QR Code`}
+															className="object-contain w-full h-full"
+															width={96}
+															height={96}
+														/>
 													</div>
 												</div>
 											</div>
@@ -324,19 +328,36 @@ export default function Donate() {
 						)}
 					</section>
 
-					<div className="p-8 text-center bg-white border border-blue-100 shadow-md rounded-xl animate-on-scroll">
-						<div className="inline-flex items-center justify-center w-20 h-20 mb-6 text-4xl text-white rounded-full shadow-lg bg-gradient-to-br from-blue-600 to-purple-600">
-							🙏
-						</div>
-						<h2 className="mb-4 text-2xl font-bold text-gray-900">
-							از حمایت شما سپاسگزاریم
-						</h2>
-						<p className="max-w-2xl mx-auto mb-5 font-light text-gray-600">
-							حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز بهتر
-							کنیم. با تشکر از اعتماد شما.
-						</p>
+					<div className="max-w-4xl p-8 mx-auto border border-purple-100 bg-gradient-to-r from-purple-50 to-blue-50 rounded-3xl animate-on-scroll">
+						<div className="text-center">
+							<div className="inline-flex items-center justify-center w-20 h-20 mb-6 text-4xl text-white rounded-full shadow-lg bg-gradient-to-br from-blue-600 to-purple-600">
+								🙏
+							</div>
+							<h2 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
+								از حمایت شما سپاسگزاریم
+							</h2>
+							<p className="max-w-2xl mx-auto mb-6 text-lg text-gray-600">
+								حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز
+								بهتر کنیم. با تشکر از اعتماد شما.
+							</p>
 
-						<div className="w-24 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 animate-scale-in" />
+							<div className="flex flex-wrap justify-center gap-3 mb-6 text-sm">
+								<span className="px-3 py-1 text-gray-700 rounded-full bg-white/70">
+									💝 سپاسگزاریم
+								</span>
+								<span className="px-3 py-1 text-gray-700 rounded-full bg-white/70">
+									🚀 پیشرفت مداوم
+								</span>
+								<span className="px-3 py-1 text-gray-700 rounded-full bg-white/70">
+									👥 جامعه فعال
+								</span>
+								<span className="px-3 py-1 text-gray-700 rounded-full bg-white/70">
+									✨ همیشه بهتر
+								</span>
+							</div>
+
+							<div className="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-blue-600 to-purple-600 animate-scale-in" />
+						</div>
 					</div>
 				</div>
 			</ContainerWrapper>

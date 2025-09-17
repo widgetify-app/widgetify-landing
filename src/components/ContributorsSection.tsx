@@ -86,6 +86,8 @@ export default function ContributorsSection() {
 										alt={contributor.login}
 										className="object-cover w-16 h-16 transition-all ease-in-out filter grayscale opacity-70 hover-persist-item"
 										loading="lazy"
+										width={100}
+										height={100}
 									/>
 								</div>
 							</a>

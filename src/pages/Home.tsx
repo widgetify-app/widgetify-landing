@@ -287,6 +287,8 @@ export function Home() {
 												onError={(e) => {
 													e.currentTarget.src = `https://placehold.co/1200x675?text=${encodeURIComponent(image.title)}`
 												}}
+												width={1000}
+												height={100}
 											/>
 										</div>
 									))}
@@ -357,6 +359,8 @@ export function Home() {
 											onError={(e) => {
 												e.currentTarget.src = `https://placehold.co/400x300?text=${encodeURIComponent(feature.title)}`
 											}}
+											width={100}
+											height={100}
 										/>
 									</div>
 									<div className="p-6">

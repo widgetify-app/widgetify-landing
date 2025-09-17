@@ -116,6 +116,8 @@ export default function Navbar() {
 									e.currentTarget.src =
 										'https://placehold.co/96x96?text=W'
 								}}
+								width={36}
+								height={36}
 							/>
 							<span className="mr-2 text-xl font-bold text-blue-600">
 								ویجتی‌فای

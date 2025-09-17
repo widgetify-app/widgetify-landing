@@ -5,7 +5,7 @@ const nextConfig = {
 
     // Configure image optimization
     images: {
-        domains: [],
+        domains: ['avatars.githubusercontent.com'],
     },
 
     // Configure experimental features if needed
