@@ -1,21 +1,21 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false,
-		"ignore": []
+		"ignoreUnknown": false
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"lineWidth": 90
-	},
-	"organizeImports": {
-		"enabled": true
+		"indentWidth": 4,
+		"lineWidth": 90,
+		"lineEnding": "lf",
+		"attributePosition": "auto",
+		"formatWithErrors": false
 	},
 	"linter": {
 		"enabled": true,
@@ -26,21 +26,67 @@
 				"useButtonType": "off",
 				"useKeyWithClickEvents": "off",
 				"noSvgWithoutTitle": "off",
-				"noLabelWithoutControl": "off"
+				"noLabelWithoutControl": "off",
+				"noStaticElementInteractions": "off",
+				"useAriaPropsSupportedByRole": "off"
 			},
 			"style": {
-				"useSelfClosingElements": "off"
+				"useSelfClosingElements": "off",
+				"noParameterAssign": "off",
+				"useConst": "off",
+				"useTemplate": "off"
 			},
 			"suspicious": {
 				"noExplicitAny": "off",
 				"noArrayIndexKey": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "off",
+				"noUnusedVariables": "warn",
+				"noUnusedImports": "warn"
+			},
+			"complexity": {
+				"noUselessTernary": "off"
 			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "single",
-			"semicolons": "asNeeded"
+			"semicolons": "asNeeded",
+			"trailingCommas": "es5",
+			"quoteProperties": "asNeeded",
+			"bracketSpacing": true,
+			"bracketSameLine": false,
+			"arrowParentheses": "always",
+			"jsxQuoteStyle": "double"
 		}
-	}
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none",
+			"indentStyle": "tab",
+			"indentWidth": 4
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["*.tsx", "*.jsx"],
+			"javascript": {
+				"formatter": {
+					"jsxQuoteStyle": "double",
+					"bracketSameLine": false
+				}
+			}
+		},
+		{
+			"includes": ["package.json", "tsconfig.json"],
+			"json": {
+				"formatter": {
+					"indentStyle": "space",
+					"indentWidth": 2
+				}
+			}
+		}
+	]
 }

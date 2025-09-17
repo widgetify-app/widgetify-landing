@@ -1,31 +1,19 @@
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ProtectedRoute from './components/auth/ProtectedRoute'
+import RedirectIfAuthenticated from './components/auth/RedirectIfAuthenticated'
 import FooterSection from './components/FooterSection'
 import Navbar from './components/Navbar'
 import PageWrapper from './components/PageWrapper'
-import ProtectedRoute from './components/auth/ProtectedRoute'
-import RedirectIfAuthenticated from './components/auth/RedirectIfAuthenticated'
 import { AuthProvider } from './contexts/AuthContext'
 import Donate from './pages/Donate'
-import { Extension } from './pages/Extension'
 import ForgotPassword from './pages/ForgotPassword'
-import Home from './pages/Home'
+import { Home } from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
 import VerifyEmail from './pages/VerifyEmail'
-
-function QueryParamHandler() {
-	const location = useLocation()
-	const queryParams = new URLSearchParams(location.search)
-	const page = queryParams.get('page')
-	if (page === 'privacy') {
-		return <Navigate to="/privacy" replace />
-	}
-
-	return <Home />
-}
 
 export default function App() {
 	return (
@@ -37,7 +25,7 @@ export default function App() {
 						path="/"
 						element={
 							<PageWrapper>
-								<QueryParamHandler />
+								<Home />
 							</PageWrapper>
 						}
 					/>
@@ -53,7 +41,7 @@ export default function App() {
 						path="/extension"
 						element={
 							<PageWrapper fullWidth={true}>
-								<Extension />
+								<Home />
 							</PageWrapper>
 						}
 					/>

@@ -1,9 +1,6 @@
 import {
 	ChevronDown,
-	Download,
 	ExternalLink,
-	FileText,
-	Grid,
 	LogIn,
 	Menu,
 	MessageSquare,
@@ -66,42 +63,9 @@ export default function Navbar() {
 				icon: <BiDonateBlood size={18} />,
 			},
 			{
-				label: 'محصولات',
-				path: '#',
-				icon: <Grid size={18} />,
-				children: [
-					{
-						label: 'اکستنشن مرورگر',
-						path: '/extension',
-						description: 'افزونه برای نیو تب مرورگر',
-						icon: <ExternalLink size={18} />,
-					},
-					{
-						label: 'نسخه وب',
-						path: 'https://app.widgetify.ir',
-						description: 'استفاده از ویجتی‌فای در مرورگر',
-						isExternal: true,
-						icon: <ExternalLink size={18} />,
-					},
-					{
-						label: 'اپلیکیشن دسکتاپ',
-						path: 'https://github.com/widgetify-app/widgetify-desktop',
-						description: 'نسخه دسکتاپ ویجتی‌فای',
-						isExternal: true,
-						icon: <Download size={18} />,
-					},
-				],
-			},
-			{
 				label: 'حریم خصوصی',
 				path: '/privacy',
 				icon: <Shield size={18} />,
-			},
-			{
-				label: 'وبلاگ',
-				path: 'https://blog.widgetify.ir',
-				isExternal: true,
-				icon: <FileText size={18} />,
 			},
 		]
 
@@ -145,10 +109,13 @@ export default function Navbar() {
 								alt="ویجتی‌فای"
 								className={`object-contain transition-all ${scrolled ? 'w-8 h-8' : 'w-9 h-9'}`}
 								onError={(e) => {
-									e.currentTarget.src = 'https://placehold.co/96x96?text=W'
+									e.currentTarget.src =
+										'https://placehold.co/96x96?text=W'
 								}}
 							/>
-							<span className="mr-2 text-xl font-bold text-blue-600">ویجتی‌فای</span>
+							<span className="mr-2 text-xl font-bold text-blue-600">
+								ویجتی‌فای
+							</span>
 						</Link>
 					</div>
 
@@ -166,27 +133,43 @@ export default function Navbar() {
 													: 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
 											}`}
 										>
-											{item.icon && <span className="ml-1.5">{item.icon}</span>}
+											{item.icon && (
+												<span className="ml-1.5">
+													{item.icon}
+												</span>
+											)}
 											{item.label}
 											<ChevronDown
 												size={14}
 												className={`mr-1 transition-transform ${
-													activeDropdown === item.label ? 'transform rotate-180' : ''
+													activeDropdown === item.label
+														? 'transform rotate-180'
+														: ''
 												}`}
 											/>
 										</button>
 									) : (
 										<Link
 											to={item.path}
-											target={item.isExternal ? '_blank' : undefined}
-											rel={item.isExternal ? 'noopener noreferrer' : undefined}
+											target={
+												item.isExternal ? '_blank' : undefined
+											}
+											rel={
+												item.isExternal
+													? 'noopener noreferrer'
+													: undefined
+											}
 											className={`flex items-center px-3 py-2 rounded-md transition-colors ${
 												isActive(item.path)
 													? 'text-blue-600 bg-blue-50 font-medium'
 													: 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
 											}`}
 										>
-											{item.icon && <span className="ml-1.5">{item.icon}</span>}
+											{item.icon && (
+												<span className="ml-1.5">
+													{item.icon}
+												</span>
+											)}
 											{item.label}
 											{item.badge && (
 												<span className="px-1.5 py-0.5 mr-1.5 text-xs font-medium text-white bg-green-500 rounded-full">
@@ -204,11 +187,23 @@ export default function Navbar() {
 													<Link
 														key={child.label}
 														to={child.path}
-														target={child.isExternal ? '_blank' : undefined}
-														rel={child.isExternal ? 'noopener noreferrer' : undefined}
-														onClick={() => setActiveDropdown(null)}
+														target={
+															child.isExternal
+																? '_blank'
+																: undefined
+														}
+														rel={
+															child.isExternal
+																? 'noopener noreferrer'
+																: undefined
+														}
+														onClick={() =>
+															setActiveDropdown(null)
+														}
 														className={`block p-3 rounded-lg transition-colors ${
-															isActive(child.path) ? 'bg-blue-50' : 'hover:bg-gray-50'
+															isActive(child.path)
+																? 'bg-blue-50'
+																: 'hover:bg-gray-50'
 														}`}
 													>
 														<div className="flex items-center">
@@ -236,7 +231,9 @@ export default function Navbar() {
 																</div>
 																{child.description && (
 																	<p className="mt-0.5 text-xs text-gray-500">
-																		{child.description}
+																		{
+																			child.description
+																		}
 																	</p>
 																)}
 															</div>
@@ -289,17 +286,27 @@ export default function Navbar() {
 										{item.children ? (
 											<>
 												<button
-													onClick={() => toggleDropdown(item.label)}
+													onClick={() =>
+														toggleDropdown(item.label)
+													}
 													className="flex items-center justify-between w-full px-4 py-3 text-right text-gray-700 transition rounded-lg bg-gray-50 hover:bg-gray-100"
 												>
 													<span className="flex items-center">
-														{item.icon && <span className="ml-3">{item.icon}</span>}
-														<span className="font-medium">{item.label}</span>
+														{item.icon && (
+															<span className="ml-3">
+																{item.icon}
+															</span>
+														)}
+														<span className="font-medium">
+															{item.label}
+														</span>
 													</span>
 													<ChevronDown
 														size={16}
 														className={`transition-transform duration-200 ${
-															activeDropdown === item.label ? 'transform rotate-180' : ''
+															activeDropdown === item.label
+																? 'transform rotate-180'
+																: ''
 														}`}
 													/>
 												</button>
@@ -311,26 +318,42 @@ export default function Navbar() {
 															<Link
 																key={child.label}
 																to={child.path}
-																target={child.isExternal ? '_blank' : undefined}
-																rel={child.isExternal ? 'noopener noreferrer' : undefined}
-																onClick={() => setIsMenuOpen(false)}
+																target={
+																	child.isExternal
+																		? '_blank'
+																		: undefined
+																}
+																rel={
+																	child.isExternal
+																		? 'noopener noreferrer'
+																		: undefined
+																}
+																onClick={() =>
+																	setIsMenuOpen(false)
+																}
 																className="flex items-center px-4 py-3 pr-12 text-gray-700 transition rounded-md hover:bg-gray-100"
 															>
 																{child.icon && (
-																	<span className="ml-3 text-gray-500">{child.icon}</span>
+																	<span className="ml-3 text-gray-500">
+																		{child.icon}
+																	</span>
 																)}
 																<div>
 																	<div className="flex items-center">
 																		{child.label}
 																		{child.badge && (
 																			<span className="px-1.5 py-0.5 mr-1.5 text-xs font-medium text-white bg-green-500 rounded-full">
-																				{child.badge}
+																				{
+																					child.badge
+																				}
 																			</span>
 																		)}
 																	</div>
 																	{child.description && (
 																		<p className="text-xs text-gray-500">
-																			{child.description}
+																			{
+																				child.description
+																			}
 																		</p>
 																	)}
 																</div>
@@ -342,8 +365,14 @@ export default function Navbar() {
 										) : (
 											<Link
 												to={item.path}
-												target={item.isExternal ? '_blank' : undefined}
-												rel={item.isExternal ? 'noopener noreferrer' : undefined}
+												target={
+													item.isExternal ? '_blank' : undefined
+												}
+												rel={
+													item.isExternal
+														? 'noopener noreferrer'
+														: undefined
+												}
 												onClick={() => setIsMenuOpen(false)}
 												className={`flex items-center px-4 py-3 rounded-lg transition ${
 													isActive(item.path)
@@ -351,8 +380,18 @@ export default function Navbar() {
 														: 'text-gray-700 hover:bg-gray-50'
 												}`}
 											>
-												{item.icon && <span className="ml-3">{item.icon}</span>}
-												<span className={isActive(item.path) ? 'font-medium' : ''}>
+												{item.icon && (
+													<span className="ml-3">
+														{item.icon}
+													</span>
+												)}
+												<span
+													className={
+														isActive(item.path)
+															? 'font-medium'
+															: ''
+													}
+												>
 													{item.label}
 												</span>
 												{item.badge && (
