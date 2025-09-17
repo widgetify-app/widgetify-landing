@@ -1,7 +1,5 @@
+'use client'
 import { AlertCircle, CheckCircle } from 'lucide-react'
-
-;('use client')
-
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'

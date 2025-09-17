@@ -22,12 +22,27 @@ export default function Profile() {
 	const [verificationSuccess, setVerificationSuccess] = useState(false)
 
 	useEffect(() => {
-		if (!isLoading && !userData) {
+		setUserData(user)
+	}, [user])
+
+	useEffect(() => {
+		if (!isLoading && !user && !authService.getToken()) {
 			router.push('/login')
 		}
-	}, [isLoading, userData, router])
+	}, [isLoading, user, router])
 
-	if (!isLoading && !userData) {
+	if (isLoading || (authService.getToken() && !user)) {
+		return (
+			<div className="flex items-center justify-center min-h-screen">
+				<div className="text-center">
+					<div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
+					<p className="text-gray-600">در حال بارگذاری پروفایل...</p>
+				</div>
+			</div>
+		)
+	}
+
+	if (!user && !authService.getToken()) {
 		return null
 	}
 
@@ -85,17 +100,6 @@ export default function Profile() {
 		}
 	}
 
-	if (isLoading) {
-		return (
-			<div className="flex items-center justify-center min-h-screen">
-				<div className="text-center">
-					<div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
-					<p className="text-gray-600">در حال بارگذاری پروفایل...</p>
-				</div>
-			</div>
-		)
-	}
-
 	return (
 		<div className="min-h-screen py-16">
 			<div className="max-w-4xl mx-auto overflow-hidden bg-white border border-gray-200 shadow-lg rounded-xl">
@@ -107,10 +111,12 @@ export default function Profile() {
 								<Image
 									src={
 										userData?.avatar ||
-										`https://ui-avatars.com/api/?name=${userData?.name || 'userData'}&background=random&color=fff`
+										`https://ui-avatars.com/api/?name=${userData?.name || 'userData'}&background=6366f1&color=fff`
 									}
 									alt={userData?.name || 'User Avatar'}
 									className="object-cover w-full h-full"
+									width={100}
+									height={100}
 								/>
 							</div>
 						</div>

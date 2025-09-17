@@ -52,7 +52,10 @@ export default function FormInput({
 				/>
 				{Icon && (
 					<div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-						<Icon size={18} className={error ? 'text-red-400' : 'text-gray-400'} />
+						<Icon
+							size={18}
+							className={error ? 'text-red-400' : 'text-gray-400'}
+						/>
 					</div>
 				)}
 			</div>

@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AlertCircle, Lock, LogIn, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormInput from '../components/auth/FormInput'
 import { useAuth } from '../contexts/AuthContext'
 import { useDocumentTitle } from '../hooks'
@@ -21,7 +21,7 @@ export default function Login() {
 	})
 	const [errors, setErrors] = useState<Record<string, string>>({})
 	const router = useRouter()
-	const { login } = useAuth()
+	const { login, isAuthenticated, user } = useAuth()
 
 	const loginMutation = useMutation({
 		mutationFn: authService.login,
@@ -79,6 +79,12 @@ export default function Login() {
 			loginMutation.mutate(formData)
 		}
 	}
+
+	useEffect(() => {
+		if (isAuthenticated && user) {
+			router.push('/profile')
+		}
+	}, [])
 
 	return (
 		<div className="min-h-screen py-16">

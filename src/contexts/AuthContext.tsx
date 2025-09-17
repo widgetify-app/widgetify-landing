@@ -33,9 +33,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		queryFn: async () => {
 			try {
 				return await authService.getUserProfile()
-			} catch (error) {
+			} catch (error: any) {
 				console.error('Error fetching user profile:', error)
-				authService.removeToken()
+				if (error.isAxiosError && error.response?.status === 401) {
+					authService.removeToken()
+				}
 				throw error
 			}
 		},
@@ -51,7 +53,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 	useEffect(() => {
 		if (error) {
-			authService.removeToken()
 			setUser(null)
 		}
 	}, [error])

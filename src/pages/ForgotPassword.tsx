@@ -66,9 +66,9 @@ export default function ForgotPassword() {
 							/>
 						) : (
 							<div className="p-6 text-center transition bg-white border border-gray-200 shadow-lg rounded-xl animate-slide-up">
-								<div className="inline-flex items-center justify-center w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
+								<div className="inline-flex items-center justify-center mx-auto mb-4 w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
 									<svg
-										className="w-7 h-7 text-white"
+										className="text-white w-7 h-7"
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
 										viewBox="0 0 24 24"
@@ -90,15 +90,6 @@ export default function ForgotPassword() {
 									شوید.
 								</p>
 								<div className="flex flex-col gap-3">
-									<a
-										href="https://app.widgetify.ir"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="flex items-center justify-center w-full p-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:from-blue-700 hover:to-purple-700 hover:scale-[1.03] active:scale-[0.97]"
-									>
-										رفتن به صفحه اصلی اپلیکیشن
-									</a>
-
 									<Link
 										href="/"
 										className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
@@ -115,9 +106,9 @@ export default function ForgotPassword() {
 						/>
 					) : (
 						<div className="p-6 text-center transition bg-white border border-gray-200 shadow-lg rounded-xl animate-slide-up">
-							<div className="inline-flex items-center justify-center w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
+							<div className="inline-flex items-center justify-center mx-auto mb-4 w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl animate-pulse">
 								<svg
-									className="w-7 h-7 text-white"
+									className="text-white w-7 h-7"
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
 									viewBox="0 0 24 24"

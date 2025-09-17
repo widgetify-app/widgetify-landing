@@ -5,10 +5,11 @@ const rawGithubApi = axios.create({
 })
 
 export async function getMainClient(): Promise<AxiosInstance> {
-	const token = localStorage.getItem('token')
-	if (import.meta.env.VITE_API) {
+	// Check if we're on the client side before accessing localStorage
+	const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+	if (process.env.NEXT_PUBLIC_API_URL) {
 		return axios.create({
-			baseURL: import.meta.env.VITE_API,
+			baseURL: process.env.NEXT_PUBLIC_API_URL,
 			headers: {
 				Authorization: token ? `Bearer ${token}` : undefined,
 			},
