@@ -1,6 +1,8 @@
+'use client'
+
 import { ArrowLeft, Globe, Shield } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useDocumentTitle } from '../hooks'
 
 export default function PrivacyPolicy() {
@@ -45,31 +47,37 @@ export default function PrivacyPolicy() {
 				</div>
 			</div>
 
-			<div className="py-8" {...(language === 'en' ? { dir: 'ltr' } : { dir: 'rtl' })}>
+			<div
+				className="py-8"
+				{...(language === 'en' ? { dir: 'ltr' } : { dir: 'rtl' })}
+			>
 				<div className="max-w-4xl mx-auto">
 					{/* Introduction */}
 					<div className="mb-8">
 						{language === 'fa' ? (
 							<>
 								<p className="mb-4 text-gray-700">
-									ویجتی‌فای یک افزونه مرورگر با هدف مشخص نمایش ویجت‌های کاربردی در نیـو‌تب
-									است. این سیاست حریم خصوصی توضیح می‌دهد که چگونه ما با داده‌های شما در این
-									افزونه برخورد می‌کنیم.
+									ویجتی‌فای یک افزونه مرورگر با هدف مشخص نمایش ویجت‌های
+									کاربردی در نیـو‌تب است. این سیاست حریم خصوصی توضیح
+									می‌دهد که چگونه ما با داده‌های شما در این افزونه برخورد
+									می‌کنیم.
 								</p>
 								<p className="mb-4 text-gray-700">
-									با استفاده از افزونه ویجتی‌فای، شما با این سیاست‌های حریم خصوصی موافقت
-									می‌کنید.
+									با استفاده از افزونه ویجتی‌فای، شما با این سیاست‌های
+									حریم خصوصی موافقت می‌کنید.
 								</p>
 							</>
 						) : (
 							<>
 								<p className="mb-4 text-gray-700">
-									Widgetify is a browser extension with the specific purpose of displaying
-									useful widgets in the new tab. This privacy policy explains how we
-									handle your data in this extension.
+									Widgetify is a browser extension with the specific
+									purpose of displaying useful widgets in the new tab.
+									This privacy policy explains how we handle your data
+									in this extension.
 								</p>
 								<p className="mb-4 text-gray-700">
-									By using the Widgetify extension, you agree to these privacy policies.
+									By using the Widgetify extension, you agree to these
+									privacy policies.
 								</p>
 							</>
 						)}
@@ -88,43 +96,52 @@ export default function PrivacyPolicy() {
 									<>
 										<p className="mb-3 text-gray-700">
 											<strong>
-												ویجتی‌فای هیچ داده شخصی را به طور پیش‌فرض جمع‌آوری نمی‌کند.
+												ویجتی‌فای هیچ داده شخصی را به طور پیش‌فرض
+												جمع‌آوری نمی‌کند.
 											</strong>{' '}
-											تمام اطلاعات نمایش داده شده (مانند آب و هوا، قیمت ارزها و غیره)
-											مستقیماً از منابع عمومی دریافت شده و در دستگاه شما پردازش می‌شوند.
+											تمام اطلاعات نمایش داده شده (مانند آب و هوا،
+											قیمت ارزها و غیره) مستقیماً از منابع عمومی
+											دریافت شده و در دستگاه شما پردازش می‌شوند.
 										</p>
 										<p className="mb-3 text-gray-700">
-											افزونه ویجتی‌فای تنها از ذخیره‌سازی محلی (Local Storage) برای حفظ
-											تنظیمات شما استفاده می‌کند. این داده‌ها فقط در دستگاه خودتان ذخیره
-											می‌شوند و ما به آن‌ها دسترسی نداریم.
+											افزونه ویجتی‌فای تنها از ذخیره‌سازی محلی (Local
+											Storage) برای حفظ تنظیمات شما استفاده می‌کند.
+											این داده‌ها فقط در دستگاه خودتان ذخیره می‌شوند و
+											ما به آن‌ها دسترسی نداریم.
 										</p>
 										<p className="mb-3 text-gray-700">
-											<strong>اطلاعات اختیاری:</strong> در صورت تمایل به همگام‌سازی تنظیمات
-											بین دستگاه‌های مختلف، ما ممکن است نام و آدرس ایمیل شما را ذخیره کنیم.
-											ارائه این اطلاعات کاملاً اختیاری است و تأثیری در عملکرد اصلی افزونه
-											ندارد.
+											<strong>اطلاعات اختیاری:</strong> در صورت
+											تمایل به همگام‌سازی تنظیمات بین دستگاه‌های
+											مختلف، ما ممکن است نام و آدرس ایمیل شما را
+											ذخیره کنیم. ارائه این اطلاعات کاملاً اختیاری
+											است و تأثیری در عملکرد اصلی افزونه ندارد.
 										</p>
 									</>
 								) : (
 									<>
 										<p className="mb-3 text-gray-700">
 											<strong>
-												Widgetify does not collect any personal data by default.
+												Widgetify does not collect any personal
+												data by default.
 											</strong>{' '}
-											All displayed information (such as weather, cryptocurrency prices,
-											etc.) is received directly from public sources and processed on your
-											device.
+											All displayed information (such as weather,
+											cryptocurrency prices, etc.) is received
+											directly from public sources and processed on
+											your device.
 										</p>
 										<p className="mb-3 text-gray-700">
-											The Widgetify extension only uses local storage to maintain your
-											settings. This data is stored only on your own device, and we do not
-											have access to it.
+											The Widgetify extension only uses local
+											storage to maintain your settings. This data
+											is stored only on your own device, and we do
+											not have access to it.
 										</p>
 										<p className="mb-3 text-gray-700">
-											<strong>Optional information:</strong> If you wish to synchronize
-											settings across different devices, we may store your name and email
-											address. Providing this information is completely optional and does
-											not affect the main functionality of the extension.
+											<strong>Optional information:</strong> If you
+											wish to synchronize settings across different
+											devices, we may store your name and email
+											address. Providing this information is
+											completely optional and does not affect the
+											main functionality of the extension.
 										</p>
 									</>
 								)}
@@ -133,34 +150,43 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۲. دسترسی‌های افزونه' : '2. Extension Permissions'}
+								{language === 'fa'
+									? '۲. دسترسی‌های افزونه'
+									: '2. Extension Permissions'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<>
 										<p className="mb-3 text-gray-700">
-											افزونه ویجتی‌فای فقط به دسترسی‌های ضروری برای عملکرد اصلی خود نیاز
-											دارد:
+											افزونه ویجتی‌فای فقط به دسترسی‌های ضروری برای
+											عملکرد اصلی خود نیاز دارد:
 										</p>
 										<ul className="mr-6 space-y-2 text-gray-700 list-disc">
 											<li>دسترسی به نیـو‌تب برای نمایش ویجت‌ها</li>
 											<li>
-												دسترسی به اینترنت برای دریافت داده‌های عمومی مانند آب و هوا، قیمت
-												ارزها و غیره
+												دسترسی به اینترنت برای دریافت داده‌های
+												عمومی مانند آب و هوا، قیمت ارزها و غیره
 											</li>
 										</ul>
 									</>
 								) : (
 									<>
 										<p className="mb-3 text-gray-700">
-											The Widgetify extension only requires essential permissions for its
-											main functionality:
+											The Widgetify extension only requires
+											essential permissions for its main
+											functionality:
 										</p>
-										<ul className="ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
-											<li>Access to new tab for displaying widgets</li>
+										<ul
+											className="ml-6 space-y-2 text-gray-700 list-disc"
+											dir="ltr"
+										>
 											<li>
-												Internet access to retrieve public data such as weather,
-												cryptocurrency prices, etc.
+												Access to new tab for displaying widgets
+											</li>
+											<li>
+												Internet access to retrieve public data
+												such as weather, cryptocurrency prices,
+												etc.
 											</li>
 										</ul>
 									</>
@@ -178,45 +204,61 @@ export default function PrivacyPolicy() {
 								{language === 'fa' ? (
 									<>
 										<p className="mb-3 text-gray-700">
-											ویجتی‌فای امکان اتصال اختیاری به حساب گوگل شما را فراهم می‌کند تا
-											بتوانید از ویجت‌های مرتبط استفاده کنید. این اتصال کاملاً اختیاری است و
+											ویجتی‌فای امکان اتصال اختیاری به حساب گوگل شما
+											را فراهم می‌کند تا بتوانید از ویجت‌های مرتبط
+											استفاده کنید. این اتصال کاملاً اختیاری است و
 											شامل دو گزینه زیر می‌باشد:
 										</p>
 										<ul className="mr-6 space-y-2 text-gray-700 list-disc">
 											<li>
-												<strong>دسترسی خواندنی گوگل کلندر:</strong> برای نمایش رویدادهای
-												آینده در ویجت تقویم
+												<strong>
+													دسترسی خواندنی گوگل کلندر:
+												</strong>{' '}
+												برای نمایش رویدادهای آینده در ویجت تقویم
 											</li>
 										</ul>
 										<div className="p-3 mt-4 border-r-4 border-blue-500 bg-blue-50">
 											<p className="text-sm text-blue-800">
-												<strong>مهم:</strong> هیچ‌یک از این داده‌ها توسط ما ذخیره نمی‌شوند.
-												ما صرفاً به عنوان واسط عمل کرده و داده‌ها را مستقیماً از گوگل دریافت
-												کرده و به افزونه ارسال می‌کنیم. تمام ارتباطات از طریق پروتکل‌های امن
-												HTTPS/TLS انجام شده و توکن‌های دسترسی دارای مدت زمان محدود هستند.
+												<strong>مهم:</strong> هیچ‌یک از این داده‌ها
+												توسط ما ذخیره نمی‌شوند. ما صرفاً به عنوان
+												واسط عمل کرده و داده‌ها را مستقیماً از گوگل
+												دریافت کرده و به افزونه ارسال می‌کنیم. تمام
+												ارتباطات از طریق پروتکل‌های امن HTTPS/TLS
+												انجام شده و توکن‌های دسترسی دارای مدت زمان
+												محدود هستند.
 											</p>
 										</div>
 									</>
 								) : (
 									<>
 										<p className="mb-3 text-gray-700">
-											Widgetify provides optional Google account integration to enable you
-											to use related widgets. This connection is completely optional and
-											includes the following two options:
+											Widgetify provides optional Google account
+											integration to enable you to use related
+											widgets. This connection is completely
+											optional and includes the following two
+											options:
 										</p>
-										<ul className="ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+										<ul
+											className="ml-6 space-y-2 text-gray-700 list-disc"
+											dir="ltr"
+										>
 											<li>
-												<strong>Google Calendar read access:</strong> To display upcoming
-												events in the calendar widget
+												<strong>
+													Google Calendar read access:
+												</strong>{' '}
+												To display upcoming events in the calendar
+												widget
 											</li>
 										</ul>
 										<div className="p-3 mt-4 border-l-4 border-blue-500 bg-blue-50">
 											<p className="text-sm text-blue-800">
-												<strong>Important:</strong> None of this data is stored by us. We
-												merely act as an intermediary, receiving data directly from Google
-												and sending it to the extension. All communications are conducted
-												over secure HTTPS/TLS protocols, and access tokens have limited
-												lifetimes.
+												<strong>Important:</strong> None of this
+												data is stored by us. We merely act as an
+												intermediary, receiving data directly from
+												Google and sending it to the extension.
+												All communications are conducted over
+												secure HTTPS/TLS protocols, and access
+												tokens have limited lifetimes.
 											</p>
 										</div>
 									</>
@@ -226,19 +268,22 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۴. استفاده از داده‌ها' : '4. Data Usage'}
+								{language === 'fa'
+									? '۴. استفاده از داده‌ها'
+									: '4. Data Usage'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										در صورتی که شما به صورت اختیاری نام و ایمیل خود را ارائه کنید، ما از
-										این اطلاعات تنها برای همگام‌سازی تنظیمات شما بین دستگاه‌های مختلف
-										استفاده می‌کنیم.
+										در صورتی که شما به صورت اختیاری نام و ایمیل خود را
+										ارائه کنید، ما از این اطلاعات تنها برای همگام‌سازی
+										تنظیمات شما بین دستگاه‌های مختلف استفاده می‌کنیم.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										If you optionally provide your name and email, we will only use this
-										information to synchronize your settings across different devices.
+										If you optionally provide your name and email, we
+										will only use this information to synchronize your
+										settings across different devices.
 									</p>
 								)}
 							</div>
@@ -254,26 +299,32 @@ export default function PrivacyPolicy() {
 								{language === 'fa' ? (
 									<>
 										<p className="mb-3 text-gray-700">
-											ویجتی‌فای از مکانیزم‌های قوی برای حفاظت از داده‌های حساس کاربران
-											استفاده می‌کند:
+											ویجتی‌فای از مکانیزم‌های قوی برای حفاظت از
+											داده‌های حساس کاربران استفاده می‌کند:
 										</p>
-										<h3 className="mb-2 text-lg font-semibold">حفاظت از داده‌های گوگل:</h3>
+										<h3 className="mb-2 text-lg font-semibold">
+											حفاظت از داده‌های گوگل:
+										</h3>
 										<ul className="mb-4 mr-6 space-y-2 text-gray-700 list-disc">
 											<li>
-												<strong>OAuth 2.0:</strong> از پروتکل امن OAuth 2.0 برای احراز
-												هویت و دسترسی به داده‌های گوگل استفاده می‌کنیم
+												<strong>OAuth 2.0:</strong> از پروتکل امن
+												OAuth 2.0 برای احراز هویت و دسترسی به
+												داده‌های گوگل استفاده می‌کنیم
 											</li>
 											<li>
-												<strong>دسترسی محدود:</strong> فقط به حداقل دسترسی‌های مورد نیاز
-												(تقویم) درخواست می‌کنیم
+												<strong>دسترسی محدود:</strong> فقط به
+												حداقل دسترسی‌های مورد نیاز (تقویم) درخواست
+												می‌کنیم
 											</li>
 											<li>
-												<strong>عدم ذخیره‌سازی:</strong> داده‌های دریافتی از گوگل در سرورهای
-												ما ذخیره نمی‌شوند
+												<strong>عدم ذخیره‌سازی:</strong> داده‌های
+												دریافتی از گوگل در سرورهای ما ذخیره
+												نمی‌شوند
 											</li>
 											<li>
-												<strong>انقضای توکن:</strong> توکن‌های دسترسی دارای مدت زمان محدود
-												هستند و به طور منظم تجدید می‌شوند
+												<strong>انقضای توکن:</strong> توکن‌های
+												دسترسی دارای مدت زمان محدود هستند و به طور
+												منظم تجدید می‌شوند
 											</li>
 										</ul>
 										<h3 className="mb-2 text-lg font-semibold">
@@ -281,59 +332,73 @@ export default function PrivacyPolicy() {
 										</h3>
 										<ul className="mb-4 mr-6 space-y-2 text-gray-700 list-disc">
 											<li>
-												<strong>هشینگ رمز عبور:</strong> رمزهای عبور با استفاده از
-												الگوریتم‌های قوی هش می‌شوند
-											</li>
-											<li>
-												<strong>دسترسی محدود:</strong> فقط پرسنل مجاز به سیستم‌های پایگاه
-												داده دسترسی دارند
-											</li>
-											<li>
-												<strong>نظارت و لاگ:</strong> تمام دسترسی‌ها به داده‌ها ثبت و نظارت
+												<strong>هشینگ رمز عبور:</strong> رمزهای
+												عبور با استفاده از الگوریتم‌های قوی هش
 												می‌شوند
+											</li>
+											<li>
+												<strong>دسترسی محدود:</strong> فقط پرسنل
+												مجاز به سیستم‌های پایگاه داده دسترسی دارند
+											</li>
+											<li>
+												<strong>نظارت و لاگ:</strong> تمام
+												دسترسی‌ها به داده‌ها ثبت و نظارت می‌شوند
 											</li>
 										</ul>
 									</>
 								) : (
 									<>
 										<p className="mb-3 text-gray-700">
-											Widgetify employs robust mechanisms to protect users' sensitive
-											data:
+											Widgetify employs robust mechanisms to protect
+											users' sensitive data:
 										</p>
 										<h3 className="mb-2 text-lg font-semibold">
 											Google Data Protection:
 										</h3>
-										<ul className="mb-4 ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+										<ul
+											className="mb-4 ml-6 space-y-2 text-gray-700 list-disc"
+											dir="ltr"
+										>
 											<li>
-												<strong>OAuth 2.0:</strong> We use the secure OAuth 2.0 protocol
-												for authentication and access to Google data
+												<strong>OAuth 2.0:</strong> We use the
+												secure OAuth 2.0 protocol for
+												authentication and access to Google data
 											</li>
 											<li>
-												<strong>Limited Access:</strong> We only request minimal necessary
-												permissions (read-only calendar)
+												<strong>Limited Access:</strong> We only
+												request minimal necessary permissions
+												(read-only calendar)
 											</li>
 											<li>
-												<strong>No Storage:</strong> Data received from Google is not
-												stored on our servers
+												<strong>No Storage:</strong> Data received
+												from Google is not stored on our servers
 											</li>
 											<li>
-												<strong>Token Expiration:</strong> Access tokens have limited
-												lifetimes and are regularly refreshed
+												<strong>Token Expiration:</strong> Access
+												tokens have limited lifetimes and are
+												regularly refreshed
 											</li>
 										</ul>
-										<h3 className="mb-2 text-lg font-semibold">User Data Protection:</h3>
-										<ul className="mb-4 ml-6 space-y-2 text-gray-700 list-disc" dir="ltr">
+										<h3 className="mb-2 text-lg font-semibold">
+											User Data Protection:
+										</h3>
+										<ul
+											className="mb-4 ml-6 space-y-2 text-gray-700 list-disc"
+											dir="ltr"
+										>
 											<li>
-												<strong>Password Hashing:</strong> Passwords are hashed using
-												strong algorithms
+												<strong>Password Hashing:</strong>{' '}
+												Passwords are hashed using strong
+												algorithms
 											</li>
 											<li>
-												<strong>Access Control:</strong> Only authorized personnel have
-												access to database systems
+												<strong>Access Control:</strong> Only
+												authorized personnel have access to
+												database systems
 											</li>
 											<li>
-												<strong>Monitoring and Logging:</strong> All data access is logged
-												and monitored
+												<strong>Monitoring and Logging:</strong>{' '}
+												All data access is logged and monitored
 											</li>
 										</ul>
 									</>
@@ -343,16 +408,20 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۶. اشتراک‌گذاری داده‌ها' : '6. Data Sharing'}
+								{language === 'fa'
+									? '۶. اشتراک‌گذاری داده‌ها'
+									: '6. Data Sharing'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										ویجتی‌فای هیچ داده کاربری را با اشخاص ثالث به اشتراک نمی‌گذارد.
+										ویجتی‌فای هیچ داده کاربری را با اشخاص ثالث به
+										اشتراک نمی‌گذارد.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										Widgetify does not share any user data with third parties.
+										Widgetify does not share any user data with third
+										parties.
 									</p>
 								)}
 							</div>
@@ -365,14 +434,15 @@ export default function PrivacyPolicy() {
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										ویجتی‌فای یک پروژه متن‌باز است و کد آن برای بررسی عمومی در دسترس است.
-										این شفافیت به کاربران امکان می‌دهد از امنیت افزونه اطمینان حاصل کنند.
+										ویجتی‌فای یک پروژه متن‌باز است و کد آن برای بررسی
+										عمومی در دسترس است. این شفافیت به کاربران امکان
+										می‌دهد از امنیت افزونه اطمینان حاصل کنند.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										Widgetify is an open-source project, and its code is available for
-										public review. This transparency allows users to verify the
-										extension's security.
+										Widgetify is an open-source project, and its code
+										is available for public review. This transparency
+										allows users to verify the extension's security.
 									</p>
 								)}
 							</div>
@@ -380,22 +450,26 @@ export default function PrivacyPolicy() {
 
 						<section>
 							<h2 className="pb-2 mb-3 text-xl font-bold border-b">
-								{language === 'fa' ? '۸. نگه‌داری داده‌ها' : '8. Data Retention'}
+								{language === 'fa'
+									? '۸. نگه‌داری داده‌ها'
+									: '8. Data Retention'}
 							</h2>
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										داده‌های مرتبط با تنظیمات کاربر و اطلاعات ورود (در صورت فعال‌سازی
-										همگام‌سازی) تنها تا زمانی که کاربر از سرویس استفاده می‌کند نگهداری
-										می‌شوند. در صورت غیرفعال شدن حساب یا عدم استفاده طولانی‌مدت، این داده‌ها
-										ممکن است به صورت خودکار حذف شوند.
+										داده‌های مرتبط با تنظیمات کاربر و اطلاعات ورود (در
+										صورت فعال‌سازی همگام‌سازی) تنها تا زمانی که کاربر از
+										سرویس استفاده می‌کند نگهداری می‌شوند. در صورت
+										غیرفعال شدن حساب یا عدم استفاده طولانی‌مدت، این
+										داده‌ها ممکن است به صورت خودکار حذف شوند.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										User settings data and login information (if synchronization is
-										enabled) are only retained as long as the user uses the service. In
-										case of account deactivation or extended inactivity, this data may be
-										automatically deleted.
+										User settings data and login information (if
+										synchronization is enabled) are only retained as
+										long as the user uses the service. In case of
+										account deactivation or extended inactivity, this
+										data may be automatically deleted.
 									</p>
 								)}
 							</div>
@@ -408,18 +482,24 @@ export default function PrivacyPolicy() {
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										کاربران می‌توانند در هر زمان درخواست حذف کامل داده‌های خود را با ارسال
-										ایمیل به{' '}
-										<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
+										کاربران می‌توانند در هر زمان درخواست حذف کامل
+										داده‌های خود را با ارسال ایمیل به{' '}
+										<a
+											href="mailto:privacy@widgetify.ir"
+											className="text-blue-600"
+										>
 											privacy@widgetify.ir
 										</a>{' '}
 										ثبت کنند.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										Users can request complete deletion of their data at any time by
-										sending an email to{' '}
-										<a href="mailto:privacy@widgetify.ir" className="text-blue-600">
+										Users can request complete deletion of their data
+										at any time by sending an email to{' '}
+										<a
+											href="mailto:privacy@widgetify.ir"
+											className="text-blue-600"
+										>
 											privacy@widgetify.ir
 										</a>
 										.
@@ -437,13 +517,14 @@ export default function PrivacyPolicy() {
 							<div className="ml-4">
 								{language === 'fa' ? (
 									<p className="mb-3 text-gray-700">
-										ممکن است این سیاست را به‌روزرسانی کنیم. در صورت ایجاد تغییرات اساسی، به
-										کاربران اطلاع‌رسانی خواهیم کرد.
+										ممکن است این سیاست را به‌روزرسانی کنیم. در صورت
+										ایجاد تغییرات اساسی، به کاربران اطلاع‌رسانی خواهیم
+										کرد.
 									</p>
 								) : (
 									<p className="mb-3 text-gray-700">
-										We may update this policy. In case of significant changes, we will
-										notify users.
+										We may update this policy. In case of significant
+										changes, we will notify users.
 									</p>
 								)}
 							</div>
@@ -457,21 +538,25 @@ export default function PrivacyPolicy() {
 								{language === 'fa' ? (
 									<>
 										<p className="mb-3 text-gray-700">
-											اگر سؤالی درباره این سیاست حریم خصوصی دارید، لطفاً از طریق ایمیل زیر
-											با ما تماس بگیرید:
+											اگر سؤالی درباره این سیاست حریم خصوصی دارید،
+											لطفاً از طریق ایمیل زیر با ما تماس بگیرید:
 										</p>
 										<p className="text-blue-600">
-											<a href="mailto:privacy@widgetify.ir">privacy@widgetify.ir</a>
+											<a href="mailto:privacy@widgetify.ir">
+												privacy@widgetify.ir
+											</a>
 										</p>
 									</>
 								) : (
 									<>
 										<p className="mb-3 text-gray-700">
-											If you have any questions about this privacy policy, please contact
-											us via the email below:
+											If you have any questions about this privacy
+											policy, please contact us via the email below:
 										</p>
 										<p className="text-blue-600">
-											<a href="mailto:privacy@widgetify.ir">privacy@widgetify.ir</a>
+											<a href="mailto:privacy@widgetify.ir">
+												privacy@widgetify.ir
+											</a>
 										</p>
 									</>
 								)}
@@ -483,8 +568,8 @@ export default function PrivacyPolicy() {
 					<div className="p-4 mt-8 border rounded-lg bg-gray-50">
 						{language === 'fa' ? (
 							<p className="text-gray-700">
-								<strong>توجه:</strong> ویجتی‌فای یک پروژه متن‌باز است و کد آن به صورت عمومی
-								در
+								<strong>توجه:</strong> ویجتی‌فای یک پروژه متن‌باز است و کد
+								آن به صورت عمومی در
 								<a
 									href="https://github.com/widgetify-app"
 									className="mx-1 text-blue-600 hover:underline"
@@ -497,8 +582,8 @@ export default function PrivacyPolicy() {
 							</p>
 						) : (
 							<p className="text-gray-700">
-								<strong>Note:</strong> Widgetify is an open-source project and its code is
-								publicly available on
+								<strong>Note:</strong> Widgetify is an open-source project
+								and its code is publicly available on
 								<a
 									href="https://github.com/widgetify-app"
 									className="mx-1 text-blue-600 hover:underline"
@@ -515,11 +600,16 @@ export default function PrivacyPolicy() {
 					{/* Back button */}
 					<div className="pt-4 mt-8 border-t">
 						<Link
-							to="/"
+							href="/"
 							className="inline-flex items-center text-blue-600 hover:underline"
 						>
-							<ArrowLeft size={16} className={language === 'fa' ? 'ml-1' : 'mr-1'} />
-							{language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Return to Home Page'}
+							<ArrowLeft
+								size={16}
+								className={language === 'fa' ? 'ml-1' : 'mr-1'}
+							/>
+							{language === 'fa'
+								? 'بازگشت به صفحه اصلی'
+								: 'Return to Home Page'}
 						</Link>
 					</div>
 				</div>

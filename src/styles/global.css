@@ -1,10 +1,11 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Thin */
 @font-face {
   font-family: "Vazir";
-
-  src: url("../fonts/vazir/Vazirmatn-FD-Thin.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Thin.woff2") format("woff2");
   font-weight: 100;
   font-style: thin;
 }
@@ -12,8 +13,7 @@
 /* ExtraLight */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-ExtraLight.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-ExtraLight.woff2") format("woff2");
   font-weight: 200;
   font-style: extralight;
 }
@@ -21,8 +21,7 @@
 /* Light */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-Light.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: light;
 }
@@ -30,8 +29,7 @@
 /* Regular */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-Regular.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -39,8 +37,7 @@
 /* Medium */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-Medium.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: medium;
 }
@@ -48,8 +45,7 @@
 /* SemiBold */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-SemiBold.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: semibold;
 }
@@ -57,8 +53,7 @@
 /* Bold */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-Bold.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: bold;
 }
@@ -66,8 +61,7 @@
 /* Black */
 @font-face {
   font-family: "Vazir";
-  src:
-    url("../fonts/vazir/Vazirmatn-FD-Black.woff2") format("woff2");
+  src: url("/fonts/vazir/Vazirmatn-FD-Black.woff2") format("woff2");
   font-weight: 900;
   font-style: black;
 }

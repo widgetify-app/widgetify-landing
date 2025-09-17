@@ -1,5 +1,7 @@
+'use client'
+
 import { ArrowLeft, Home, Search } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useDocumentTitle } from '../hooks'
 
 export default function NotFound() {
@@ -26,13 +28,14 @@ export default function NotFound() {
 						متاسفیم، صفحه‌ای که به دنبال آن بودید وجود ندارد
 					</h2>
 					<p className="mb-8 text-gray-600">
-						ممکن است آدرس اشتباه وارد کرده باشید یا این صفحه منتقل یا حذف شده باشد.
-						می‌توانید به صفحه اصلی بازگردید یا از لینک‌های زیر استفاده کنید.
+						ممکن است آدرس اشتباه وارد کرده باشید یا این صفحه منتقل یا حذف شده
+						باشد. می‌توانید به صفحه اصلی بازگردید یا از لینک‌های زیر استفاده
+						کنید.
 					</p>
 
 					<div className="flex flex-wrap justify-center gap-4">
 						<Link
-							to="/"
+							href="/"
 							className="inline-flex items-center px-6 py-3 font-medium text-white transition rounded-lg bg-gradient-to-br from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800"
 						>
 							<Home className="ml-2" size={20} />
@@ -56,15 +59,17 @@ export default function NotFound() {
 					</h3>
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
 						<Link
-							to="/extension"
+							href="/extension"
 							className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
 						>
 							<h4 className="font-medium">اکستنشن مرورگر</h4>
-							<p className="text-sm text-gray-500">افزونه ویجتی‌فای برای مرورگرها</p>
+							<p className="text-sm text-gray-500">
+								افزونه ویجتی‌فای برای مرورگرها
+							</p>
 						</Link>
 
 						<Link
-							to="/donate"
+							href="/donate"
 							className="p-4 bg-white border border-gray-200 rounded-lg hover:border-blue-200 hover:shadow-sm"
 						>
 							<h4 className="font-medium">حمایت مالی</h4>

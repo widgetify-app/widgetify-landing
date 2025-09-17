@@ -1,7 +1,10 @@
+'use client'
+
 import { useMutation } from '@tanstack/react-query'
 import { AlertCircle, CheckCircle, Lock, Mail, User, UserPlus } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import FormInput from '../components/auth/FormInput'
 import { useAuth } from '../contexts/AuthContext'
 import { useDocumentTitle } from '../hooks'
@@ -12,23 +15,23 @@ import { translateError } from '../utils/errorTranslation'
 export default function Register() {
 	useDocumentTitle('ثبت نام')
 
-	const [formData, setFormData] = useState<RegisterRequest & { confirmPassword: string }>(
-		{
-			name: '',
-			email: '',
-			password: '',
-			confirmPassword: '',
-		},
-	)
+	const [formData, setFormData] = useState<
+		RegisterRequest & { confirmPassword: string }
+	>({
+		name: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+	})
 	const [errors, setErrors] = useState<Record<string, string>>({})
-	const navigate = useNavigate()
+	const router = useRouter()
 	const { login } = useAuth()
 
 	const registerMutation = useMutation({
 		mutationFn: authService.register,
 		onSuccess: (token) => {
 			login(token)
-			navigate('/profile')
+			router.push('/profile')
 		},
 		onError: (error: any) => {
 			// Use enhanced error translation utility
@@ -197,7 +200,10 @@ export default function Register() {
 					<div className="mt-6 text-center">
 						<p className="text-gray-600">
 							حساب کاربری دارید؟{' '}
-							<Link to="/login" className="font-medium text-blue-600 hover:underline">
+							<Link
+								href="/login"
+								className="font-medium text-blue-600 hover:underline"
+							>
 								ورود
 							</Link>
 						</p>

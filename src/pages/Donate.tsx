@@ -1,10 +1,11 @@
+'use client'
+
 import { CheckCircle, Coins, Copy, CreditCard, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 import { RiBtcFill } from 'react-icons/ri'
 import ContainerWrapper from '../components/ContainerWrapper'
 import { useDocumentTitle } from '../hooks'
 
-// Donation platforms data
 const donationPlatforms = [
 	{
 		name: 'دارمت',
@@ -53,7 +54,7 @@ export default function Donate() {
 
 	const [copiedAddress, setCopiedAddress] = useState<string | null>(null)
 	const [donationMethod, setDonationMethod] = useState<'traditional' | 'crypto'>(
-		'traditional',
+		'traditional'
 	)
 	const [selectedPlatform, setSelectedPlatform] = useState<number | null>(null)
 	const [selectedCrypto, setSelectedCrypto] = useState<number | null>(null)
@@ -79,8 +80,8 @@ export default function Donate() {
 					</h1>
 
 					<p className="max-w-2xl mx-auto mb-6 text-lg font-light text-gray-600 md:text-xl animate-fade-in-up">
-						با حمایت مالی از ویجتی‌فای، به ما کمک کنید تا خدمات بهتری ارائه دهیم. تمامی
-						مبالغ دریافتی صرف توسعه و نگهداری پروژه خواهد شد.
+						با حمایت مالی از ویجتی‌فای، به ما کمک کنید تا خدمات بهتری ارائه
+						دهیم. تمامی مبالغ دریافتی صرف توسعه و نگهداری پروژه خواهد شد.
 					</p>
 
 					<div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-3 mb-6 animate-scale-in" />
@@ -95,8 +96,8 @@ export default function Donate() {
 								راه‌های حمایت از پروژه
 							</h2>
 							<p className="max-w-2xl mx-auto font-light text-gray-600">
-								شما می‌توانید با روش‌های مختلف از ویجتی‌فای حمایت کنید و به بهبود عملکرد آن
-								کمک نمایید
+								شما می‌توانید با روش‌های مختلف از ویجتی‌فای حمایت کنید و به
+								بهبود عملکرد آن کمک نمایید
 							</p>
 						</div>
 
@@ -143,14 +144,19 @@ export default function Donate() {
 											}`}
 											onClick={() => setSelectedPlatform(index)}
 										>
-											<div className={`px-4 py-3 bg-gradient-to-r ${platform.color}`}>
+											<div
+												className={`px-4 py-3 bg-gradient-to-r ${platform.color}`}
+											>
 												<div className="flex items-center text-white">
-													<h3 className="text-xl font-bold">{platform.name}</h3>
+													<h3 className="text-xl font-bold">
+														{platform.name}
+													</h3>
 												</div>
 											</div>
 											<div className="p-6 text-center">
 												<p className="mb-5 font-light text-gray-600">
-													پرداخت آنلاین سریع و آسان از طریق {platform.name}
+													پرداخت آنلاین سریع و آسان از طریق{' '}
+													{platform.name}
 												</p>
 												<a
 													href={platform.url}
@@ -158,7 +164,10 @@ export default function Donate() {
 													rel="noopener noreferrer"
 													className="flex items-center justify-center w-full px-4 py-3 font-medium text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-[1.02] active:scale-[0.98]"
 												>
-													<ExternalLink size={18} className="ml-2" />
+													<ExternalLink
+														size={18}
+														className="ml-2"
+													/>
 													پرداخت با {platform.name}
 												</a>
 											</div>
@@ -181,12 +190,17 @@ export default function Donate() {
 										onClick={() => setSelectedCrypto(index)}
 									>
 										{/* Currency Header */}
-										<div className={`px-6 py-4 bg-gradient-to-r ${crypto.color}`}>
+										<div
+											className={`px-6 py-4 bg-gradient-to-r ${crypto.color}`}
+										>
 											<div className="flex items-center justify-between">
 												<div className="flex items-center gap-2">
 													<div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
 														{crypto.name === 'BTC' ? (
-															<RiBtcFill size={24} className="text-amber-500" />
+															<RiBtcFill
+																size={24}
+																className="text-amber-500"
+															/>
 														) : (
 															<svg
 																className="w-6 h-6 text-green-500"
@@ -198,7 +212,9 @@ export default function Donate() {
 														)}
 													</div>
 													<div className="text-white">
-														<h3 className="text-xl font-bold">{crypto.name}</h3>
+														<h3 className="text-xl font-bold">
+															{crypto.name}
+														</h3>
 														{crypto.network && (
 															<span className="text-xs opacity-90">
 																شبکه {crypto.network}
@@ -227,15 +243,20 @@ export default function Donate() {
 													<button
 														onClick={(e) => {
 															e.stopPropagation()
-															crypto.address && handleCopyAddress(crypto.address)
+															crypto.address &&
+																handleCopyAddress(
+																	crypto.address
+																)
 														}}
 														className={`absolute top-2 left-2 p-2 transition-colors rounded-md ${
-															copiedAddress === crypto.address
+															copiedAddress ===
+															crypto.address
 																? 'bg-green-100 text-green-600'
 																: 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-600'
 														}`}
 													>
-														{copiedAddress === crypto.address ? (
+														{copiedAddress ===
+														crypto.address ? (
 															<CheckCircle size={16} />
 														) : (
 															<Copy size={16} />
@@ -248,7 +269,9 @@ export default function Donate() {
 											<div className="flex items-center justify-center p-4">
 												<div className="flex items-center justify-center w-32 h-32 bg-gray-100 rounded-lg">
 													<div className="text-center">
-														<div className="text-xs text-gray-400">اسکن کنید</div>
+														<div className="text-xs text-gray-400">
+															اسکن کنید
+														</div>
 														<div className="w-24 h-24 m-auto mt-1 overflow-hidden border border-gray-300">
 															<img
 																src={crypto.qr}
@@ -264,7 +287,10 @@ export default function Donate() {
 												<button
 													onClick={(e) => {
 														e.stopPropagation()
-														crypto.address && handleCopyAddress(crypto.address)
+														crypto.address &&
+															handleCopyAddress(
+																crypto.address
+															)
 													}}
 													className={`w-full cursor-pointer flex items-center justify-center px-4 py-3 transition rounded-lg hover:scale-[1.02] active:scale-[0.98] ${
 														copiedAddress === crypto.address
@@ -274,12 +300,18 @@ export default function Donate() {
 												>
 													{copiedAddress === crypto.address ? (
 														<>
-															<CheckCircle size={18} className="ml-2" />
+															<CheckCircle
+																size={18}
+																className="ml-2"
+															/>
 															آدرس کپی شد
 														</>
 													) : (
 														<>
-															<Copy size={18} className="ml-2" />
+															<Copy
+																size={18}
+																className="ml-2"
+															/>
 															کپی آدرس {crypto.name}
 														</>
 													)}
@@ -300,8 +332,8 @@ export default function Donate() {
 							از حمایت شما سپاسگزاریم
 						</h2>
 						<p className="max-w-2xl mx-auto mb-5 font-light text-gray-600">
-							حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز بهتر کنیم. با تشکر
-							از اعتماد شما.
+							حمایت‌های شما به ما انگیزه می‌دهد تا ویجتی‌فای را روز به روز بهتر
+							کنیم. با تشکر از اعتماد شما.
 						</p>
 
 						<div className="w-24 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 animate-scale-in" />

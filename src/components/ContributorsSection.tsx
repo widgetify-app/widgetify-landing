@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Github } from 'lucide-react'
+import Image from 'next/image'
 
 interface Contributor {
 	login: string
@@ -30,11 +31,10 @@ const fetchContributors = async () => {
 				throw new Error(json.message || 'خطایی رخ داد')
 			}
 			return json
-		}),
+		})
 	)
 
 	const contributorMap = new Map()
-	// biome-ignore lint/complexity/noForEach: <explanation>
 	contributorsData.flat().forEach((contributor) => {
 		if (contributorMap.has(contributor.login)) {
 			const existing = contributorMap.get(contributor.login)
@@ -45,7 +45,7 @@ const fetchContributors = async () => {
 	})
 
 	const uniqueContributors = Array.from(contributorMap.values()).sort(
-		(a, b) => b.contributions - a.contributions,
+		(a, b) => b.contributions - a.contributions
 	)
 
 	return uniqueContributors
@@ -81,7 +81,7 @@ export default function ContributorsSection() {
 								className="flex flex-col items-center has-hover-persist"
 							>
 								<div className="relative mb-3 overflow-hidden transition-all duration-500 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100">
-									<img
+									<Image
 										src={contributor.avatar_url}
 										alt={contributor.login}
 										className="object-cover w-16 h-16 transition-all ease-in-out filter grayscale opacity-70 hover-persist-item"

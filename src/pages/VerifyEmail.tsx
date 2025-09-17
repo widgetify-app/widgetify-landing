@@ -1,25 +1,29 @@
 import { AlertCircle, CheckCircle } from 'lucide-react'
+
+;('use client')
+
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
 import { useDocumentTitle } from '../hooks'
 import { authService } from '../services/authService'
 
 export default function VerifyEmail() {
 	useDocumentTitle('تأیید ایمیل')
 
-	const [searchParams] = useSearchParams()
+	const searchParams = useSearchParams()
 	const [isVerifying, setIsVerifying] = useState(true)
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
-	const token = searchParams.get('token')
-	const email = searchParams.get('email')
+	const token = searchParams?.get('token')
+	const email = searchParams?.get('email')
 
 	useEffect(() => {
 		const verifyEmail = async () => {
 			if (!token || !email) {
 				setError(
-					'لینک تایید ایمیل نامعتبر است. لطفاً مطمئن شوید که از لینک صحیح استفاده می‌کنید.',
+					'لینک تایید ایمیل نامعتبر است. لطفاً مطمئن شوید که از لینک صحیح استفاده می‌کنید.'
 				)
 				setIsVerifying(false)
 				return
@@ -59,7 +63,8 @@ export default function VerifyEmail() {
 					</h1>
 
 					<p className="max-w-2xl mb-6 text-lg text-gray-600 md:text-xl animate-fade-in-up">
-						با تایید حساب خود، به تمامی امکانات و ویژگی‌های ویجتی‌فای دسترسی پیدا می‌کنید.
+						با تایید حساب خود، به تمامی امکانات و ویژگی‌های ویجتی‌فای دسترسی
+						پیدا می‌کنید.
 					</p>
 				</div>
 			</div>
@@ -71,9 +76,12 @@ export default function VerifyEmail() {
 							<div className="inline-flex items-center justify-center mx-auto mb-4 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl animate-pulse">
 								<div className="border-2 border-white rounded-full w-7 h-7 border-t-transparent animate-spin"></div>
 							</div>
-							<h2 className="mb-2 text-2xl font-bold">در حال تایید ایمیل</h2>
+							<h2 className="mb-2 text-2xl font-bold">
+								در حال تایید ایمیل
+							</h2>
 							<p className="mb-5 text-gray-600">
-								لطفاً صبر کنید، در حال بررسی و تایید آدرس ایمیل شما هستیم...
+								لطفاً صبر کنید، در حال بررسی و تایید آدرس ایمیل شما
+								هستیم...
 							</p>
 						</div>
 					) : isSuccess ? (
@@ -83,12 +91,12 @@ export default function VerifyEmail() {
 							</div>
 							<h2 className="mb-2 text-2xl font-bold">ایمیل تایید شد!</h2>
 							<p className="mb-5 text-gray-600">
-								آدرس ایمیل شما با موفقیت تایید شد. اکنون می‌توانید از تمامی امکانات حساب
-								کاربری خود استفاده کنید.
+								آدرس ایمیل شما با موفقیت تایید شد. اکنون می‌توانید از تمامی
+								امکانات حساب کاربری خود استفاده کنید.
 							</p>
 							<div className="flex flex-col gap-3">
 								<Link
-									to="/"
+									href="/"
 									className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
 								>
 									بازگشت به صفحه اصلی
@@ -100,11 +108,13 @@ export default function VerifyEmail() {
 							<div className="inline-flex items-center justify-center mx-auto mb-4 w-14 h-14 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl">
 								<AlertCircle className="text-white w-7 h-7" />
 							</div>
-							<h2 className="mb-2 text-2xl font-bold">خطا در تایید ایمیل</h2>
+							<h2 className="mb-2 text-2xl font-bold">
+								خطا در تایید ایمیل
+							</h2>
 							<p className="mb-5 font-light text-red-600">{error}</p>
 							<div className="flex flex-col gap-3">
 								<Link
-									to="/"
+									href="/"
 									className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
 								>
 									بازگشت به صفحه اصلی

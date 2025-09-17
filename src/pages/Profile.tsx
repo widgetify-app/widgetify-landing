@@ -1,8 +1,11 @@
+'use client'
+
 import { Calendar, Edit3, LogOut, Mail, Shield, User } from 'lucide-react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { FiAtSign } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
 import EditProfileForm from '../components/profile/EditProfileForm'
 import { useAuth } from '../contexts/AuthContext'
 import { useDocumentTitle } from '../hooks'
@@ -13,16 +16,16 @@ export default function Profile() {
 	useDocumentTitle('پروفایل کاربری')
 	const { user, logout, isLoading } = useAuth()
 	const [userData, setUserData] = useState<UserType | null>(user)
-	const navigate = useNavigate()
+	const router = useRouter()
 	const [isEditing, setIsEditing] = useState(false)
 	const [isVerifying, setIsVerifying] = useState(false)
 	const [verificationSuccess, setVerificationSuccess] = useState(false)
 
 	useEffect(() => {
 		if (!isLoading && !userData) {
-			navigate('/login')
+			router.push('/login')
 		}
-	}, [isLoading, userData, navigate])
+	}, [isLoading, userData, router])
 
 	if (!isLoading && !userData) {
 		return null
@@ -30,7 +33,7 @@ export default function Profile() {
 
 	const handleLogout = () => {
 		logout()
-		navigate('/login')
+		router.push('/login')
 	}
 
 	const handleEditClick = () => {
@@ -101,12 +104,12 @@ export default function Profile() {
 					<div className="flex flex-col items-center md:flex-row md:gap-2">
 						<div className="mb-4 md:mb-0">
 							<div className="w-24 h-24 overflow-hidden border-4 border-white rounded-full">
-								<img
+								<Image
 									src={
 										userData?.avatar ||
 										`https://ui-avatars.com/api/?name=${userData?.name || 'userData'}&background=random&color=fff`
 									}
-									alt={userData?.name}
+									alt={userData?.name || 'User Avatar'}
 									className="object-cover w-full h-full"
 								/>
 							</div>
@@ -166,50 +169,80 @@ export default function Profile() {
 									<div className="flex items-center">
 										<User className="ml-2 text-gray-500" size={20} />
 										<div>
-											<div className="text-sm text-gray-500">نام</div>
-											<div className="font-medium">{userData?.name}</div>
+											<div className="text-sm text-gray-500">
+												نام
+											</div>
+											<div className="font-medium">
+												{userData?.name}
+											</div>
 										</div>
 									</div>
 									<div className="flex items-center">
-										<FiAtSign className="ml-2 text-gray-500" size={20} />
+										<FiAtSign
+											className="ml-2 text-gray-500"
+											size={20}
+										/>
 										<div>
-											<div className="text-sm text-gray-500">نام کاربری</div>
-											<div className="font-medium">{userData?.username}</div>
+											<div className="text-sm text-gray-500">
+												نام کاربری
+											</div>
+											<div className="font-medium">
+												{userData?.username}
+											</div>
 										</div>
 									</div>
 									<div className="flex items-center">
 										<Mail className="ml-2 text-gray-500" size={20} />
 										<div>
-											<div className="text-sm text-gray-500">ایمیل</div>
-											<div className="font-medium">{userData?.email}</div>
+											<div className="text-sm text-gray-500">
+												ایمیل
+											</div>
+											<div className="font-medium">
+												{userData?.email}
+											</div>
 										</div>
 									</div>
 									<div className="flex items-center">
 										<User className="ml-2 text-gray-500" size={20} />
 										<div>
-											<div className="text-sm text-gray-500">جنسیت</div>
+											<div className="text-sm text-gray-500">
+												جنسیت
+											</div>
 											<div className="font-medium">
 												{getGenderDisplay(userData?.gender)}
 											</div>
 										</div>
 									</div>{' '}
 									<div className="flex items-center">
-										<Calendar className="ml-2 text-gray-500" size={20} />
+										<Calendar
+											className="ml-2 text-gray-500"
+											size={20}
+										/>
 										<div>
-											<div className="text-sm text-gray-500">تاریخ تولد</div>
-											<div className="font-medium">{userData?.birthDate || 'نامشخص'}</div>
+											<div className="text-sm text-gray-500">
+												تاریخ تولد
+											</div>
+											<div className="font-medium">
+												{userData?.birthDate || 'نامشخص'}
+											</div>
 											{!userData?.isBirthDateEditable && (
 												<div className="mt-1 text-xs text-amber-500">
-													تاریخ تولد اخیراً ویرایش شده و فعلاً قابل تغییر نیست
+													تاریخ تولد اخیراً ویرایش شده و فعلاً
+													قابل تغییر نیست
 												</div>
 											)}
 										</div>
 									</div>
 									{!userData?.verified && (
 										<div className="flex items-center">
-											<Shield className="ml-2 text-gray-500" size={20} />
+											<Shield
+												className="ml-2 text-gray-500"
+												size={20}
+											/>
 											<div>
-												<div className="text-sm text-gray-500">وضعیت تایید</div>
+												<div className="text-sm text-gray-500">
+													وضعیت تایید
+												</div>
 												<button
 													onClick={handleVerificationRequest}
 													className={`px-3 py-1 text-sm text-white rounded-lg ${

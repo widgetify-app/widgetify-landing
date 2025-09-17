@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	ChevronDown,
 	ExternalLink,
@@ -7,9 +9,11 @@ import {
 	Shield,
 	X,
 } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { BiDonateBlood } from 'react-icons/bi'
-import { Link, useLocation } from 'react-router-dom'
 import ContainerWrapper from './ContainerWrapper'
 
 interface NavItem {
@@ -32,7 +36,7 @@ export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const [scrolled, setScrolled] = useState(false)
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-	const location = useLocation()
+	const pathname = usePathname()
 	const menuRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
@@ -83,8 +87,8 @@ export default function Navbar() {
 	// Check if a path is active
 	const isActive = (path: string) => {
 		if (path === '#') return false
-		if (path === '/') return location.pathname === path
-		return location.pathname.startsWith(path)
+		if (path === '/') return pathname === path
+		return pathname?.startsWith(path) || false
 	}
 
 	// Toggle dropdown menu
@@ -103,8 +107,8 @@ export default function Navbar() {
 				<div className="flex items-center justify-between h-16">
 					{/* Logo and site name */}
 					<div className="flex items-center">
-						<Link to="/" className="flex items-center">
-							<img
+						<Link href="/" className="flex items-center">
+							<Image
 								src="/icons/icon.png"
 								alt="ویجتی‌فای"
 								className={`object-contain transition-all ${scrolled ? 'w-8 h-8' : 'w-9 h-9'}`}
@@ -150,7 +154,7 @@ export default function Navbar() {
 										</button>
 									) : (
 										<Link
-											to={item.path}
+											href={item.path}
 											target={
 												item.isExternal ? '_blank' : undefined
 											}
@@ -186,7 +190,7 @@ export default function Navbar() {
 												{item.children.map((child) => (
 													<Link
 														key={child.label}
-														to={child.path}
+														href={child.path}
 														target={
 															child.isExternal
 																? '_blank'
@@ -317,7 +321,7 @@ export default function Navbar() {
 														{item.children.map((child) => (
 															<Link
 																key={child.label}
-																to={child.path}
+																href={child.path}
 																target={
 																	child.isExternal
 																		? '_blank'
@@ -364,7 +368,7 @@ export default function Navbar() {
 											</>
 										) : (
 											<Link
-												to={item.path}
+												href={item.path}
 												target={
 													item.isExternal ? '_blank' : undefined
 												}

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import type { User } from '../types/auth'
@@ -18,7 +20,9 @@ export const useProfileForm = ({ user, onSuccess }: UseProfileFormProps) => {
 	})
 
 	const [selectedAvatar, setSelectedAvatar] = useState<File | null>(null)
-	const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.avatar || null)
+	const [avatarPreview, setAvatarPreview] = useState<string | null>(
+		user?.avatar || null
+	)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [avatarError, setAvatarError] = useState<string | null>(null)
@@ -27,7 +31,7 @@ export const useProfileForm = ({ user, onSuccess }: UseProfileFormProps) => {
 	const { updateUsername, updateProfile } = useAuth()
 
 	const handleInputChange = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
 		const { name, value } = event.target
 		setFormData((prev) => ({
@@ -82,7 +86,9 @@ export const useProfileForm = ({ user, onSuccess }: UseProfileFormProps) => {
 
 			if (formData.birthdate !== user.birthDate) {
 				if (formData.birthdate && formData.birthdate.trim() !== '') {
-					const gregorianBirthdate = convertPersianDateToGregorian(formData.birthdate)
+					const gregorianBirthdate = convertPersianDateToGregorian(
+						formData.birthdate
+					)
 					if (gregorianBirthdate) {
 						updateFormData.append('birthdate', gregorianBirthdate)
 					}

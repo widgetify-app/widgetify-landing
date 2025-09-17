@@ -1,3 +1,6 @@
+'use client'
+
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import {
 	FaChevronLeft,
@@ -277,7 +280,7 @@ export function Home() {
 													: 'opacity-0'
 											}`}
 										>
-											<img
+											<Image
 												src={image.src}
 												alt={image.alt}
 												className="object-contain w-full h-full"
@@ -347,7 +350,7 @@ export function Home() {
 									className="overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:scale-105"
 								>
 									<div className="flex items-center justify-center p-4 aspect-video bg-gradient-to-br from-blue-50 to-purple-50">
-										<img
+										<Image
 											src={feature.image}
 											alt={feature.title}
 											className="object-contain max-w-full max-h-full transition-transform duration-300 rounded-lg shadow-md group-hover:scale-110"

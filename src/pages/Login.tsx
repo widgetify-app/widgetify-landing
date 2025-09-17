@@ -1,7 +1,10 @@
+'use client'
+
 import { useMutation } from '@tanstack/react-query'
 import { AlertCircle, Lock, LogIn, Mail } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import FormInput from '../components/auth/FormInput'
 import { useAuth } from '../contexts/AuthContext'
 import { useDocumentTitle } from '../hooks'
@@ -17,14 +20,14 @@ export default function Login() {
 		password: '',
 	})
 	const [errors, setErrors] = useState<Record<string, string>>({})
-	const navigate = useNavigate()
+	const router = useRouter()
 	const { login } = useAuth()
 
 	const loginMutation = useMutation({
 		mutationFn: authService.login,
 		onSuccess: (token) => {
 			login(token)
-			navigate('/profile')
+			router.push('/profile')
 		},
 		onError: (error: any) => {
 			const translatedError = translateError(error)
@@ -129,7 +132,7 @@ export default function Login() {
 
 						<div className="flex flex-row-reverse items-center mb-4">
 							<Link
-								to="/forgot-password"
+								href="/forgot-password"
 								className="text-sm text-blue-600 hover:underline"
 							>
 								فراموشی رمز عبور؟
@@ -153,7 +156,10 @@ export default function Login() {
 					<div className="mt-6 text-center">
 						<p className="text-gray-600">
 							حساب کاربری ندارید؟{' '}
-							<Link to="/register" className="font-medium text-blue-600 hover:underline">
+							<Link
+								href="/register"
+								className="font-medium text-blue-600 hover:underline"
+							>
 								ثبت نام
 							</Link>
 						</p>

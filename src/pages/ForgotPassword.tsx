@@ -1,5 +1,8 @@
+'use client'
+
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
 import RequestPasswordReset from '../components/auth/RequestPasswordReset'
 import ResetPassword from '../components/auth/ResetPassword'
 import { useDocumentTitle } from '../hooks'
@@ -7,10 +10,10 @@ import { useDocumentTitle } from '../hooks'
 export default function ForgotPassword() {
 	useDocumentTitle('بازیابی رمز عبور')
 
-	const [searchParams, setSearchParams] = useSearchParams()
+	const searchParams = useSearchParams()
 
-	const token = searchParams.get('token')
-	const emailFromUrl = searchParams.get('email')
+	const token = searchParams?.get('token')
+	const emailFromUrl = searchParams?.get('email')
 
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [email, setEmail] = useState(emailFromUrl || '')
@@ -22,11 +25,8 @@ export default function ForgotPassword() {
 	useEffect(() => {
 		if (token && emailFromUrl) {
 			setOriginalToken(token)
-			const newSearchParams = new URLSearchParams()
-			newSearchParams.set('email', emailFromUrl)
-			setSearchParams(newSearchParams)
 		}
-	}, [token, emailFromUrl, setSearchParams])
+	}, [token, emailFromUrl])
 
 	const handleRequestSuccess = (submittedEmail: string) => {
 		setIsSubmitted(true)
@@ -82,9 +82,12 @@ export default function ForgotPassword() {
 										/>
 									</svg>
 								</div>
-								<h2 className="mb-2 text-2xl font-bold">رمز عبور با موفقیت تغییر کرد</h2>
+								<h2 className="mb-2 text-2xl font-bold">
+									رمز عبور با موفقیت تغییر کرد
+								</h2>
 								<p className="mb-5 text-gray-600">
-									اکنون می‌توانید با رمز عبور جدید خود وارد حساب کاربری شوید.
+									اکنون می‌توانید با رمز عبور جدید خود وارد حساب کاربری
+									شوید.
 								</p>
 								<div className="flex flex-col gap-3">
 									<a
@@ -97,7 +100,7 @@ export default function ForgotPassword() {
 									</a>
 
 									<Link
-										to="/"
+										href="/"
 										className="flex items-center justify-center w-full p-3 font-medium text-gray-700 transition bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300"
 									>
 										بازگشت به صفحه اصلی
@@ -130,8 +133,9 @@ export default function ForgotPassword() {
 							</div>
 							<h2 className="mb-2 text-2xl font-bold">ایمیل ارسال شد</h2>
 							<p className="mb-5 text-gray-600">
-								درخواست بازیابی رمز عبور با موفقیت ثبت شد. لطفاً ایمیل خود ({email}) را
-								بررسی کنید و دستورالعمل‌های بازیابی رمز عبور را دنبال کنید.
+								درخواست بازیابی رمز عبور با موفقیت ثبت شد. لطفاً ایمیل خود
+								({email}) را بررسی کنید و دستورالعمل‌های بازیابی رمز عبور
+								را دنبال کنید.
 							</p>
 							<div className="flex flex-col gap-3">
 								<button

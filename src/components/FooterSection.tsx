@@ -1,6 +1,9 @@
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
 import { FaDiscord, FaGithub, FaInstagram, FaTelegram } from 'react-icons/fa'
 import { FaTwitter } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
 import {
 	DESKTOP_LINK,
 	DISCORD_LINK,
@@ -20,20 +23,23 @@ export default function FooterSection() {
 					{/* Brand Column */}
 					<div className="lg:col-span-1">
 						<div className="flex items-center mb-4">
-							<img
+							<Image
 								src="/icons/icon.png"
 								alt="ویجتی‌فای"
 								className="object-contain w-10 h-10"
 								onError={(e) => {
-									e.currentTarget.src = 'https://placehold.co/96x96?text=W'
+									e.currentTarget.src =
+										'https://placehold.co/96x96?text=W'
 								}}
 							/>
-							<span className="mr-2 text-xl font-bold text-blue-600">ویجتی‌فای</span>
+							<span className="mr-2 text-xl font-bold text-blue-600">
+								ویجتی‌فای
+							</span>
 						</div>
 
 						<p className="mb-6 font-light text-gray-600">
-							محیط خسته کننده خودتون رو با ویجتی‌فای به یک محیط جذاب و کاربرپسند تبدیل
-							کنید.
+							محیط خسته کننده خودتون رو با ویجتی‌فای به یک محیط جذاب و
+							کاربرپسند تبدیل کنید.
 						</p>
 
 						<div className="flex items-center gap-3">
@@ -99,12 +105,18 @@ export default function FooterSection() {
 						<h3 className="mb-4 text-lg font-bold">دسترسی سریع</h3>
 						<ul className="space-y-2 text-gray-600">
 							<li>
-								<Link to="/" className="transition-colors hover:text-blue-600">
+								<Link
+									href="/"
+									className="transition-colors hover:text-blue-600"
+								>
 									صفحه اصلی
 								</Link>
 							</li>
 							<li>
-								<Link to="/donate" className="transition-colors hover:text-blue-600">
+								<Link
+									href="/donate"
+									className="transition-colors hover:text-blue-600"
+								>
 									حمایت مالی
 								</Link>
 							</li>
@@ -117,7 +129,7 @@ export default function FooterSection() {
 						<ul className="space-y-2">
 							<li>
 								<Link
-									to="/extension"
+									href="/extension"
 									className="text-gray-600 transition-colors hover:text-blue-600"
 								>
 									اکستنشن مرورگر
@@ -166,22 +178,34 @@ export default function FooterSection() {
 				{/* Bottom Section with Copyright and Additional Links */}
 				<div className="flex flex-col items-center justify-between pt-6 border-t border-gray-200 md:flex-row">
 					<div className="flex flex-wrap items-center justify-center mb-4 gap-x-6 gap-y-2 md:mb-0">
-						<Link to="/terms" className="text-sm text-gray-500 hover:text-blue-600">
+						<Link
+							href="/terms"
+							className="text-sm text-gray-500 hover:text-blue-600"
+						>
 							قوانین و مقررات
 						</Link>
-						<Link to="/privacy" className="text-sm text-gray-500 hover:text-blue-600">
+						<Link
+							href="/privacy"
+							className="text-sm text-gray-500 hover:text-blue-600"
+						>
 							حریم خصوصی
 						</Link>
-						<Link to="/faq" className="text-sm text-gray-500 hover:text-blue-600">
+						<Link
+							href="/faq"
+							className="text-sm text-gray-500 hover:text-blue-600"
+						>
 							سوالات متداول
 						</Link>
 					</div>
 
 					<div className="text-center md:text-right">
 						<p className="text-sm text-gray-500">
-							&copy; {new Date().getFullYear()} ویجتی‌فای. تمامی حقوق محفوظ است.
+							&copy; {new Date().getFullYear()} ویجتی‌فای. تمامی حقوق محفوظ
+							است.
 						</p>
-						<p className="mt-1 text-xs text-gray-400">ساخته شده با ❤️ در ایران</p>
+						<p className="mt-1 text-xs text-gray-400">
+							ساخته شده با ❤️ در ایران
+						</p>
 					</div>
 				</div>
 			</ContainerWrapper>
