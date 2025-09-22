@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { BiDonateBlood } from 'react-icons/bi'
+import { RiFeedbackLine } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
 import ContainerWrapper from './ContainerWrapper'
 
@@ -66,6 +67,12 @@ export default function Navbar() {
 				label: 'حریم خصوصی',
 				path: '/privacy',
 				icon: <Shield size={18} />,
+			},
+			{
+				label: 'پیشنهاد و انتقادات',
+				path: 'https://feedback.widgetify.ir',
+				isExternal: true,
+				icon: <RiFeedbackLine size={18} />,
 			},
 		]
 
