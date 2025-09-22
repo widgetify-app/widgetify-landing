@@ -1,8 +1,9 @@
 import '../src/styles/global.css'
-import ClientWrapper from '../src/components/ClientWrapper'
+import FooterSection from '@/components/FooterSection'
+import Navbar from '@/components/Navbar'
 
 export const metadata = {
-	title: 'ویجتیفای | افزونه متن‌باز New Tab با ویجت‌های کاربردی',
+	title: 'ویجتیفای New Tab با ویجت‌های کاربردی',
 	description:
 		'ویجتیفای یک افزونه متن‌باز برای Chrome، Edge، Brave و Opera است که صفحه New Tab مرورگر شما را به یک داشبورد شخصی تبدیل می‌کند. با بیش از 12 هزار نصب فعال، ابزارهایی مثل مدیریت مالی، وظایف روزانه، پومودورو، بوکمارک‌های پیشرفته، تقویم شمسی و ویجت‌های متنوع در اختیار شماست.',
 	keywords: [
@@ -27,9 +28,9 @@ export const metadata = {
 		'ویجت',
 	],
 	openGraph: {
-		title: 'ویجتیفای | افزونه متن‌باز New Tab با ویجت‌های کاربردی',
+		title: 'ویجتیفای New Tab با ویجت‌های کاربردی',
 		description:
-			'صفحه New Tab مرورگر خود را با ویجتیفای به یک داشبورد شخصی و کاربردی تبدیل کنید. بیش از 12 هزار کاربر فعال، مدیریت مالی، وظایف، پومودورو، بوکمارک‌ها و ابزارهای روزانه—all in one.',
+			'صفحه New Tab مرورگر خود را با ویجتیفایخصی و کاربردی تبدیل کنید. بیش از 12 هزار کاربر فعال، مدیریت مالی، وظایف، پومودورو، بوکمارک‌ها و ابزارهای روزانه—all in one.',
 		url: 'https://widgetify.ir',
 		siteName: 'ویجتیفای',
 		locale: 'fa_IR',
@@ -38,7 +39,7 @@ export const metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'ویجتیفای | افزونه متن‌باز New Tab با ویجت‌های کاربردی',
+		title: 'ویجتیفای New Tab با ویجت‌های کاربردی',
 		description:
 			'ابزارهای روزمره مثل مدیریت مالی، وظایف، تقویم شمسی و پومودورو در یک افزونه New Tab ساده و زیبا.',
 		images: ['/icons/icon16.png'],
@@ -74,7 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="shortcut icon" href="/icons/icon.png" />
 			</head>
 			<body>
-				<ClientWrapper>{children}</ClientWrapper>
+				<Navbar />
+				{children}
+				<FooterSection />
 			</body>
 		</html>
 	)
