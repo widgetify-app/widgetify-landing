@@ -34,14 +34,14 @@ export const metadata = {
 		siteName: 'ویجتیفای',
 		locale: 'fa_IR',
 		type: 'website',
-		images: ['/og-image.png'],
+		images: ['/icons/icon16.png'],
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'ویجتیفای | افزونه متن‌باز New Tab با ویجت‌های کاربردی',
 		description:
 			'ابزارهای روزمره مثل مدیریت مالی، وظایف، تقویم شمسی و پومودورو در یک افزونه New Tab ساده و زیبا.',
-		images: ['/og-image.png'],
+		images: ['/icons/icon16.png'],
 	},
 	alternates: {
 		canonical: 'https://widgetify.ir',

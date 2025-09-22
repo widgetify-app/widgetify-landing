@@ -1,19 +1,10 @@
-'use client'
-
+import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import {
-	FaChevronLeft,
-	FaChevronRight,
-	FaChrome,
-	FaEdge,
-	FaFirefox,
-	FaOpera,
-} from 'react-icons/fa'
+import { FaChrome, FaEdge, FaFirefox, FaOpera } from 'react-icons/fa'
 import { FaBrave } from 'react-icons/fa6'
-import { TypeAnimation } from 'react-type-animation'
-import { useDocumentTitle } from '@/hooks'
-import ContributorsSection from '../ContributorsSection'
+import ContributorsSection from '../../ContributorsSection'
+import { HomeHead } from './head'
+import { PreviewImages } from './previewImages'
 
 const CHROME_EXTENSION_URL =
 	'https://chromewebstore.google.com/detail/widgetify/ajaaioiiekongmlakdbellaoglnffmoh'
@@ -55,110 +46,50 @@ const browserExtensions = [
 	},
 ].sort((a, b) => (a.isAvailable === b.isAvailable ? 0 : a.isAvailable ? -1 : 1))
 
-const previewImages = [
+const features = [
 	{
-		src: '/preview-1.png',
-		alt: 'پیش‌نمایش اول - ویجت‌های مالی و اخبار',
-		title: 'ویجت‌های مالی و اخبار',
-		description: '🎨 هرطور دوست داری شخصی‌سازی کن!',
+		title: '💰 مدیریت مالی هوشمند',
+		description: 'قیمت لحظه‌ای ارزها، رمزارزها و بازارها رو ببین',
+		image: '/combo-widget_news_currencies.png',
 	},
 	{
-		src: '/preview-2.png',
-		alt: 'پیش‌نمایش دوم - ویجت‌های کاربردی',
-		title: 'ویجت‌های کاربردی',
-		description: '✨ چیدمان ویجت‌ها رو به سلیقه خودت تنظیم کن',
+		title: '✅ مدیریت وظایف',
+		description: 'کارها و یادداشت‌هات رو راحت سازماندهی کن',
+		image: '/todo-widget.png',
 	},
 	{
-		src: '/widgets.png',
-		alt: 'مجموعه کامل ویجت‌ها',
-		title: 'مجموعه کامل ویجت‌ها',
-		description: '🚀 همه ویجت‌ها رو یکجا ببین!',
+		title: '🛠️ ابزارهای کاربردی',
+		description: 'ساعت، تقویم و آب و هوا همیشه در دسترس',
+		image: '/clock-widget.png',
+	},
+	{
+		title: '📝 یادداشت‌ها',
+		description: 'یادداشت‌های سریع بنویس و مدیریت کن',
+		image: '/note-widget.png',
+	},
+	{
+		title: '🍅 پومودورو',
+		description: 'زمانت رو بهتر مدیریت کن و روی کارها متمرکز باش',
+		image: '/pomodoro-widget.png',
+	},
+	{
+		title: '🌤️ آب و هوا',
+		description: 'هوا چطوره؟ قبل از بیرون رفتن چک کن!',
+		image: '/weather-widget.png',
 	},
 ]
-
 export function Home() {
-	useDocumentTitle('افزونه مرورگر')
-	const [currentSlide, setCurrentSlide] = useState(0)
-
-	const nextSlide = () => {
-		setCurrentSlide((prev) => (prev + 1) % previewImages.length)
-	}
-
-	const prevSlide = () => {
-		setCurrentSlide(
-			(prev) => (prev - 1 + previewImages.length) % previewImages.length
-		)
-	}
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentSlide((prev) => (prev + 1) % previewImages.length)
-		}, 5000)
-		return () => clearInterval(interval)
-	}, [])
-
-	const features = [
-		{
-			title: '💰 مدیریت مالی هوشمند',
-			description: 'قیمت لحظه‌ای ارزها، رمزارزها و بازارها رو ببین',
-			image: '/combo-widget_news_currencies.png',
-		},
-		{
-			title: '✅ مدیریت وظایف',
-			description: 'کارها و یادداشت‌هات رو راحت سازماندهی کن',
-			image: '/todo-widget.png',
-		},
-		{
-			title: '🛠️ ابزارهای کاربردی',
-			description: 'ساعت، تقویم و آب و هوا همیشه در دسترس',
-			image: '/clock-widget.png',
-		},
-		{
-			title: '📝 یادداشت‌ها',
-			description: 'یادداشت‌های سریع بنویس و مدیریت کن',
-			image: '/note-widget.png',
-		},
-		{
-			title: '🍅 پومودورو',
-			description: 'زمانت رو بهتر مدیریت کن و روی کارها متمرکز باش',
-			image: '/pomodoro-widget.png',
-		},
-		{
-			title: '🌤️ آب و هوا',
-			description: 'هوا چطوره؟ قبل از بیرون رفتن چک کن!',
-			image: '/weather-widget.png',
-		},
-	]
-
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+			<Head>
+				<title>افزونه مرورگر ویجتی‌فای</title>
+			</Head>
 			{/* Hero Section */}
 			<div className="relative px-4 py-20">
 				<div className="flex flex-col gap-6 mx-auto max-w-7xl">
 					{/* Header */}
 					<div className="flex flex-col items-center justify-center gap-4 animate-fade-in">
-						<h1 className="py-1 text-4xl font-bold text-gray-900 md:text-6xl lg:text-7xl animate-slide-down">
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700">
-								نیوتب مرورگرت رو
-							</span>
-							<span className="block text-center text-gray-800">
-								<TypeAnimation
-									sequence={[
-										'کارآمد کن!',
-										2000,
-										'جذاب کن!',
-										2000,
-										'حرفه‌ای کن!',
-										2000,
-									]}
-									wrapper="span"
-									speed={50}
-									style={{ display: 'inline-block' }}
-									repeat={Infinity}
-									cursor={true}
-								/>
-							</span>
-						</h1>
+						<HomeHead />
 
 						<p className="max-w-3xl mx-auto text-sm font-light text-center text-gray-600 md:text-xl animate-fade-in-up">
 							هر بار که تب جدید بازمی‌کنی، یه داشبورد شخصی پر از ویجت‌های مفید
@@ -268,69 +199,7 @@ export function Home() {
 
 					{/* Main Preview Slider */}
 					<div className="relative animate-fade-in-delayed">
-						<div className="relative max-w-5xl mx-auto">
-							<div className="overflow-hidden rounded-3xl aspect-video animate-slide-up-delayed bg-gradient-to-br from-blue-100 to-purple-100">
-								<div className="relative w-full h-full">
-									{previewImages.map((image, index) => (
-										<div
-											key={index}
-											className={`absolute inset-0 transition-opacity duration-1000 ${
-												index === currentSlide
-													? 'opacity-100'
-													: 'opacity-0'
-											}`}
-										>
-											<Image
-												src={image.src}
-												alt={image.alt}
-												className="object-contain w-full h-full"
-												onError={(e) => {
-													e.currentTarget.src = `https://placehold.co/1200x675?text=${encodeURIComponent(image.title)}`
-												}}
-												width={1000}
-												height={100}
-											/>
-										</div>
-									))}
-								</div>
-
-								{/* Navigation Buttons */}
-								<button
-									onClick={prevSlide}
-									className="absolute p-3 text-white transition-all duration-300 transform -translate-y-1/2 rounded-full left-4 top-1/2 bg-black/50 hover:bg-black/70 hover:scale-110"
-								>
-									<FaChevronLeft size={20} />
-								</button>
-								<button
-									onClick={nextSlide}
-									className="absolute p-3 text-white transition-all duration-300 transform -translate-y-1/2 rounded-full right-4 top-1/2 bg-black/50 hover:bg-black/70 hover:scale-110"
-								>
-									<FaChevronRight size={20} />
-								</button>
-
-								{/* Slide Indicators */}
-								<div className="absolute flex space-x-2 transform -translate-x-1/2 bottom-4 left-1/2">
-									{previewImages.map((_, index) => (
-										<button
-											key={index}
-											onClick={() => setCurrentSlide(index)}
-											className={`w-3 h-3 rounded-full transition-all duration-300 ${
-												index === currentSlide
-													? 'bg-white scale-125'
-													: 'bg-white/50 hover:bg-white/70'
-											}`}
-										/>
-									))}
-								</div>
-							</div>
-
-							{/* Slide Info */}
-							<div className="absolute hidden px-6 py-3 text-white transform -translate-x-1/2 rounded-full bottom-16 left-1/2 bg-black/70 backdrop-blur-sm animate-fade-in-long-delayed sm:block">
-								<span className="text-sm font-medium">
-									{previewImages[currentSlide].description}
-								</span>
-							</div>
-						</div>
+						<PreviewImages />
 					</div>
 
 					{/* Features Grid */}
@@ -356,9 +225,6 @@ export function Home() {
 											src={feature.image}
 											alt={feature.title}
 											className="object-contain max-w-full max-h-full transition-transform duration-300 rounded-lg shadow-md group-hover:scale-110"
-											onError={(e) => {
-												e.currentTarget.src = `https://placehold.co/400x300?text=${encodeURIComponent(feature.title)}`
-											}}
 											width={100}
 											height={100}
 										/>

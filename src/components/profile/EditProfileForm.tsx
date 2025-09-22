@@ -1,3 +1,4 @@
+'use client'
 import { useProfileForm } from '../../hooks/useProfileForm'
 import type { User } from '../../types/auth'
 import ProfileAvatarUpload from './ProfileAvatarUpload'
@@ -104,7 +105,9 @@ export default function EditProfileForm({
 						<div className="px-3 py-2 text-gray-500 bg-gray-100 border border-gray-300 rounded-lg">
 							{user.birthDate || 'نامشخص'}
 						</div>
-						<p className="mt-1 text-xs text-gray-500">تاریخ تولد قابل ویرایش نیست</p>
+						<p className="mt-1 text-xs text-gray-500">
+							تاریخ تولد قابل ویرایش نیست
+						</p>
 					</div>
 				)}
 			</div>

@@ -1,3 +1,5 @@
+'use client'
+
 import { AlertCircle } from 'lucide-react'
 import { useRef } from 'react'
 import type { User } from '../../types/auth'
