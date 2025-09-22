@@ -167,13 +167,15 @@ export function Home() {
 						<div className="flex flex-wrap justify-center gap-6 py-4 animate-fade-in-up">
 							<div className="text-center">
 								<div className="text-2xl font-bold text-blue-600">
-									+12 هزار
+									+15 هزار
 								</div>
 								<div className="text-xs text-gray-500">نصب فعال</div>
 							</div>
 							<div className="w-px h-10 bg-gray-200"></div>
 							<div className="text-center">
-								<div className="text-2xl font-bold text-green-600">✓</div>
+								<div className="text-2xl font-bold text-center text-blue-600">
+									👥
+								</div>
 								<div className="text-xs text-gray-500">تایید شده</div>
 							</div>
 							<div className="w-px h-10 bg-gray-200"></div>
