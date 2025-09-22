@@ -55,26 +55,26 @@ const browserExtensions = [
 const previewImages = [
 	{
 		src: '/preview-1.png',
-		alt: 'پیش‌نمایش اول - ویجت‌های مالی و اخبار',
+		alt: 'افزونه ویجتیفای - ویجت‌های مالی و اخبار در نیو تب مرورگر',
 		title: 'ویجت‌های مالی و اخبار',
 		description: '🎨 هرطور دوست داری شخصی‌سازی کن!',
 	},
 	{
 		src: '/preview-2.png',
-		alt: 'پیش‌نمایش دوم - ویجت‌های کاربردی',
+		alt: 'افزونه نیو تب ویجتیفای - ویجت‌های کاربردی مدیریت وظایف',
 		title: 'ویجت‌های کاربردی',
 		description: '✨ چیدمان ویجت‌ها رو به سلیقه خودت تنظیم کن',
 	},
 	{
 		src: '/widgets.png',
-		alt: 'مجموعه کامل ویجت‌ها',
+		alt: 'مجموعه کامل ویجت‌های افزونه ویجتیفای - بهترین افزونه مرورگر',
 		title: 'مجموعه کامل ویجت‌ها',
 		description: '🚀 همه ویجت‌ها رو یکجا ببین!',
 	},
 ]
 
 export function Home() {
-	useDocumentTitle('اکستنشن مرورگر')
+	useDocumentTitle('افزونه نیو تب مرورگر')
 	const [currentSlide, setCurrentSlide] = useState(0)
 
 	const nextSlide = () => {
@@ -99,38 +99,44 @@ export function Home() {
 			title: '💰 مدیریت مالی هوشمند',
 			description: 'قیمت لحظه‌ای ارزها، رمزارزها و بازارها رو ببین',
 			image: '/combo-widget_news_currencies.png',
+			alt: 'ویجت مالی افزونه ویجتیفای - قیمت ارز و رمزارز',
 		},
 		{
 			title: '✅ مدیریت وظایف',
 			description: 'کارها و یادداشت‌هات رو راحت سازماندهی کن',
 			image: '/todo-widget.png',
+			alt: 'ویجت مدیریت وظایف افزونه نیو تب ویجتیفای',
 		},
 		{
 			title: '🛠️ ابزارهای کاربردی',
 			description: 'ساعت، تقویم و آب و هوا همیشه در دسترس',
 			image: '/clock-widget.png',
+			alt: 'ویجت ساعت و تقویم در افزونه مرورگر ویجتیفای',
 		},
 		{
 			title: '📝 یادداشت‌ها',
 			description: 'یادداشت‌های سریع بنویس و مدیریت کن',
 			image: '/note-widget.png',
+			alt: 'ویجت یادداشت افزونه ویجتیفای - بهترین افزونه ها',
 		},
 		{
 			title: '🍅 پومودورو',
 			description: 'زمانت رو بهتر مدیریت کن و روی کارها متمرکز باش',
 			image: '/pomodoro-widget.png',
+			alt: 'ویجت پومودورو افزونه نیو تب - مدیریت زمان',
 		},
 		{
 			title: '🌤️ آب و هوا',
 			description: 'هوا چطوره؟ قبل از بیرون رفتن چک کن!',
 			image: '/weather-widget.png',
+			alt: 'ویجت آب و هوا افزونه مرورگر ویجتیفای',
 		},
 	]
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+		<main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
 			{/* Hero Section */}
-			<div className="relative px-4 py-20">
+			<section className="relative px-4 py-20" aria-label="معرفی افزونه ویجتیفای">
 				<div className="flex flex-col gap-6 mx-auto max-w-7xl">
 					{/* Header */}
 					<div className="flex flex-col items-center justify-center gap-4 animate-fade-in">
@@ -173,8 +179,8 @@ export function Home() {
 							</div>
 							<div className="w-px h-10 bg-gray-200"></div>
 							<div className="text-center">
-								<div className="text-2xl font-bold text-center text-blue-600">
-									👥
+								<div className="text-2xl font-bold text-center text-green-600">
+									✓
 								</div>
 								<div className="text-xs text-gray-500">تایید شده</div>
 							</div>
@@ -202,7 +208,7 @@ export function Home() {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="relative flex items-center px-12 py-5 text-xl font-bold text-white transition-all duration-300 transform group bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl hover:from-blue-700 hover:to-blue-800 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50"
-								aria-label="دانلود برای گوگل کروم - مرورگر اصلی"
+								aria-label="دانلود افزونه ویجتیفای برای گوگل کروم - بهترین افزونه نیو تب"
 							>
 								<FaChrome
 									size={32}
@@ -215,7 +221,7 @@ export function Home() {
 								</div>
 								<div className="absolute -top-2 -right-2">
 									<span className="px-2 py-1 text-xs font-bold text-blue-700 bg-yellow-300 rounded-full animate-pulse">
-										محبوب
+										محبوب‌ترین
 									</span>
 								</div>
 							</a>
@@ -334,11 +340,12 @@ export function Home() {
 					<div className="flex flex-col gap-6">
 						<div className="text-center">
 							<h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-								ویجت‌های باحال ما! 🎯
+								ویژگی‌های افزونه ویجتیفای 🎯
 							</h2>
 							<p className="max-w-2xl mx-auto text-lg text-gray-600">
-								هر کدوم از این ویجت‌ها کاری داره که زندگی دیجیتالت رو
-								راحت‌تر کنه
+								این بهترین افزونه نیو تب با ویجت‌های کاربردی زندگی دیجیتالت
+								رو راحت‌تر می‌کنه. افزونه مرورگر ویجتیفای همه چیزی که نیاز
+								داری رو داره!
 							</p>
 						</div>
 
@@ -351,7 +358,7 @@ export function Home() {
 									<div className="flex items-center justify-center p-4 aspect-video bg-gradient-to-br from-blue-50 to-purple-50">
 										<img
 											src={feature.image}
-											alt={feature.title}
+											alt={feature.alt}
 											className="object-contain max-w-full max-h-full transition-transform duration-300 rounded-lg shadow-md group-hover:scale-110"
 											onError={(e) => {
 												e.currentTarget.src = `https://placehold.co/400x300?text=${encodeURIComponent(feature.title)}`
@@ -375,7 +382,7 @@ export function Home() {
 					<div className="text-center">
 						<div className="max-w-4xl p-8 mx-auto border border-purple-100 bg-gradient-to-r from-purple-50 to-blue-50 rounded-3xl">
 							<h3 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
-								🚀 و کلیییی فیچر دیگه که منتظر شماست!
+								🚀 ویژگی‌های جدید افزونه ویجتیفای
 							</h3>
 							<p className="max-w-2xl mx-auto mb-6 text-lg text-gray-600">
 								هر روز داریم فیچرهای جدید و باحال اضافه می‌کنیم. پس همیشه
@@ -400,7 +407,7 @@ export function Home() {
 
 					<ContributorsSection />
 				</div>
-			</div>
-		</div>
+			</section>
+		</main>
 	)
 }
